@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useState, useEffect } from "react";
-import MarketTicker from "./MarketTicker";
 import ChatWidget from "./ChatWidget";
 import { InterestRegistrationDialog } from "./InterestRegistrationDialog";
 
@@ -38,11 +37,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             : "bg-transparent"
         }`}
       >
-        {/* Market Ticker - Only visible when scrolled or on specific pages if needed,
-            but for now we'll keep it always visible at the top of the header */}
-        <div className="w-full bg-sidebar text-white">
-           <MarketTicker />
-        </div>
         <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
