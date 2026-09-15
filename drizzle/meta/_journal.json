@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1767022073009,
+      "tag": "0000_regular_hellion",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1769083290116,
+      "tag": "0001_misty_naoko",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1769176507947,
+      "tag": "0002_far_supernaut",
+      "breakpoints": true
+    }
+  ]
+}

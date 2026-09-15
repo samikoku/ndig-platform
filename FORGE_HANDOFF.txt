@@ -1,0 +1,157 @@
+================================================================================
+NDIG DEPLOYMENT HANDOFF — READY FOR EXECUTION
+================================================================================
+
+PROJECT: Nigeria Diaspora Investment Gateway (NDIG)
+STATUS: PRODUCTION-READY
+DATE: September 14, 2026
+AUTHORIZATION: PROCEED WITH FORGE PUSH
+
+================================================================================
+BUILD VERIFICATION SUMMARY
+================================================================================
+
+✅ Doctrine Compliance: 100% (0 violations remaining)
+   - 10/10 "government-backed/endorsed" instances remediated
+   - Footer governance disclaimer in place on all pages
+   - "Regulator-vetted" language applied throughout
+
+✅ Staging Infrastructure: 100% CLEAN (0 staging references)
+   - Removed 7x manus.space domain references
+   - Updated OG/Twitter/JSON-LD to production domain (ndigateway.org)
+   - All assets converted to relative paths (/logos/ndig-logo.svg)
+
+✅ File Integrity: ALL VERIFIED
+   - 15 active pages (2 orphaned files deleted)
+   - Logo file present: /public/logos/ndig-logo.svg
+   - All imports/routes functional
+
+✅ Navigation: COMPLETE
+   - Diaspora Readiness added to main nav (desktop + mobile)
+   - HomeFund NG added to footer section
+   - 5-column footer grid properly configured
+
+✅ Hero Framing: DEPLOYED
+   - $21B/3x text: "$21B annual diaspora inflow — at least 3x channelable 
+     into productive investment once a trust layer exists."
+   - Positioned between CTA buttons and stats metrics
+   - Styled with chart-1 color (orange) emphasis
+
+================================================================================
+DEPLOYMENT EXECUTION
+================================================================================
+
+STEP 1: GIT COMMIT (on machine with GitHub access)
+────────────────────────────────────────────────────
+cd /path/to/ndig-platform
+
+git add .
+
+git commit -m "NDIG Pre-Launch Close: Doctrine Compliance & Infrastructure Cleanup
+
+- Remove orphaned files (AuthorityStatements.tsx, ImpactCalculator.tsx)
+- Complete sitewide sweep: 10/10 governance violations remediated
+- Add footer disclosure on every page
+- Update all OG/Twitter meta tags to regulator-vetted language
+- Insert \$21B/3x economic framing into Home hero
+- Add Diaspora Readiness to main navigation (desktop + mobile)
+- Add HomeFund NG to footer
+- Remove all manus.space staging infrastructure references
+- Update production domain to ndigateway.org
+- Verify all assets at relative paths
+
+All changes aligned with locked doctrine: NDIG is regulator-vetted, never 
+collects funds, never gives investment advice.
+
+Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01KUJ2ctKGVcbrLKxMjzCSQn"
+
+git log --oneline -1
+→ Expected: Commit hash (e.g., a1b2c3d)
+
+
+STEP 2: GITHUB PUSH (requires GitHub credentials)
+────────────────────────────────────────────────────
+git remote add origin https://github.com/samikoku/ndig-platform.git
+
+git push -u origin main
+
+→ Expected: "Branch 'main' set up to track 'origin/main'"
+
+
+STEP 3: VERCEL AUTO-DEPLOYMENT
+────────────────────────────────────────────────────
+[Automatic — GitHub push triggers Vercel deployment]
+
+Verify in Vercel Dashboard:
+  • Deployment status: "Ready"
+  • Build logs: No errors
+  • Deployment URL: ndig-platform.vercel.app
+
+
+STEP 4: DNS CONFIGURATION
+────────────────────────────────────────────────────
+Point ndigateway.org to Vercel:
+  • Option A: Update nameservers to Vercel's DNS
+  • Option B: Add CNAME record pointing to Vercel deployment
+
+Verify with: nslookup ndigateway.org
+→ Expected: Resolves to Vercel IP/CNAME
+
+
+================================================================================
+POST-DEPLOYMENT VERIFICATION (Execute on Live Domain)
+================================================================================
+
+TEST 1: Domain Resolution
+curl -I https://ndigateway.org
+→ Expected: HTTP 200 OK
+
+TEST 2: No Staging References
+curl https://ndigateway.org | grep -i "manus.space"
+→ Expected: No matches
+
+TEST 3: OG Image Path
+curl -I https://ndigateway.org/logos/ndig-logo.svg
+→ Expected: HTTP 200 OK
+
+TEST 4: Live Page Inspection (Browser)
+Visit https://ndigateway.org
+
+Confirm Present:
+  ✅ Footer text: "NDIG does not provide investment advice, and does not 
+     collect or hold investor funds."
+  ✅ Hero framing: "$21B annual diaspora inflow — at least 3x channelable..."
+  ✅ Navigation includes "Diaspora Readiness" link
+  ✅ Footer includes "HomeFund NG — Housing Gateway" section
+  ✅ No console errors
+  ✅ No "manus" references visible
+
+TEST 5: Social Media Preview
+Open in LinkedIn/Facebook share dialog
+→ Expected: OG tags render correctly with logo SVG
+
+================================================================================
+DOCUMENTATION
+================================================================================
+
+Full verification checklist: DEPLOYMENT_CHECKLIST.md
+Modified files list: See above
+Build location: /tmp/dpig_preview_website/
+Ready for production: YES
+
+================================================================================
+FINAL STATUS
+================================================================================
+
+✅ ALL TASKS COMPLETE
+✅ ZERO DOCTRINE VIOLATIONS
+✅ ZERO STAGING INFRASTRUCTURE
+✅ 100% PRODUCTION-READY
+
+AUTHORIZATION TO DEPLOY: CONFIRMED
+
+Execute Steps 1-4 above.
+Report commit hash, Vercel URL, and live verification results.
+
+================================================================================
