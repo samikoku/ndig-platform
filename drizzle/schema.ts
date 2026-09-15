@@ -1,5 +1,4 @@
 import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
-
 /**
  * Core user table backing auth flow.
  * Extend this file with additional tables as your product grows.
@@ -21,10 +20,8 @@ export const users = mysqlTable("users", {
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
-
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
-
 /**
  * Interest registrations from potential diaspora investors
  */
@@ -38,10 +35,8 @@ export const interestRegistrations = mysqlTable("interest_registrations", {
   status: mysqlEnum("status", ["new", "contacted", "qualified", "converted"]).default("new").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
-
 export type InterestRegistration = typeof interestRegistrations.$inferSelect;
 export type InsertInterestRegistration = typeof interestRegistrations.$inferInsert;
-
 /**
  * Investment opportunities available on the platform
  */
@@ -59,10 +54,8 @@ export const investmentOpportunities = mysqlTable("investment_opportunities", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
-
 export type InvestmentOpportunity = typeof investmentOpportunities.$inferSelect;
 export type InsertInvestmentOpportunity = typeof investmentOpportunities.$inferInsert;
-
 /**
  * Demo mode usage analytics
  */
@@ -75,10 +68,8 @@ export const demoAnalytics = mysqlTable("demo_analytics", {
   pagesViewed: int("pages_viewed").default(0).notNull(),
   convertedToRegistration: int("converted_to_registration").default(0).notNull(), // 0 = no, 1 = yes
 });
-
 export type DemoAnalytic = typeof demoAnalytics.$inferSelect;
 export type InsertDemoAnalytic = typeof demoAnalytics.$inferInsert;
-
 /**
  * Referral tracking for external links (NIBSS, banks, etc.)
  */
@@ -94,10 +85,8 @@ export const referralTracking = mysqlTable("referral_tracking", {
   verified: int("verified").default(0).notNull(), // 0 = not verified, 1 = verified
   verifiedAt: timestamp("verified_at"),
 });
-
 export type ReferralTracking = typeof referralTracking.$inferSelect;
 export type InsertReferralTracking = typeof referralTracking.$inferInsert;
-
 /**
  * Investment flow tracking (remittance → NDIG → investment vehicle)
  */
@@ -118,10 +107,8 @@ export const investmentFlows = mysqlTable("investment_flows", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   completedAt: timestamp("completed_at"),
 });
-
 export type InvestmentFlow = typeof investmentFlows.$inferSelect;
 export type InsertInvestmentFlow = typeof investmentFlows.$inferInsert;
-
 /**
  * User account linking (NRNIA, BVN, etc.)
  */
@@ -136,6 +123,5 @@ export const accountLinks = mysqlTable("account_links", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   verifiedAt: timestamp("verified_at"),
 });
-
 export type AccountLink = typeof accountLinks.$inferSelect;
 export type InsertAccountLink = typeof accountLinks.$inferInsert;
