@@ -1,9 +1,14 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npx vite build && npx esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
-  "outputDirectory": "dist",
+  "buildCommand": "npx vite build",
   "env": {
     "VITE_API_BASE": "http://localhost:3000",
     "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/index.ts": {
+      "memory": 3008,
+      "maxDuration": 30
+    }
   }
 }
