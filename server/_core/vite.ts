@@ -48,32 +48,40 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  // Try multiple paths to find the dist folder
+  console.log("=== serveStatic initialization ===");
+  console.log(`CWD: ${process.cwd()}`);
+  console.log(`import.meta.dirname: ${import.meta.dirname}`);
+
   const possiblePaths = [
     path.resolve(import.meta.dirname, "../..", "dist", "public"),
     path.resolve(process.cwd(), "dist", "public"),
     path.resolve("/var/task", "dist", "public"),
   ];
 
-  let distPath = possiblePaths[0];
+  console.log("Checking possible paths:");
+  let distPath = null;
   for (const p of possiblePaths) {
-    if (fs.existsSync(p)) {
+    const exists = fs.existsSync(p);
+    console.log(`  ${exists ? "✓" : "✗"} ${p}`);
+    if (exists) {
       distPath = p;
-      console.log(`Found dist folder at: ${distPath}`);
-      break;
     }
   }
 
-  if (!fs.existsSync(distPath)) {
-    console.error(
-      `Could not find the build directory. Tried: ${possiblePaths.join(", ")}`
-    );
+  if (!distPath) {
+    console.error("Could not find any dist folder!");
+    distPath = possiblePaths[0];
+  } else {
+    console.log(`Using distPath: ${distPath}`);
   }
 
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, { index: false }));
 
-  // fall through to index.html if the file doesn't exist
+  // fall through to index.html for SPA routing
   app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+    const indexPath = path.resolve(distPath, "index.html");
+    console.log(`Serving index.html from: ${indexPath}`);
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.sendFile(indexPath);
   });
 }
