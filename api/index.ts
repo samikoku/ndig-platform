@@ -37,10 +37,12 @@ app.use(
 function setupStaticFiles() {
   const cwd = process.cwd();
   console.log(`[STATIC] CWD: ${cwd}`);
+  console.log(`[STATIC] __dirname: ${__dirname}`);
 
   const distPaths = [
-    path.join(cwd, "dist", "public"),
     path.join(__dirname, "..", "dist", "public"),
+    path.join(__dirname, "..", "..", "dist", "public"),
+    path.join(cwd, "dist", "public"),
     path.join("/var/task", "dist", "public"),
   ];
 
