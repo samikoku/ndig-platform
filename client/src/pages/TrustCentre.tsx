@@ -16,7 +16,7 @@ export default function TrustCentre() {
     <div className="min-h-screen bg-background pb-20">
       <div className="bg-sidebar text-white py-16">
         <div className="container px-4 text-center max-w-3xl mx-auto">
-          <img src="/ndig-logo.png" alt="NDIG Logo" className="w-16 h-16 mx-auto mb-6" />
+          <img src="/ndig-logo.png" alt="NDIG Logo" className="w-16 h-16 mx-auto mb-6 rounded-full bg-white p-1.5 object-contain" />
           <h1 className="font-serif text-3xl md:text-5xl font-bold mb-4">
             Trust & Verification Centre
           </h1>

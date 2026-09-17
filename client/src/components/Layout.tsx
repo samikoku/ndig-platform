@@ -79,7 +79,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <img
               src="/ndig-logo.png"
               alt="NDIG - Nigeria Diaspora Investment Gateway"
-              className="h-14 w-auto transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+              className="h-12 w-12 rounded-full bg-white p-1 object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
               loading="eager"
             />
             <div className="flex flex-col justify-center">
@@ -212,7 +212,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Brand */}
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <img src="/ndig-logo.png" alt="NDIG Logo" className="w-8 h-8" />
+                <img src="/ndig-logo.png" alt="NDIG Logo" className="w-8 h-8 rounded-full bg-white p-0.5 object-contain" />
                 <span className="font-serif font-bold text-xl tracking-tight">
                   NDIG
                 </span>
@@ -313,24 +313,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gold transition-colors">
+                  <Link href="/concept-note" className="hover:text-gold transition-colors">
                     Concept Note
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gold transition-colors">
+                  <a
+                    href="https://www.npa2025-2035.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gold transition-colors"
+                  >
                     NPA 2025-2035
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gold transition-colors">
+                  <Link href="/sovereign-brief" className="hover:text-gold transition-colors">
                     Diaspora Report
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gold transition-colors">
+                  <Link href="/faqs" className="hover:text-gold transition-colors">
                     FAQs
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -376,15 +381,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 © 2026 NDIG - Nigeria Diaspora Investment Gateway. All rights reserved.
               </p>
               <div className="flex gap-6">
-                <a href="#" className="hover:text-gold transition-colors">
+                <Link href="/privacy-policy" className="hover:text-gold transition-colors">
                   Privacy Policy
-                </a>
-                <a href="#" className="hover:text-gold transition-colors">
+                </Link>
+                <Link href="/terms-of-service" className="hover:text-gold transition-colors">
                   Terms of Service
-                </a>
-                <a href="#" className="hover:text-gold transition-colors">
+                </Link>
+                <Link href="/accessibility" className="hover:text-gold transition-colors">
                   Accessibility
-                </a>
+                </Link>
               </div>
             </div>
           </div>

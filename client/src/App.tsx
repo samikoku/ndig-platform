@@ -26,6 +26,12 @@ import VerificationStandard from "./pages/VerificationStandard";
 import VOD from "./pages/VOD";
 import SovereignBrief, { SovereignBriefIndex } from "./pages/SovereignBrief";
 import ProductivityNetwork from "./pages/ProductivityNetwork";
+import ConceptNote from "./pages/ConceptNote";
+import PolicyInterface from "./pages/PolicyInterface";
+import FAQ from "./pages/FAQ";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Accessibility from "./pages/Accessibility";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -53,6 +59,12 @@ function Router() {
         <Route path="/sovereign-brief/:slug" component={SovereignBrief} />
         <Route path="/sovereign-brief" component={SovereignBriefIndex} />
         <Route path="/productivity-network" component={ProductivityNetwork} />
+        <Route path="/concept-note" component={ConceptNote} />
+        <Route path="/policy-interface" component={PolicyInterface} />
+        <Route path="/faqs" component={FAQ} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/accessibility" component={Accessibility} />
       <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

@@ -6,7 +6,7 @@ export default function About() {
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-sidebar via-sidebar/95 to-background">
         <div className="container relative z-10 px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
-            <img src="/ndig-logo.png" alt="NDIG Logo" className="w-16 h-16 mx-auto" />
+            <img src="/ndig-logo.png" alt="NDIG Logo" className="w-16 h-16 mx-auto rounded-full bg-white p-1.5 object-contain" />
             <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight text-white">
               About NDIG
             </h1>

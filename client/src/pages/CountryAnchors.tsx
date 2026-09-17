@@ -99,7 +99,7 @@ export default function CountryAnchors() {
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-sidebar via-sidebar/95 to-background">
         <div className="container relative z-10 px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
-            <img src="/ndig-logo.png" alt="NDIG Logo" className="w-16 h-16 mx-auto mb-2" />
+            <img src="/ndig-logo.png" alt="NDIG Logo" className="w-16 h-16 mx-auto mb-2 rounded-full bg-white p-1.5 object-contain" />
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
               <span className="text-sm font-medium text-gold tracking-wide uppercase">Country Anchors Program</span>
