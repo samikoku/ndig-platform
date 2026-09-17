@@ -126,6 +126,16 @@ export function InterestRegistrationDialog({
             <p className="text-sm text-muted-foreground text-center">
               Thank you for your interest. Our team will contact you soon.
             </p>
+            {submitMutation.data?.referralCode && (
+              <div className="text-center">
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                  Your Referral Code
+                </p>
+                <p className="font-mono font-semibold text-lg">
+                  {submitMutation.data.referralCode}
+                </p>
+              </div>
+            )}
           </div>
         ) : submitStatus === "error" ? (
           <div className="flex flex-col items-center justify-center py-8 space-y-4">
