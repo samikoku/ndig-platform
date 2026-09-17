@@ -1,5 +1,5 @@
 import { build } from "esbuild";
-import { readFileSync, rmSync } from "fs";
+import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -9,14 +9,15 @@ const root = path.resolve(__dirname, "..");
 const pkg = JSON.parse(readFileSync(path.join(root, "package.json"), "utf-8"));
 const external = Object.keys(pkg.dependencies || {});
 
-// Bundle api/index.ts (and every local server/shared import it pulls in)
-// into a single self-contained file. Vercel's Node builder does not
-// reliably trace/include our local relative imports (server/_core/*
-// etc.) when deploying api/index.ts as-is, causing ERR_MODULE_NOT_FOUND
-// at runtime in production. Bundling removes the need for that trace -
-// only actual node_modules packages stay external.
+// Bundle server/apiHandler.ts (and every local server/shared import it
+// pulls in) into a single self-contained api/index.js. Vercel's Node
+// builder does not reliably trace/include our local relative imports
+// (server/_core/* etc.) when deploying a raw .ts entry, causing
+// ERR_MODULE_NOT_FOUND at runtime in production. The source lives
+// outside api/ so the generated api/index.js is the only file Vercel
+// ever sees there - no api/index.ts + api/index.js name collision.
 await build({
-  entryPoints: [path.join(root, "api/index.ts")],
+  entryPoints: [path.join(root, "server/apiHandler.ts")],
   bundle: true,
   platform: "node",
   target: "node20",
@@ -26,5 +27,4 @@ await build({
   logLevel: "info",
 });
 
-rmSync(path.join(root, "api/index.ts"));
-console.log("[build-api] Bundled api/index.ts -> api/index.js");
+console.log("[build-api] Bundled server/apiHandler.ts -> api/index.js");
