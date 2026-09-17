@@ -40,10 +40,9 @@ function setupStaticFiles() {
   console.log(`[STATIC] __dirname: ${__dirname}`);
 
   const distPaths = [
-    path.join(__dirname, "..", "dist", "public"),
-    path.join(__dirname, "..", "..", "dist", "public"),
-    path.join(cwd, "dist", "public"),
-    path.join("/var/task", "dist", "public"),
+    path.join(__dirname, "..", "public"),
+    path.join(cwd, "public"),
+    path.join("/var/task", "public"),
   ];
 
   let distPath = null;
