@@ -146,9 +146,9 @@ export default function TrustCentre() {
             <div className="w-12 h-12 bg-background rounded-full flex items-center justify-center mx-auto shadow-sm border border-border">
               <img src="/ndig-logo.png" alt="NDIG Logo" className="w-6 h-6" />
             </div>
-            <h4 className="font-bold">Government Vetted</h4>
+            <h4 className="font-bold">Standards-Based Verification</h4>
             <p className="text-sm text-muted-foreground">
-              Direct integration with NIMC for seamless identity verification.
+              Identity verification aligned with NIMC-recognized standards.
             </p>
           </div>
         </div>
@@ -413,7 +413,7 @@ export default function TrustCentre() {
                     </p>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    This regulatory clarity, combined with Nigeria's proven track record (2 diaspora bonds: $300M in 2017 fully redeemed, $900M in 2024 outstanding), positions NDIG as the official distribution platform for future DMO offerings. Only DMO can issue sovereign diaspora bonds on behalf of FGN.
+                    This regulatory clarity, combined with Nigeria's proven track record (2 diaspora bonds: $300M in 2017 fully redeemed, $900M in 2024 outstanding), is what NDIG helps diaspora investors navigate. Only DMO can issue sovereign diaspora bonds on behalf of FGN; NDIG is an independent referral platform, not an official DMO channel.
                   </p>
                 </div>
               </div>
