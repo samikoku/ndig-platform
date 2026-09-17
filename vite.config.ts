@@ -1,9 +1,8 @@
 import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { defineConfig } from "vite";
 
-const plugins = [tailwindcss(), react()];
+const plugins = [react()];
 
 export default defineConfig({
   plugins,
