@@ -7,12 +7,23 @@ import { z } from "zod";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { getDb } from "./db";
-import { interestRegistrations } from "../drizzle/schema";
+import {
+  interestRegistrations,
+  countryAnchorApplications,
+  newsletterSignups,
+  mentorshipRequests,
+  referralTracking,
+} from "../drizzle/schema";
 import { notifyOwner } from "./_core/notification";
 import { sendWelcomeEmail, notifyAdminNewRegistration } from "./emailService";
 import { TRPCError } from "@trpc/server";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, count, sql } from "drizzle-orm";
 import { trackingRouter } from "./tracking";
+import { randomBytes } from "crypto";
+
+function generateReferralCode() {
+  return `NDIG-${randomBytes(4).toString("hex").toUpperCase()}`;
+}
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
