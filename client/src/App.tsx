@@ -19,6 +19,13 @@ import DiasporaBonds from "./pages/DiasporaBonds";
 import GetNRBVN from "./pages/GetNRBVN";
 import InvestmentIndex from "./pages/InvestmentIndex";
 import DiasporaReadiness from "./pages/DiasporaReadiness";
+import CountryAnchors from "./pages/CountryAnchors";
+import About from "./pages/About";
+import HomeFund from "./pages/HomeFund";
+import VerificationStandard from "./pages/VerificationStandard";
+import VOD from "./pages/VOD";
+import SovereignBrief, { SovereignBriefIndex } from "./pages/SovereignBrief";
+import ProductivityNetwork from "./pages/ProductivityNetwork";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -38,6 +45,14 @@ function Router() {
         <Route path="/get-nrbvn" component={GetNRBVN} />
         <Route path="/investment-index" component={InvestmentIndex} />
         <Route path="/diaspora-readiness" component={DiasporaReadiness} />
+        <Route path="/country-anchors" component={CountryAnchors} />
+        <Route path="/about" component={About} />
+        <Route path="/homefund" component={HomeFund} />
+        <Route path="/verification-standard" component={VerificationStandard} />
+        <Route path="/vod" component={VOD} />
+        <Route path="/sovereign-brief/:slug" component={SovereignBrief} />
+        <Route path="/sovereign-brief" component={SovereignBriefIndex} />
+        <Route path="/productivity-network" component={ProductivityNetwork} />
       <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

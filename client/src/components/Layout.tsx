@@ -64,6 +64,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/diaspora-readiness" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/diaspora-readiness" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Diaspora Readiness
             </Link>
+            <Link href="/country-anchors" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/country-anchors" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
+              Country Anchors
+            </Link>
+            <Link href="/about" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/about" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
+              About
+            </Link>
             <Link href="/dashboard" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/dashboard" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               My Portfolio
             </Link>
@@ -109,6 +115,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                   <Link href="/diaspora-readiness" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/diaspora-readiness" ? "text-primary" : "text-muted-foreground"}`}>
                     Diaspora Readiness
+                  </Link>
+                  <Link href="/country-anchors" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/country-anchors" ? "text-primary" : "text-muted-foreground"}`}>
+                    Country Anchors
+                  </Link>
+                  <Link href="/about" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/about" ? "text-primary" : "text-muted-foreground"}`}>
+                    About
                   </Link>
                   <Link href="/dashboard" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/dashboard" ? "text-primary" : "text-muted-foreground"}`}>
                     My Portfolio
@@ -218,6 +230,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     Trust Centre
                   </Link>
                 </li>
+                <li>
+                  <Link href="/verification-standard" className="hover:text-gold transition-colors">
+                    Verification Standard
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/country-anchors" className="hover:text-gold transition-colors">
+                    Country Anchors
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -226,6 +248,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 Resources
               </h3>
               <ul className="space-y-3 text-sm text-sidebar-foreground/80">
+                <li>
+                  <Link href="/about" className="hover:text-gold transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/vod" className="hover:text-gold transition-colors">
+                    Video On Demand
+                  </Link>
+                </li>
                 <li>
                   <a href="#" className="hover:text-gold transition-colors">
                     Concept Note
@@ -273,7 +305,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* HomeFund NG */}
             <div>
               <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
-                HomeFund NG
+                <Link href="/homefund" className="hover:underline">HomeFund NG</Link>
               </h3>
               <p className="text-sm text-sidebar-foreground/80 leading-relaxed">
                 Housing Gateway — Connecting diaspora investment to Nigeria's housing development initiatives

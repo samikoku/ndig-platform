@@ -3,11 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { ArrowRight, CheckCircle2, FileCheck, Lock, Upload } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileCheck, Lock, Upload, Search, ClipboardList } from "lucide-react";
+import { Link } from "wouter";
 import { useState } from "react";
 
 export default function TrustCentre() {
   const [step, setStep] = useState(1);
+  const [cacQuery, setCacQuery] = useState("");
+  const [cacResult, setCacResult] = useState<"idle" | "checked">("idle");
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -426,6 +429,87 @@ export default function TrustCentre() {
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
+
+          {/* CAC Lookup */}
+          <Card className="mt-16 border-2">
+            <CardContent className="p-8">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Search className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-bold mb-2">Look Up a Company on CAC</h3>
+                  <p className="text-muted-foreground">
+                    Check whether an institution is registered with Nigeria's Corporate Affairs
+                    Commission before you invest.
+                  </p>
+                </div>
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setCacResult("checked");
+                }}
+                className="flex flex-col sm:flex-row gap-3 mb-4"
+              >
+                <div className="flex-1 space-y-2">
+                  <Label htmlFor="cacQuery" className="sr-only">Company name or RC number</Label>
+                  <Input
+                    id="cacQuery"
+                    placeholder="Company name or RC number"
+                    value={cacQuery}
+                    onChange={(e) => setCacQuery(e.target.value)}
+                  />
+                </div>
+                <Button type="submit" disabled={cacQuery.trim().length < 2}>
+                  Check on CAC
+                </Button>
+              </form>
+
+              {cacResult === "checked" && (
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-muted/50 border border-border">
+                  <FileCheck className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    NDIG does not run its own copy of the CAC register. Continue your search for{" "}
+                    <strong>"{cacQuery}"</strong> on the official CAC public search portal to see
+                    live registration status.{" "}
+                    <a
+                      href="https://search.cac.gov.ng"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Open CAC Public Search
+                    </a>
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Compliance Tracker link */}
+          <Card className="mt-8 border-2 bg-muted/30">
+            <CardContent className="p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-chart-2/10 flex items-center justify-center flex-shrink-0">
+                  <ClipboardList className="w-6 h-6 text-chart-2" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Compliance Tracker</h3>
+                  <p className="text-sm text-muted-foreground">
+                    See NDIG's alignment with SEC, CBN, NIPC, and NiDCOM frameworks in detail.
+                  </p>
+                </div>
+              </div>
+              <Link href="/compliance-tracker">
+                <Button variant="outline" className="gap-2 whitespace-nowrap">
+                  View Compliance Tracker
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

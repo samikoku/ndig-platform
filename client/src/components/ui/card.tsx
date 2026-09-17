@@ -1,5 +1,18 @@
 import React from 'react'
-export const Card = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={`p-4 border rounded shadow-sm ${className || ''}`}>{children}</div>
-export const CardHeader = ({ children }: { children: React.ReactNode }) => <div className="pb-4">{children}</div>
-export const CardTitle = ({ children }: { children: React.ReactNode }) => <h2 className="text-lg font-bold">{children}</h2>
-export const CardContent = ({ children }: { children: React.ReactNode }) => <div>{children}</div>
+import { cn } from '@/lib/utils'
+
+type DivProps = React.HTMLAttributes<HTMLDivElement>
+type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>
+
+export const Card = ({ className, ...props }: DivProps) => (
+  <div className={cn('p-4 border rounded shadow-sm', className)} {...props} />
+)
+export const CardHeader = ({ className, ...props }: DivProps) => (
+  <div className={cn('pb-4', className)} {...props} />
+)
+export const CardTitle = ({ className, ...props }: HeadingProps) => (
+  <h2 className={cn('text-lg font-bold', className)} {...props} />
+)
+export const CardContent = ({ className, ...props }: DivProps) => (
+  <div className={cn(className)} {...props} />
+)
