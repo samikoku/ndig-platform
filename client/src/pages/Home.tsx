@@ -43,7 +43,7 @@ export default function Home() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-white mb-4 md:mb-6">
-              Invest in Nigeria's Future with <span className="text-chart-1">Diaspora Bonds</span>
+              Invest in Nigeria's Future with <span className="text-chart-1">Regulator-Vetted Instruments</span>
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-2xl mt-4 md:mt-6 mb-6 md:mb-8">
