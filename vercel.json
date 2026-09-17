@@ -1,6 +1,7 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "npx vite build",
+  "outputDirectory": "dist/public",
   "env": {
     "VITE_API_BASE": "http://localhost:3000",
     "NODE_ENV": "production"
@@ -10,5 +11,15 @@
       "memory": 1024,
       "maxDuration": 30
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
 }
