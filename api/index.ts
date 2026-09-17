@@ -5,7 +5,8 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "../server/_core/oauth";
 import { appRouter } from "../server/routers";
 import { createContext } from "../server/_core/context";
-import { serveStatic } from "../server/_core/vite";
+import path from "path";
+import fs from "fs";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const app = express();
@@ -32,8 +33,46 @@ app.use(
   })
 );
 
-// Serve static files in production
-serveStatic(app);
+// Serve static files - try all possible dist locations
+function setupStaticFiles() {
+  const cwd = process.cwd();
+  console.log(`[STATIC] CWD: ${cwd}`);
+
+  const distPaths = [
+    path.join(cwd, "dist", "public"),
+    path.join(__dirname, "..", "dist", "public"),
+    path.join("/var/task", "dist", "public"),
+  ];
+
+  let distPath = null;
+  for (const p of distPaths) {
+    console.log(`[STATIC] Checking: ${p} - exists: ${fs.existsSync(p)}`);
+    if (fs.existsSync(p)) {
+      distPath = p;
+      console.log(`[STATIC] ✓ Found dist at: ${distPath}`);
+      break;
+    }
+  }
+
+  if (distPath && fs.existsSync(distPath)) {
+    console.log(`[STATIC] Setting up express.static(${distPath})`);
+    app.use(express.static(distPath, { index: false }));
+
+    app.get("*", (_req, res) => {
+      const indexPath = path.join(distPath, "index.html");
+      console.log(`[STATIC] Serving ${indexPath}`);
+      res.sendFile(indexPath);
+    });
+  } else {
+    console.error(`[STATIC] Could not find dist folder in any location`);
+    // Fallback: serve a basic HTML error page
+    app.get("*", (_req, res) => {
+      res.type("text/html").send("<h1>Dist folder not found</h1>");
+    });
+  }
+}
+
+setupStaticFiles();
 
 // Export for Vercel
 export default app;
