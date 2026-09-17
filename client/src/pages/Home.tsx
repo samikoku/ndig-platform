@@ -161,7 +161,7 @@ export default function Home() {
                 <div>
                   <h3 className="font-bold text-lg mb-2">Your Money, Your Control</h3>
                   <p className="text-muted-foreground">
-                    NDIG is a <strong>referral and information platform</strong>, not a payment processor. We never collect or hold your investment funds. You pay directly to government agencies (DMO for bonds, banks for NRNIA accounts, NIPC for projects). This means:
+                    NDIG is a <strong>referral and information platform</strong>, not a payment processor. We never collect or hold your investment funds. You pay directly to regulated institutions (DMO for bonds, banks for NRNIA accounts, NIPC for projects). This means:
                   </p>
                   <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
@@ -174,7 +174,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-chart-1 mt-1">✓</span>
-                      <span><strong>Full transparency:</strong> All transactions are between you and official government partners</span>
+                      <span><strong>Full transparency:</strong> All transactions are between you and licensed institutions</span>
                     </li>
                   </ul>
                 </div>
@@ -348,42 +348,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CBN Governor Testimonial */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="container px-4">
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-2 border-chart-1/20 bg-gradient-to-br from-chart-1/5 to-transparent">
-              <CardContent className="p-8 md:p-12">
-                <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                  <div className="flex-shrink-0">
-                    <img
-                      src="/images/cbn-governor-cardoso.jpg"
-                      alt="Olayemi Cardoso, CBN Governor"
-                      className="w-32 h-32 md:w-40 md:h-40 rounded-xl object-cover shadow-lg"
-                    />
-                  </div>
-                  <div className="flex-1 text-center md:text-left">
-                    <div className="mb-6">
-                      <svg className="w-12 h-12 text-chart-1/30 mx-auto md:mx-0" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                      </svg>
-                    </div>
-                    <blockquote className="text-lg md:text-xl font-light text-foreground mb-6 leading-relaxed">
-                      "The Central Bank of Nigeria has built unprecedented infrastructure for diaspora investment. With NRNIA accounts, NRBVN enrollment, and full repatriation rights, we've removed every barrier. Your country is ready for your capital."
-                    </blockquote>
-                    <div>
-                      <p className="font-bold text-lg">Olayemi Cardoso</p>
-                      <p className="text-sm text-muted-foreground">Governor, Central Bank of Nigeria</p>
-                      <p className="text-xs text-muted-foreground mt-1">Appointed September 2023</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Core Modules Section */}
       <section className="py-16 md:py-24 bg-background relative overflow-hidden">
         <div className="container px-4">
@@ -531,8 +495,8 @@ export default function Home() {
                     <ShieldCheck className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2">Government Endorsed & Secured</h3>
-                    <p className="text-sm md:text-base text-sidebar-foreground/70">Backed by NPA, NiDCOM, NIPC, CBN, and SEC. Your investments are protected by clear regulatory frameworks.</p>
+                    <h3 className="text-lg md:text-xl font-bold mb-2">Regulator-Vetted & Secured</h3>
+                    <p className="text-sm md:text-base text-sidebar-foreground/70">Vetted against NPA, NiDCOM, NIPC, CBN, and SEC frameworks. Your investments are protected by clear regulatory frameworks.</p>
                   </div>
                 </div>
 

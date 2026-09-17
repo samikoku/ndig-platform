@@ -176,7 +176,7 @@ export default function TrustCentre() {
                       <div>
                         <h4 className="font-bold text-sm mb-1">We Never Hold Your Funds</h4>
                         <p className="text-xs text-muted-foreground">
-                          You pay directly to government agencies (DMO, banks, NIPC) using your unique referral code
+                          You pay directly to regulated institutions (DMO, banks, NIPC) using your unique referral code
                         </p>
                       </div>
                     </div>
@@ -194,7 +194,7 @@ export default function TrustCentre() {
                       <div>
                         <h4 className="font-bold text-sm mb-1">Full Transparency</h4>
                         <p className="text-xs text-muted-foreground">
-                          All transactions are between you and official government partners, fully traceable
+                          All transactions are between you and licensed institutions, fully traceable
                         </p>
                       </div>
                     </div>
@@ -282,18 +282,18 @@ export default function TrustCentre() {
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-bold text-sm mb-1">PPP Structure</h4>
+                        <h4 className="font-bold text-sm mb-1">Independent Platform</h4>
                         <p className="text-xs text-muted-foreground">
-                          NDIG operates as a Public-Private Partnership platform connecting diaspora investors to official government channels
+                          NDIG is an independent referral and information platform connecting diaspora investors to regulated institutions
                         </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-bold text-sm mb-1">Institutional Partnerships</h4>
+                        <h4 className="font-bold text-sm mb-1">Institutional Alignment</h4>
                         <p className="text-xs text-muted-foreground">
-                          Pursuing formal partnerships with NiDCOM, DMO, CBN, NIPC, and SEC for official endorsement
+                          Operates in alignment with the regulatory frameworks of NiDCOM, DMO, CBN, NIPC, and SEC
                         </p>
                       </div>
                     </div>
