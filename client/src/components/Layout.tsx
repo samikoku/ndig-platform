@@ -1,10 +1,61 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import ChatWidget from "./ChatWidget";
 import { InterestRegistrationDialog } from "./InterestRegistrationDialog";
+import { trpc } from "@/lib/trpc";
+
+function NewsletterSignup() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const subscribeMutation = trpc.newsletter.subscribe.useMutation({
+    onSuccess: () => setEmail(""),
+    onError: () => setError("Couldn't subscribe. Please try again."),
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Enter a valid email address");
+      return;
+    }
+    subscribeMutation.mutate({ email });
+  };
+
+  if (subscribeMutation.isSuccess) {
+    return (
+      <p className="flex items-center gap-2 text-sm text-gold">
+        <CheckCircle2 className="w-4 h-4" /> You're subscribed.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <label htmlFor="newsletter-email" className="text-sm font-medium text-sidebar-foreground">
+        Get diaspora investment updates
+      </label>
+      <div className="flex gap-2">
+        <Input
+          id="newsletter-email"
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="bg-sidebar-accent/30 border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50"
+        />
+        <Button type="submit" variant="secondary" disabled={subscribeMutation.isPending}>
+          {subscribeMutation.isPending ? "..." : "Subscribe"}
+        </Button>
+      </div>
+      {error && <p className="text-xs text-destructive">{error}</p>}
+    </form>
+  );
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -201,6 +252,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     />
                   </svg>
                 </div>
+              </div>
+              <div className="pt-4">
+                <NewsletterSignup />
               </div>
             </div>
 
