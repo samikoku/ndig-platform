@@ -174,7 +174,7 @@ export default function InvestmentNexus() {
                 <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 bg-card/95 backdrop-blur shadow-xl rounded-xl p-6 border border-border animate-in slide-in-from-bottom-4">
                   <h3 className="font-serif text-xl font-bold mb-2">{selectedProject.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Located in a prime development zone with full government backing and tax incentives.
+                    Located in a prime development zone with regulatory support and tax incentives.
                   </p>
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="bg-background p-3 rounded-lg border border-border">

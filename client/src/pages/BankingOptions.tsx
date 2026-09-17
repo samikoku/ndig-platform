@@ -24,7 +24,7 @@ export default function BankingOptions() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 backdrop-blur-sm mb-4">
               <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
               <span className="text-sm font-medium text-gold tracking-wide uppercase">
-                CBN-Backed Infrastructure
+                CBN Digital Infrastructure
               </span>
             </div>
 
@@ -33,7 +33,7 @@ export default function BankingOptions() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              The Central Bank of Nigeria has launched comprehensive banking infrastructure specifically designed for Nigerians in the diaspora. Open accounts, invest safely, and manage your funds with full government backing.
+              The Central Bank of Nigeria has launched comprehensive banking infrastructure specifically designed for Nigerians in the diaspora. Open accounts, invest safely, and manage your funds within a fully regulated CBN framework.
             </p>
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function BankingOptions() {
                 </p>
 
                 <p className="text-lg mb-6">
-                  Invest in Nigerian assets and build wealth with full government backing and repatriation rights.
+                  Invest in Nigerian assets and build wealth with full repatriation rights.
                 </p>
 
                 <div className="space-y-3 mb-6">
