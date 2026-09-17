@@ -18,6 +18,7 @@ import BankingOptions from "./pages/BankingOptions";
 import DiasporaBonds from "./pages/DiasporaBonds";
 import GetNRBVN from "./pages/GetNRBVN";
 import InvestmentIndex from "./pages/InvestmentIndex";
+import DiasporaReadiness from "./pages/DiasporaReadiness";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -36,6 +37,7 @@ function Router() {
         <Route path="/diaspora-bonds" component={DiasporaBonds} />
         <Route path="/get-nrbvn" component={GetNRBVN} />
         <Route path="/investment-index" component={InvestmentIndex} />
+        <Route path="/diaspora-readiness" component={DiasporaReadiness} />
       <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
