@@ -99,15 +99,15 @@ export default function InvestmentNexus() {
       <section className="bg-sidebar text-white py-20">
         <div className="container px-4">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chart-1/10 border border-chart-1/20 mb-6">
-              <TrendingUp className="w-4 h-4 text-chart-1" />
-              <span className="text-sm font-medium text-chart-1 uppercase tracking-wide">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 mb-6">
+              <TrendingUp className="w-4 h-4 text-gold" />
+              <span className="text-sm font-medium text-gold uppercase tracking-wide">
                 Investment Nexus
               </span>
             </div>
             <h1 className="font-serif text-4xl md:text-6xl font-bold mb-6">
               Vetted, High-Yield <br />
-              <span className="text-chart-1">Productive Investments</span>
+              <span className="text-gold">Productive Investments</span>
             </h1>
             <p className="text-xl text-gray-300 font-light max-w-2xl">
               Explore regulator-vetted opportunities across Real Estate, Infrastructure, and Agriculture. Secure your future while building Nigeria.

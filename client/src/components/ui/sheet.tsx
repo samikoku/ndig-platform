@@ -4,7 +4,7 @@ export const SheetTrigger = React.forwardRef<HTMLButtonElement, { children: Reac
   ({ children, ...props }, ref) => <button ref={ref} {...props}>{children}</button>
 )
 SheetTrigger.displayName = 'SheetTrigger'
-export const SheetContent = ({ children }: { children: React.ReactNode }) => <div className="bg-white p-4">{children}</div>
+export const SheetContent = ({ children }: { children: React.ReactNode }) => <div className="bg-background p-4">{children}</div>
 export const SheetHeader = ({ children }: { children: React.ReactNode }) => <div className="pb-4">{children}</div>
 export const SheetTitle = ({ children }: { children: React.ReactNode }) => <h2 className="text-lg font-bold">{children}</h2>
 export const SheetClose = ({ children, onClick }: { children?: React.ReactNode; onClick?: () => void }) => <button onClick={onClick}>✕</button>

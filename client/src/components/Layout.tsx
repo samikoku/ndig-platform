@@ -2,22 +2,13 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ChatWidget from "./ChatWidget";
 import { InterestRegistrationDialog } from "./InterestRegistrationDialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [registrationDialogOpen, setRegistrationDialogOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { name: "Investment Nexus", path: "/investment-nexus" },
@@ -30,13 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
       {/* Navigation */}
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 flex flex-col ${
-          isScrolled
-            ? "bg-background/80 backdrop-blur-md border-b border-border/50 shadow-sm"
-            : "bg-transparent"
-        }`}
-      >
+      <header className="fixed top-0 w-full z-50 flex flex-col bg-sidebar shadow-md border-b border-sidebar-border">
         <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
@@ -47,13 +32,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               loading="eager"
             />
             <div className="flex flex-col justify-center">
-              <span className="font-serif font-bold text-2xl leading-none tracking-tight text-foreground mb-0.5 transition-colors duration-300 group-hover:text-primary">
+              <span className="font-serif font-bold text-2xl leading-none tracking-tight text-sidebar-foreground mb-0.5 transition-colors duration-300 group-hover:text-gold">
                 NDIG
               </span>
-              <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium leading-tight transition-colors duration-300 group-hover:text-foreground">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-sidebar-foreground/70 font-medium leading-tight transition-colors duration-300 group-hover:text-sidebar-foreground">
                 Nigeria Diaspora
               </span>
-              <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium leading-tight transition-colors duration-300 group-hover:text-foreground">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-sidebar-foreground/70 font-medium leading-tight transition-colors duration-300 group-hover:text-sidebar-foreground">
                 Investment Gateway
               </span>
             </div>
@@ -61,25 +46,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/investment-nexus" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/investment-nexus" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/investment-nexus" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/investment-nexus" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Investment Nexus
             </Link>
-            <Link href="/diaspora-bonds" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/diaspora-bonds" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/diaspora-bonds" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/diaspora-bonds" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Diaspora Bonds
             </Link>
-            <Link href="/banking-options" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/banking-options" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/banking-options" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/banking-options" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Banking
             </Link>
-            <Link href="/investment-index" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/investment-index" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/investment-index" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/investment-index" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Investment Index
             </Link>
-            <Link href="/trust-centre" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/trust-centre" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/trust-centre" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/trust-centre" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Trust Centre
             </Link>
-            <Link href="/diaspora-readiness" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/diaspora-readiness" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/diaspora-readiness" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/diaspora-readiness" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Diaspora Readiness
             </Link>
-            <Link href="/dashboard" className={`text-sm font-medium transition-colors hover:text-primary relative py-1 ${location === "/dashboard" ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary" : "text-muted-foreground"}`}>
+            <Link href="/dashboard" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/dashboard" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               My Portfolio
             </Link>
           </nav>
@@ -87,12 +72,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* CTA & Mobile Menu */}
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-4">
-              <Link href="/login" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/login" className="text-sm font-medium text-sidebar-foreground/80 hover:text-sidebar-foreground transition-colors">
                 Log In
               </Link>
               <Button
                 onClick={() => setRegistrationDialogOpen(true)}
-                className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 rounded-full px-6"
+                className="bg-gold hover:bg-gold/90 text-sidebar shadow-lg shadow-black/20 rounded-full px-6"
               >
                 Register Interest
               </Button>
@@ -101,7 +86,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
+                <Button variant="ghost" size="icon" className="md:hidden text-sidebar-foreground hover:bg-sidebar-accent">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
@@ -169,7 +154,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   NDIG
                 </span>
               </div>
-              <p className="text-sm text-chart-1 font-medium italic mb-2">
+              <p className="text-sm text-gold font-medium italic mb-2">
                 Bridging Diaspora Wealth to National Growth
               </p>
               <p className="text-sm text-sidebar-foreground/70 leading-relaxed">
@@ -209,27 +194,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Links */}
             <div>
-              <h3 className="font-serif font-semibold text-lg mb-6 text-primary">
+              <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
                 Platform
               </h3>
               <ul className="space-y-3 text-sm text-sidebar-foreground/80">
                 <li>
-                  <Link href="/investment-nexus" className="hover:text-primary transition-colors">
+                  <Link href="/investment-nexus" className="hover:text-gold transition-colors">
                     Investment Nexus
                   </Link>
                 </li>
                 <li>
-                  <Link href="/policy-interface" className="hover:text-primary transition-colors">
+                  <Link href="/policy-interface" className="hover:text-gold transition-colors">
                     Policy Interface
                   </Link>
                 </li>
                 <li>
-                  <Link href="/productivity-network" className="hover:text-primary transition-colors">
+                  <Link href="/productivity-network" className="hover:text-gold transition-colors">
                     Productivity Network
                   </Link>
                 </li>
                 <li>
-                  <Link href="/trust-centre" className="hover:text-primary transition-colors">
+                  <Link href="/trust-centre" className="hover:text-gold transition-colors">
                     Trust Centre
                   </Link>
                 </li>
@@ -237,27 +222,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="font-serif font-semibold text-lg mb-6 text-primary">
+              <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
                 Resources
               </h3>
               <ul className="space-y-3 text-sm text-sidebar-foreground/80">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <a href="#" className="hover:text-gold transition-colors">
                     Concept Note
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <a href="#" className="hover:text-gold transition-colors">
                     NPA 2025-2035
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <a href="#" className="hover:text-gold transition-colors">
                     Diaspora Report
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                  <a href="#" className="hover:text-gold transition-colors">
                     FAQs
                   </a>
                 </li>
@@ -266,7 +251,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Partners */}
             <div>
-              <h3 className="font-serif font-semibold text-lg mb-6 text-primary">
+              <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
                 Strategic Partners
               </h3>
               <div className="grid grid-cols-2 gap-4">
@@ -287,7 +272,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* HomeFund NG */}
             <div>
-              <h3 className="font-serif font-semibold text-lg mb-6 text-primary">
+              <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
                 HomeFund NG
               </h3>
               <p className="text-sm text-sidebar-foreground/80 leading-relaxed">
@@ -305,13 +290,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 © 2026 NDIG - Nigeria Diaspora Investment Gateway. All rights reserved.
               </p>
               <div className="flex gap-6">
-                <a href="#" className="hover:text-primary transition-colors">
+                <a href="#" className="hover:text-gold transition-colors">
                   Privacy Policy
                 </a>
-                <a href="#" className="hover:text-primary transition-colors">
+                <a href="#" className="hover:text-gold transition-colors">
                   Terms of Service
                 </a>
-                <a href="#" className="hover:text-primary transition-colors">
+                <a href="#" className="hover:text-gold transition-colors">
                   Accessibility
                 </a>
               </div>

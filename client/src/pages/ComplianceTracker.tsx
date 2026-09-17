@@ -7,8 +7,8 @@ export default function ComplianceTracker() {
     {
       agency: "SEC (Securities and Exchange Commission)",
       icon: Shield,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50 dark:bg-blue-950",
+      color: "text-chart-1",
+      bgColor: "bg-chart-1/10 dark:bg-chart-1/20",
       status: "Fully Compliant",
       frameworks: [
         "Investment and Securities Act 2007",

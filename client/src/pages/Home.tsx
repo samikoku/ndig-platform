@@ -36,14 +36,14 @@ export default function Home() {
         <div className="container relative z-10 px-4 py-12 md:py-20">
           <div className="max-w-3xl space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-chart-1 animate-pulse" />
-              <span className="text-xs md:text-sm font-medium text-chart-1 tracking-wide uppercase">
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold animate-pulse" />
+              <span className="text-xs md:text-sm font-medium text-gold tracking-wide uppercase">
                 Regulator-Vetted Investment Platform
               </span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-white mb-4 md:mb-6">
-              Invest in Nigeria's Future with <span className="text-chart-1">Regulator-Vetted Instruments</span>
+              Invest in Nigeria's Future with <span className="text-gold">Regulator-Vetted Instruments</span>
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-2xl mt-4 md:mt-6 mb-6 md:mb-8">
@@ -52,7 +52,7 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link href="/get-nrbvn">
-                <Button size="lg" className="w-full sm:w-auto bg-chart-1 hover:bg-chart-1/90 text-white text-base md:text-lg px-8 py-6 h-auto rounded-full shadow-lg shadow-chart-1/25 transition-all hover:scale-105">
+                <Button size="lg" className="w-full sm:w-auto bg-gold hover:bg-gold/90 text-sidebar text-base md:text-lg px-8 py-6 h-auto rounded-full shadow-lg shadow-gold/25 transition-all hover:scale-105">
                   Get Your NRBVN (Free)
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -76,7 +76,7 @@ export default function Home() {
 
             <div className="pt-8 md:pt-12 space-y-6 md:space-y-8">
               <p className="text-base md:text-lg text-gray-300 italic font-light leading-relaxed max-w-2xl">
-                <span className="text-chart-1 font-semibold">$21B annual diaspora inflow</span> — at least 3x channelable into productive investment once a trust layer exists.
+                <span className="text-gold font-semibold">$21B annual diaspora inflow</span> — at least 3x channelable into productive investment once a trust layer exists.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 border-t border-white/10 pt-8 md:pt-12">
@@ -212,10 +212,10 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="bg-sidebar-accent border-chart-1/20 hover:border-chart-1/40 transition-colors">
+              <Card className="bg-sidebar-accent border-gold/20 hover:border-gold/40 transition-colors">
                 <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 rounded-xl bg-chart-1/20 flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-8 h-8 text-chart-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 rounded-xl bg-gold/20 flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
@@ -226,10 +226,10 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-sidebar-accent border-chart-2/20 hover:border-chart-2/40 transition-colors">
+              <Card className="bg-sidebar-accent border-sidebar-foreground/20 hover:border-sidebar-foreground/40 transition-colors">
                 <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 rounded-xl bg-chart-2/20 flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-8 h-8 text-chart-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 rounded-xl bg-sidebar-foreground/10 flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-sidebar-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
@@ -240,10 +240,10 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-sidebar-accent border-primary/20 hover:border-primary/40 transition-colors">
+              <Card className="bg-sidebar-accent border-gold/20 hover:border-gold/40 transition-colors">
                 <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 rounded-xl bg-gold/20 flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
@@ -260,7 +260,7 @@ export default function Home() {
                 <strong className="text-white">Result:</strong> Faster decisions, zero missed opportunities, and confidence that you're always working with the latest official information.
               </p>
               <Link href="/investment-nexus">
-                <Button size="lg" className="bg-chart-1 hover:bg-chart-1/90 text-white">
+                <Button size="lg" className="bg-gold hover:bg-gold/90 text-sidebar">
                   Explore Investment Opportunities
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -483,7 +483,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="space-y-8">
               <h2 className="font-serif text-3xl md:text-5xl font-bold leading-tight">
-                Why Invest Through <span className="text-primary">NDIG</span>?
+                Why Invest Through <span className="text-gold">NDIG</span>?
               </h2>
               <p className="text-base md:text-lg text-sidebar-foreground/80 leading-relaxed">
                 Traditional remittance channels are often informal and consumption-driven. NDIG provides a structured, secure pathway to build generational wealth while contributing to national development.
@@ -491,8 +491,8 @@ export default function Home() {
 
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <ShieldCheck className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck className="w-6 h-6 text-gold" />
                   </div>
                   <div>
                     <h3 className="text-lg md:text-xl font-bold mb-2">Regulator-Vetted & Secured</h3>
@@ -501,8 +501,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-chart-1/10 flex items-center justify-center flex-shrink-0">
-                    <BarChart3 className="w-6 h-6 text-chart-1" />
+                  <div className="w-12 h-12 rounded-full bg-sidebar-foreground/10 flex items-center justify-center flex-shrink-0">
+                    <BarChart3 className="w-6 h-6 text-sidebar-foreground" />
                   </div>
                   <div>
                     <h3 className="text-lg md:text-xl font-bold mb-2">High-Yield Opportunities</h3>
@@ -511,8 +511,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-chart-2/10 flex items-center justify-center flex-shrink-0">
-                    <Globe2 className="w-6 h-6 text-chart-2" />
+                  <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
+                    <Globe2 className="w-6 h-6 text-gold" />
                   </div>
                   <div>
                     <h3 className="text-lg md:text-xl font-bold mb-2">Seamless Digital Experience</h3>
@@ -529,7 +529,7 @@ export default function Home() {
                   <div className="space-y-6">
                     <div className="flex justify-between items-center border-b border-white/10 pb-4">
                       <h3 className="font-serif text-lg md:text-xl font-bold">Featured Opportunity</h3>
-                      <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase">Open Now</span>
+                      <span className="px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase">Open Now</span>
                     </div>
 
                     <div className="aspect-video rounded-lg bg-black/20 overflow-hidden relative">
@@ -546,7 +546,7 @@ export default function Home() {
                       <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
                         <div className="text-center p-2 md:p-3 rounded bg-white/5">
                           <p className="text-[10px] md:text-xs text-sidebar-foreground/50 uppercase">Target Yield</p>
-                          <p className="text-sm md:text-lg font-bold text-chart-1">12-15%</p>
+                          <p className="text-sm md:text-lg font-bold text-gold">12-15%</p>
                         </div>
                         <div className="text-center p-2 md:p-3 rounded bg-white/5">
                           <p className="text-[10px] md:text-xs text-sidebar-foreground/50 uppercase">Min Entry</p>

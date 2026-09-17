@@ -127,18 +127,18 @@ export default function DiasporaReadiness() {
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-sidebar via-sidebar/95 to-background">
         <div className="container relative z-10 px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-chart-1 animate-pulse" />
-              <span className="text-sm font-medium text-chart-1 tracking-wide uppercase">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+              <span className="text-sm font-medium text-gold tracking-wide uppercase">
                 Diaspora Readiness Desk
               </span>
             </div>
 
-            <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight text-white">
               Diaspora Readiness
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
               The Diaspora Readiness Desk provides direct links to official Nigerian government
               agency pages for diaspora members preparing to invest. Use these resources to get
               your documentation and identification in order before you begin.
