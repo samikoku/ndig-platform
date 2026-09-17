@@ -1,4 +1,4 @@
-# DPIG Knowledge Base - Strategic Partner Information
+# NDIG Knowledge Base - Strategic Partner Information
 
 ## NiDCOM (Nigerians in Diaspora Commission)
 
@@ -108,10 +108,10 @@ SEC is the apex regulatory institution for the Nigerian capital market, ensuring
 
 ---
 
-## DPIG Platform Information
+## NDIG Platform Information
 
-### What is DPIG?
-The Diaspora Productivity & Investment Gateway (DPIG) is a government-endorsed digital platform that connects diaspora capital to high-yield, productive investments in Nigeria. It is aligned with the National Productivity Agenda (NPA) 2025-2035.
+### What is NDIG?
+NDIG (Nigeria Diaspora Investment Gateway) is a regulator-vetted referral and information platform that connects diaspora capital to high-yield, productive investments in Nigeria. It is not a payment processor and never holds investor funds; it operates in alignment with the National Productivity Agenda (NPA) 2025-2035.
 
 ### Core Modules
 
@@ -142,7 +142,7 @@ The Diaspora Productivity & Investment Gateway (DPIG) is a government-endorsed d
 - **2024 Diaspora Remittances:** $20.93 billion
 - **2030 Projection:** $24 billion
 - **Investment Potential:** $73.2 billion (if remittances are channeled into productive investments)
-- **Government Backing:** 100% endorsed by NPA, NiDCOM, NIPC, CBN, and SEC
+- **Regulatory Alignment:** Operates in alignment with NPA, NiDCOM, NIPC, CBN, and SEC frameworks
 
 ### Strategic Partners
 1. **National Productivity Agenda (NPA)** - Strategic oversight and alignment with national development goals
@@ -154,10 +154,10 @@ The Diaspora Productivity & Investment Gateway (DPIG) is a government-endorsed d
 ### Investment Opportunities (Examples)
 - **Eko Atlantic Diaspora Tower:** Premium mixed-use development with 12-15% target yield, $25k minimum entry, 5-year term
 - **Lekki Free Trade Zone:** Industrial and commercial development
-- **Diaspora Bonds:** Government-backed securities with attractive returns
+- **Diaspora Bonds:** Government-guaranteed securities with attractive returns
 
 ### How to Get Started
-1. Register your interest on the DPIG platform
+1. Register your interest on the NDIG platform
 2. Complete KYC verification through the Trust Centre
 3. Browse vetted investment opportunities in the Investment Nexus
 4. Monitor your portfolio through the My Portfolio dashboard
@@ -174,18 +174,18 @@ The Diaspora Productivity & Investment Gateway (DPIG) is a government-endorsed d
 
 ### General Questions
 
-**Q: Who can invest through DPIG?**
+**Q: Who can invest through NDIG?**
 A: Professional Nigerians outside Nigeria for one year or more (excluding students and dependents).
 
-**Q: Is DPIG government-approved?**
-A: Yes, DPIG is officially endorsed by the National Productivity Agenda (NPA), NiDCOM, NIPC, CBN, and SEC.
+**Q: Is NDIG government-approved?**
+A: NDIG is an independent referral and information platform, not a government agency. It operates in alignment with the regulatory frameworks of the National Productivity Agenda (NPA), NiDCOM, NIPC, CBN, and SEC, and never holds investor funds - all investments are made directly with the licensed institutions named.
 
 **Q: What is the minimum investment amount?**
 A: Minimum investment varies by opportunity. For example, the Eko Atlantic Diaspora Tower requires a $25,000 minimum entry.
 
 ### Investment Questions
 
-**Q: How do I access the Nigerian Stock Market through DPIG?**
+**Q: How do I access the Nigerian Stock Market through NDIG?**
 A: The Investment Nexus module provides friction-free access to the Nigerian Stock Exchange (NGX) with real-time market data and seamless transaction processing.
 
 **Q: Are my investments protected?**
@@ -199,7 +199,7 @@ A: Yes, CBN foreign exchange policies allow for repatriation of investment capit
 **Q: How does the National Housing Programme work for diaspora?**
 A: Through the FMBN-sponsored mortgage program, diaspora members can register with the National Housing Fund (NHF), make monthly contributions, and access affordable housing in Nigeria.
 
-**Q: What are the benefits of investing in real estate through DPIG?**
+**Q: What are the benefits of investing in real estate through NDIG?**
 A: Purpose-built estates offer guaranteed rental yields, capital appreciation, and are located in prime development zones like Eko Atlantic and Lekki.
 
 ### Policy & Governance Questions
@@ -207,8 +207,8 @@ A: Purpose-built estates offer guaranteed rental yields, capital appreciation, a
 **Q: How can I participate in legislative discussions?**
 A: The Policy & Governance Interface provides access to National Assembly bills and a platform for diaspora members to submit feedback before laws are passed.
 
-**Q: How does DPIG align with the National Productivity Agenda?**
-A: DPIG is designed to channel diaspora capital into productive sectors identified in the NPA 2025-2035, including infrastructure, manufacturing, agriculture, and technology.
+**Q: How does NDIG align with the National Productivity Agenda?**
+A: NDIG is designed to channel diaspora capital into productive sectors identified in the NPA 2025-2035, including infrastructure, manufacturing, agriculture, and technology.
 
 ### Technical Questions
 
@@ -216,10 +216,10 @@ A: DPIG is designed to channel diaspora capital into productive sectors identifi
 A: The Trust Centre provides a secure, multi-step KYC process including identity verification, document upload, and biometric authentication.
 
 **Q: Is my data secure?**
-A: Yes, DPIG uses government-grade encryption and complies with all Nigerian data protection regulations.
+A: Yes, NDIG uses bank-grade encryption and complies with all Nigerian data protection regulations.
 
-**Q: Can I access DPIG from any country?**
-A: Yes, DPIG is a global platform accessible from anywhere in the world with an internet connection.
+**Q: Can I access NDIG from any country?**
+A: Yes, NDIG is a global platform accessible from anywhere in the world with an internet connection.
 
 ---
 
@@ -246,7 +246,7 @@ A: Yes, DPIG is a global platform accessible from anywhere in the world with an 
 - Projected Return: $180,000
 
 ### Economic Impact Projections
-If DPIG successfully channels $10 billion of diaspora remittances into productive investments:
+If NDIG successfully channels $10 billion of diaspora remittances into productive investments:
 - **GDP Impact:** +2.5% annual growth
 - **Job Creation:** 500,000+ direct and indirect jobs
 - **Forex Reserves:** +$5 billion stabilization

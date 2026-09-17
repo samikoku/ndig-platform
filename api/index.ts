@@ -4,6 +4,7 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "../server/_core/oauth";
 import { appRouter } from "../server/routers";
 import { createContext } from "../server/_core/context";
+import { runPendingMigration } from "../server/_core/migrate";
 
 const app = express();
 
@@ -19,6 +20,20 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // OAuth routes
 registerOAuthRoutes(app);
+
+// One-time, secret-gated schema migration runner. Remove after use.
+app.post("/api/migrate", async (req, res) => {
+  if (!process.env.MIGRATION_SECRET || req.headers["x-migration-secret"] !== process.env.MIGRATION_SECRET) {
+    return res.status(404).json({ error: "Not Found" });
+  }
+  try {
+    const result = await runPendingMigration();
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("[Migration Error]", error);
+    res.status(500).json({ error: error instanceof Error ? error.message : "Migration failed" });
+  }
+});
 
 // tRPC API
 app.use(

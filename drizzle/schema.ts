@@ -31,6 +31,12 @@ export const interestRegistrations = mysqlTable("interest_registrations", {
   location: varchar("location", { length: 255 }).notNull(),
   investmentCapacity: varchar("investment_capacity", { length: 100 }).notNull(),
   message: text("message"),
+  phone: varchar("phone", { length: 50 }),
+  country: varchar("country", { length: 100 }),
+  sectorInterest: varchar("sector_interest", { length: 100 }),
+  riskAppetite: varchar("risk_appetite", { length: 50 }),
+  familyInNigeria: mysqlEnum("family_in_nigeria", ["yes", "no"]),
+  referralCode: varchar("referral_code", { length: 50 }).unique(),
   status: mysqlEnum("status", ["new", "contacted", "qualified", "converted"]).default("new").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
@@ -124,3 +130,46 @@ export const accountLinks = mysqlTable("account_links", {
 });
 export type AccountLink = typeof accountLinks.$inferSelect;
 export type InsertAccountLink = typeof accountLinks.$inferInsert;
+/**
+ * Country Anchor applications
+ */
+export const countryAnchorApplications = mysqlTable("country_anchor_applications", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  countryOfResidence: varchar("country_of_residence", { length: 100 }).notNull(),
+  yearsInDiaspora: varchar("years_in_diaspora", { length: 50 }).notNull(),
+  professionalBackground: text("professional_background").notNull(),
+  communityInvolvement: text("community_involvement"),
+  whyNdig: text("why_ndig").notNull(),
+  status: mysqlEnum("status", ["new", "reviewing", "approved", "declined"]).default("new").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+export type CountryAnchorApplication = typeof countryAnchorApplications.$inferSelect;
+export type InsertCountryAnchorApplication = typeof countryAnchorApplications.$inferInsert;
+/**
+ * Newsletter signups
+ */
+export const newsletterSignups = mysqlTable("newsletter_signups", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+export type NewsletterSignup = typeof newsletterSignups.$inferSelect;
+export type InsertNewsletterSignup = typeof newsletterSignups.$inferInsert;
+/**
+ * Productivity Network mentorship requests
+ */
+export const mentorshipRequests = mysqlTable("mentorship_requests", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  role: mysqlEnum("role", ["mentor", "mentee"]).notNull(),
+  areaOfExpertise: varchar("area_of_expertise", { length: 255 }).notNull(),
+  message: text("message"),
+  status: mysqlEnum("status", ["new", "matched", "closed"]).default("new").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+export type MentorshipRequest = typeof mentorshipRequests.$inferSelect;
+export type InsertMentorshipRequest = typeof mentorshipRequests.$inferInsert;
