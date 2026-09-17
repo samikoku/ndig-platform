@@ -161,9 +161,9 @@ export const trackingRouter = router({
         status: "initiated",
         nrniaAccountNumber: input.nrniaAccountNumber,
         bankName: input.bankName,
-      });
+      }).returning({ id: investmentFlows.id });
 
-      return { flowId: flow.insertId, feeUSD, feePercentage };
+      return { flowId: flow.id, feeUSD, feePercentage };
     }),
 
   /**
@@ -308,9 +308,9 @@ export const trackingRouter = router({
         verificationProof: input.verificationProof,
         verified: input.verificationProof ? 1 : 0,
         verifiedAt: input.verificationProof ? new Date() : null,
-      });
+      }).returning({ id: accountLinks.id });
 
-      return { linkId: link.insertId };
+      return { linkId: link.id };
     }),
 
   /**

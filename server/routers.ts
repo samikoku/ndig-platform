@@ -17,7 +17,7 @@ import {
 import { notifyOwner } from "./_core/notification";
 import { sendWelcomeEmail, notifyAdminNewRegistration } from "./emailService";
 import { TRPCError } from "@trpc/server";
-import { eq, desc, count, sql } from "drizzle-orm";
+import { eq, desc, count } from "drizzle-orm";
 import { trackingRouter } from "./tracking";
 import { randomBytes } from "crypto";
 
@@ -48,6 +48,11 @@ export const appRouter = router({
           location: z.string().min(2, "Location must be at least 2 characters").max(255),
           investmentCapacity: z.string().min(1, "Please select an investment capacity"),
           message: z.string().max(1000).optional(),
+          phone: z.string().max(50).optional(),
+          country: z.string().max(100).optional(),
+          sectorInterest: z.string().max(100).optional(),
+          riskAppetite: z.string().max(50).optional(),
+          familyInNigeria: z.enum(["yes", "no"]).optional(),
         })
       )
       .mutation(async ({ input }) => {
@@ -60,6 +65,8 @@ export const appRouter = router({
             });
           }
 
+          const referralCode = generateReferralCode();
+
           // Insert registration into database
           await db.insert(interestRegistrations).values({
             name: input.name,
@@ -67,6 +74,12 @@ export const appRouter = router({
             location: input.location,
             investmentCapacity: input.investmentCapacity,
             message: input.message || null,
+            phone: input.phone || null,
+            country: input.country || null,
+            sectorInterest: input.sectorInterest || null,
+            riskAppetite: input.riskAppetite || null,
+            familyInNigeria: input.familyInNigeria || null,
+            referralCode,
             status: "new",
           });
 
@@ -89,6 +102,7 @@ export const appRouter = router({
           return {
             success: true,
             message: "Thank you for your interest! We'll be in touch soon.",
+            referralCode,
           };
         } catch (error) {
           console.error("[Interest Registration Error]", error);
@@ -279,6 +293,128 @@ Answer the user's question based on this knowledge base.`,
   }),
 
   tracking: trackingRouter,
+
+  countryAnchor: router({
+    apply: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(2).max(255),
+          email: z.string().email().max(320),
+          phone: z.string().min(3).max(50),
+          countryOfResidence: z.string().min(2).max(100),
+          yearsInDiaspora: z.string().min(1).max(50),
+          professionalBackground: z.string().min(10).max(2000),
+          communityInvolvement: z.string().max(2000).optional(),
+          whyNdig: z.string().min(10).max(2000),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          const db = await getDb();
+          if (!db) {
+            throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database not available" });
+          }
+
+          await db.insert(countryAnchorApplications).values({
+            name: input.name,
+            email: input.email,
+            phone: input.phone,
+            countryOfResidence: input.countryOfResidence,
+            yearsInDiaspora: input.yearsInDiaspora,
+            professionalBackground: input.professionalBackground,
+            communityInvolvement: input.communityInvolvement || null,
+            whyNdig: input.whyNdig,
+            status: "new",
+          });
+
+          await notifyOwner({
+            title: "New Country Anchor Application",
+            content: `${input.name} (${input.email}) from ${input.countryOfResidence} applied to become a Country Anchor.`,
+          });
+
+          return { success: true, message: "Thank you for applying. Our team will be in touch." };
+        } catch (error) {
+          console.error("[Country Anchor Application Error]", error);
+          throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to submit application. Please try again." });
+        }
+      }),
+  }),
+
+  newsletter: router({
+    subscribe: publicProcedure
+      .input(z.object({ email: z.string().email().max(320) }))
+      .mutation(async ({ input }) => {
+        try {
+          const db = await getDb();
+          if (!db) {
+            throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database not available" });
+          }
+
+          await db.insert(newsletterSignups).values({ email: input.email }).onConflictDoNothing();
+
+          return { success: true, message: "You're subscribed." };
+        } catch (error) {
+          console.error("[Newsletter Signup Error]", error);
+          throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to subscribe. Please try again." });
+        }
+      }),
+  }),
+
+  mentorship: router({
+    request: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(2).max(255),
+          email: z.string().email().max(320),
+          role: z.enum(["mentor", "mentee"]),
+          areaOfExpertise: z.string().min(2).max(255),
+          message: z.string().max(1000).optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          const db = await getDb();
+          if (!db) {
+            throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Database not available" });
+          }
+
+          await db.insert(mentorshipRequests).values({
+            name: input.name,
+            email: input.email,
+            role: input.role,
+            areaOfExpertise: input.areaOfExpertise,
+            message: input.message || null,
+            status: "new",
+          });
+
+          return { success: true, message: "Thanks - we'll match you and follow up by email." };
+        } catch (error) {
+          console.error("[Mentorship Request Error]", error);
+          throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to submit request. Please try again." });
+        }
+      }),
+  }),
+
+  investmentIndex: router({
+    counters: publicProcedure.query(async () => {
+      const db = await getDb();
+      if (!db) {
+        return { registrations: 0, nrbvn: 0, nrnia: 0 };
+      }
+
+      const [[registrationRow], [nrbvnRow], [nrniaRow]] = await Promise.all([
+        db.select({ value: count() }).from(interestRegistrations),
+        db.select({ value: count() }).from(referralTracking).where(eq(referralTracking.targetType, "nrbvn")),
+        db.select({ value: count() }).from(referralTracking).where(eq(referralTracking.targetType, "nrnia")),
+      ]);
+
+      return {
+        registrations: registrationRow?.value ?? 0,
+        nrbvn: nrbvnRow?.value ?? 0,
+        nrnia: nrniaRow?.value ?? 0,
+      };
+    }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
