@@ -106,4 +106,3 @@ temp/
 *.sqlite3
 .vercel
 .env*
-api/index.js
