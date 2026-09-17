@@ -295,7 +295,7 @@ Answer the user's question based on this knowledge base.`,
   tracking: trackingRouter,
 
   countryAnchor: router({
-    apply: publicProcedure
+    submitApplication: publicProcedure
       .input(
         z.object({
           name: z.string().min(2).max(255),
