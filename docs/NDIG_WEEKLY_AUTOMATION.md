@@ -20,13 +20,15 @@ app is open; if the app was closed it runs on next launch):
 3. **If found** (author-provided, so approved): extract the text verbatim → generate HTML in the template style →
    save to `content/weekly/issues/YYYY-MM-DD_<slug>.html` → queue `QUEUED` → load into `server/weeklyContent.ts`
    (only once the previous issue's send date has passed) → commit → deploy → confirm the deployment is live.
-4. **If not found:** nothing is loaded or sent. The calendar is read and the next issue drafted (only topics on the calendar; never invent one); the draft is saved to
-   `content/weekly/drafts/` (never `issues/`), the queue is set to `DRAFT - AWAITING APPROVAL`, and the user is
-   flagged. Content is loaded only after the user approves.
+4. **If not found:** nothing is loaded or sent, and **Claude writes nothing** (calendar rule: Dr. Ikoku writes every
+   issue; Claude only loads and sends). The queue row is set to `MISSING` and the user is flagged.
 
 **Send-day check:** a second scheduled task, `ndig-weekly-thursday-check`, runs Thursdays at 11:00 WAT (an hour after the 10:00 WAT send). On a send date it confirms the issue went out and marks the queue `SENT`; if not, it marks `MISSING` and flags the user.
 
 **Issue #1 corrections (approved):** the closing line reads "NDIG — The Nigeria Diaspora Investment Gateway" (never "Intelligence"); the subject is "NDIG Weekly #1: The $21 Billion Question Nobody Could Answer". Both are applied in `content/weekly/issues/2026-10-08_launch-issue.html`, which is loaded in `server/weeklyContent.ts`. The source docx still has the old closing line, so never regenerate Issue #1 from it.
+
+Locked calendar rules: no selling, no NAKACHI products, no NDIG membership pushes, no CTAs; verification-first with
+unverifiable claims flagged `[UNVERIFIED]`; NDIG = Nigeria Diaspora **Investment** Gateway, never "Intelligence".
 
 Rules: **never send unapproved content; never substitute; never edit approved text; never skip a send date
 silently** (any hold, `MISSING` or failure is flagged to the user).
@@ -36,10 +38,10 @@ silently** (any hold, `MISSING` or failure is flagged to the user).
 | Purpose | Location |
 |---|---|
 | Issues | `content/weekly/issues/YYYY-MM-DD_<slug>.html` |
-| Drafts (unapproved, never sent) | `content/weekly/drafts/` |
-| Queue | `content/weekly/NDIG_Weekly_Queue.html` (`QUEUED`, `SENT` + timestamp, `MISSING`, `DRAFT - AWAITING APPROVAL`) |
+| Queue | `content/weekly/NDIG_Weekly_Queue.html` (`QUEUED`, `SENT` + timestamp, `MISSING`,  |
 | Source docx | `C:\Users\samik\OneDrive\Desktop\NDIG Weekly Newsletter` |
-| Canonical content calendar | `content/weekly/NDIG_Weekly_Content_Calendar_2026.html` (in this repo — the only calendar; the earlier `/mnt/agents/output/...` path is retired and must not be searched for) |
+| **Authoritative calendar** | `content/weekly/NDIG_Weekly_Content_Calendar_2026_CANONICAL_v1.0.md` — where any calendar differs, this file wins |
+| Formatted calendar (reference) | `content/weekly/NDIG_Weekly_Content_Calendar_2026.html` — fuller earlier copy of the same v1.0; the old `/mnt/agents/output/...` path is retired and must not be searched for |
 
 ## How the deployed send works
 
