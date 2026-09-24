@@ -12,6 +12,7 @@ import {
 import { sendJoinConfirmationEmail, sendResendEmail, sendResendBatch } from "./emailService";
 import { BRIEF_SUBJECT, renderBriefEmail, renderWeeklyEmail, unsubscribeUrl } from "./emailTemplates";
 import { currentWeekly } from "./weeklyContent";
+import { isScheduledSendDate, utcDateString } from "./weeklySchedule";
 import { addRecipients, archiveIssue, ensureIssueRecord, findIssueByContent, issueNumberFor } from "./weeklyArchive";
 
 const joinSchema = z.object({
@@ -138,9 +139,9 @@ export function registerJoinRoutes(app: Express): void {
     }
   });
 
-  // Bi-weekly NDIG Weekly send, triggered daily by Vercel Cron (see vercel.json). Each
-  // subscriber is due 14 days after their Brief, then every 14 days. Sends nothing while
-  // server/weeklyContent.ts has no issue set, and leaves schedules untouched in that case.
+  // NDIG Weekly send — FORTNIGHTLY at 09:00 UTC (see server/weeklySchedule.ts). Vercel Cron fires
+  // this daily (vercel.json); it only proceeds on a scheduled send date. On a send date it never
+  // skips silently: no content, or content unchanged since the last issue, is reported as MISSING.
   app.get("/api/cron/weekly", async (req, res) => {
     const secret = process.env.CRON_SECRET;
     if (secret && req.headers.authorization !== `Bearer ${secret}`) {
@@ -149,18 +150,42 @@ export function registerJoinRoutes(app: Express): void {
     }
 
     const weekly = currentWeekly;
-    if (!weekly) {
-      console.log("[Cron Weekly] No Weekly issue configured — nothing sent");
-      res.status(200).json({ sent: 0, skipped: "no weekly content configured" });
-      return;
-    }
+    const now = new Date();
+    const onSendDate = isScheduledSendDate(now);
 
     try {
+      if (!onSendDate) {
+        // Off-calendar days only retry a pending archive commit for the current issue.
+        let archived: boolean | null = null;
+        if (weekly) {
+          const recorded = await findIssueByContent(weekly.subject, weekly.bodyHtml);
+          if (recorded && recorded.recipientCount > 0 && !recorded.archivedAt) archived = await archiveIssue(recorded);
+        }
+        res.status(200).json({ sent: 0, skipped: "not a scheduled send date", archived });
+        return;
+      }
+
+      if (!weekly) {
+        console.error("[Cron Weekly] MISSING — scheduled send date", utcDateString(now), "but no issue is configured in server/weeklyContent.ts");
+        res.status(503).json({ status: "MISSING", reason: "no issue content configured", date: utcDateString(now) });
+        return;
+      }
+
+      const existing = await findIssueByContent(weekly.subject, weekly.bodyHtml);
+      if (existing && utcDateString(existing.sentAt) < utcDateString(now)) {
+        console.error("[Cron Weekly] MISSING — configured content was already sent as issue", existing.issueNumber, "on", utcDateString(existing.sentAt), "and has not been replaced");
+        res.status(503).json({ status: "MISSING", reason: `content unchanged since issue ${existing.issueNumber}`, date: utcDateString(now) });
+        return;
+      }
+
       const issueNumber = await issueNumberFor(weekly.subject, weekly.bodyHtml);
-      const due = await getDueWeeklySubscribers(issueNumber, 100);
       let sent = 0;
 
-      if (due.length > 0) {
+      // Up to 5 batches of 100 per run so a larger list still completes on the send date.
+      for (let batch = 0; batch < 5; batch++) {
+        const due = await getDueWeeklySubscribers(issueNumber, 100);
+        if (due.length === 0) break;
+
         // The issue's database record is created before its first send so the number is fixed.
         const issue = await ensureIssueRecord(weekly.subject, weekly.bodyHtml, issueNumber);
         const ok = await sendResendBatch(
@@ -172,14 +197,14 @@ export function registerJoinRoutes(app: Express): void {
           })),
         );
         if (!ok) {
-          res.status(502).json({ sent: 0, error: "batch send failed; schedules unchanged" });
+          res.status(502).json({ sent, error: "batch send failed; remaining subscribers unchanged" });
           return;
         }
         await advanceWeekly(due.map(s => s.id), issueNumber);
         await addRecipients(issue.id, due.length);
-        sent = due.length;
-        console.log("[Cron Weekly] Issue", issueNumber, "sent to", sent, "subscribers");
+        sent += due.length;
       }
+      console.log("[Cron Weekly] Issue", issueNumber, "sent to", sent, "subscribers");
 
       // Archive once the issue has actually gone out; retried on every run until the commit succeeds.
       const recorded = await findIssueByContent(weekly.subject, weekly.bodyHtml);

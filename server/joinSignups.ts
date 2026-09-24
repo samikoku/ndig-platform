@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { and, eq, inArray, isNotNull, isNull, lt, lte, or, sql } from "drizzle-orm";
+import { and, eq, inArray, isNotNull, isNull, lt, or, sql } from "drizzle-orm";
 import { getDb } from "./db";
 import { joinSignups, type InsertJoinSignup, type JoinSignup } from "../drizzle/schema";
 
@@ -54,9 +54,9 @@ export async function ensureTable(db: NonNullable<Awaited<ReturnType<typeof getD
 const WEEKLY_INTERVAL_MS = 14 * 24 * 60 * 60 * 1000;
 
 /**
- * Atomically claims the one-time Brief send for a confirmed, subscribed row and starts
- * the bi-weekly clock (first Weekly = Brief + 14 days). Returns the row only for the
- * caller that wins the claim, so repeated link clicks can never double-send.
+ * Atomically claims the one-time Brief send for a confirmed, subscribed row. Returns the row
+ * only for the caller that wins the claim, so repeated link clicks can never double-send.
+ * (nextWeeklyAt is no longer used for scheduling — sends follow the fixed calendar in weeklySchedule.ts.)
  */
 export async function claimBriefSend(token: string): Promise<JoinSignup | null> {
   const db = await getDb();
@@ -88,7 +88,7 @@ export async function releaseBriefClaim(token: string): Promise<void> {
     .where(eq(joinSignups.confirmationToken, token));
 }
 
-/** Subscribers whose 14-day clock is due and who have not already received issue `issueNumber`. */
+/** Confirmed, subscribed readers (Brief already sent) who have not yet received issue `issueNumber`. */
 export async function getDueWeeklySubscribers(issueNumber: number, limit = 100): Promise<JoinSignup[]> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -101,7 +101,6 @@ export async function getDueWeeklySubscribers(issueNumber: number, limit = 100):
         eq(joinSignups.status, "confirmed"),
         isNull(joinSignups.unsubscribedAt),
         isNotNull(joinSignups.briefSentAt),
-        lte(joinSignups.nextWeeklyAt, new Date()),
         or(isNull(joinSignups.lastWeeklyIssue), lt(joinSignups.lastWeeklyIssue, issueNumber)),
       ),
     )
