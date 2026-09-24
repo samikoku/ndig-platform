@@ -1,11 +1,11 @@
 import { randomUUID } from "crypto";
-import { and, eq, inArray, isNotNull, isNull, lte, sql } from "drizzle-orm";
+import { and, eq, inArray, isNotNull, isNull, lt, lte, or, sql } from "drizzle-orm";
 import { getDb } from "./db";
 import { joinSignups, type InsertJoinSignup, type JoinSignup } from "../drizzle/schema";
 
 let tableReady = false;
 
-async function ensureTable(db: NonNullable<Awaited<ReturnType<typeof getDb>>>): Promise<void> {
+export async function ensureTable(db: NonNullable<Awaited<ReturnType<typeof getDb>>>): Promise<void> {
   if (tableReady) return;
 
   await db.execute(sql`
@@ -32,6 +32,21 @@ async function ensureTable(db: NonNullable<Awaited<ReturnType<typeof getDb>>>): 
   for (const column of ["briefSentAt", "nextWeeklyAt", "lastWeeklySentAt", "unsubscribedAt"]) {
     await db.execute(sql.raw(`ALTER TABLE join_signups ADD COLUMN IF NOT EXISTS "${column}" TIMESTAMP`));
   }
+  await db.execute(sql`ALTER TABLE join_signups ADD COLUMN IF NOT EXISTS "lastWeeklyIssue" INTEGER`);
+
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS weekly_issues (
+      id SERIAL PRIMARY KEY,
+      "issueNumber" INTEGER NOT NULL UNIQUE,
+      "contentHash" VARCHAR(64) NOT NULL UNIQUE,
+      subject TEXT NOT NULL,
+      "bodyHtml" TEXT NOT NULL,
+      "sentAt" TIMESTAMP NOT NULL DEFAULT now(),
+      "recipientCount" INTEGER NOT NULL DEFAULT 0,
+      "archivedAt" TIMESTAMP,
+      "archivePath" VARCHAR(200)
+    );
+  `);
 
   tableReady = true;
 }
@@ -73,7 +88,8 @@ export async function releaseBriefClaim(token: string): Promise<void> {
     .where(eq(joinSignups.confirmationToken, token));
 }
 
-export async function getDueWeeklySubscribers(limit = 100): Promise<JoinSignup[]> {
+/** Subscribers whose 14-day clock is due and who have not already received issue `issueNumber`. */
+export async function getDueWeeklySubscribers(issueNumber: number, limit = 100): Promise<JoinSignup[]> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await ensureTable(db);
@@ -86,19 +102,24 @@ export async function getDueWeeklySubscribers(limit = 100): Promise<JoinSignup[]
         isNull(joinSignups.unsubscribedAt),
         isNotNull(joinSignups.briefSentAt),
         lte(joinSignups.nextWeeklyAt, new Date()),
+        or(isNull(joinSignups.lastWeeklyIssue), lt(joinSignups.lastWeeklyIssue, issueNumber)),
       ),
     )
     .limit(limit);
 }
 
-export async function advanceWeekly(ids: number[]): Promise<void> {
+export async function advanceWeekly(ids: number[], issueNumber: number): Promise<void> {
   if (ids.length === 0) return;
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   const now = new Date();
   await db
     .update(joinSignups)
-    .set({ lastWeeklySentAt: now, nextWeeklyAt: new Date(now.getTime() + WEEKLY_INTERVAL_MS) })
+    .set({
+      lastWeeklySentAt: now,
+      lastWeeklyIssue: issueNumber,
+      nextWeeklyAt: new Date(now.getTime() + WEEKLY_INTERVAL_MS),
+    })
     .where(inArray(joinSignups.id, ids));
 }
 

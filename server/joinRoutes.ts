@@ -12,6 +12,7 @@ import {
 import { sendJoinConfirmationEmail, sendResendEmail, sendResendBatch } from "./emailService";
 import { BRIEF_SUBJECT, renderBriefEmail, renderWeeklyEmail, unsubscribeUrl } from "./emailTemplates";
 import { currentWeekly } from "./weeklyContent";
+import { addRecipients, archiveIssue, ensureIssueRecord, findIssueByContent, issueNumberFor } from "./weeklyArchive";
 
 const joinSchema = z.object({
   name: z.string().trim().min(1).max(200),
@@ -147,33 +148,47 @@ export function registerJoinRoutes(app: Express): void {
       return;
     }
 
-    if (!currentWeekly) {
+    const weekly = currentWeekly;
+    if (!weekly) {
       console.log("[Cron Weekly] No Weekly issue configured — nothing sent");
       res.status(200).json({ sent: 0, skipped: "no weekly content configured" });
       return;
     }
 
     try {
-      const due = await getDueWeeklySubscribers(100);
-      if (due.length === 0) {
-        res.status(200).json({ sent: 0 });
-        return;
+      const issueNumber = await issueNumberFor(weekly.subject, weekly.bodyHtml);
+      const due = await getDueWeeklySubscribers(issueNumber, 100);
+      let sent = 0;
+
+      if (due.length > 0) {
+        // The issue's database record is created before its first send so the number is fixed.
+        const issue = await ensureIssueRecord(weekly.subject, weekly.bodyHtml, issueNumber);
+        const ok = await sendResendBatch(
+          due.map(s => ({
+            to: s.email,
+            subject: weekly.subject,
+            html: renderWeeklyEmail(s.name, weekly.bodyHtml, unsubscribeUrl(s.confirmationToken)),
+            unsubscribeUrl: unsubscribeUrl(s.confirmationToken),
+          })),
+        );
+        if (!ok) {
+          res.status(502).json({ sent: 0, error: "batch send failed; schedules unchanged" });
+          return;
+        }
+        await advanceWeekly(due.map(s => s.id), issueNumber);
+        await addRecipients(issue.id, due.length);
+        sent = due.length;
+        console.log("[Cron Weekly] Issue", issueNumber, "sent to", sent, "subscribers");
       }
-      const ok = await sendResendBatch(
-        due.map(s => ({
-          to: s.email,
-          subject: currentWeekly!.subject,
-          html: renderWeeklyEmail(s.name, currentWeekly!.bodyHtml, unsubscribeUrl(s.confirmationToken)),
-          unsubscribeUrl: unsubscribeUrl(s.confirmationToken),
-        })),
-      );
-      if (!ok) {
-        res.status(502).json({ sent: 0, error: "batch send failed; schedules unchanged" });
-        return;
+
+      // Archive once the issue has actually gone out; retried on every run until the commit succeeds.
+      const recorded = await findIssueByContent(weekly.subject, weekly.bodyHtml);
+      let archived: boolean | null = null;
+      if (recorded && recorded.recipientCount > 0 && !recorded.archivedAt) {
+        archived = await archiveIssue(recorded);
       }
-      await advanceWeekly(due.map(s => s.id));
-      console.log("[Cron Weekly] Sent to", due.length, "subscribers");
-      res.status(200).json({ sent: due.length });
+
+      res.status(200).json({ sent, issue: recorded?.issueNumber ?? null, archived });
     } catch (error) {
       console.error("[Cron Weekly Error]", error);
       res.status(500).json({ error: "cron failed" });

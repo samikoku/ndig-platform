@@ -76,6 +76,12 @@ export function renderBriefEmail(name: string, unsubUrl: string): string {
   return shell(intro + renderArticle(BRIEF_ARTICLE_TEXT), unsubUrl);
 }
 
+/** Personalisation-free copy of an issue for the permanent repo archive (no name, no subscriber token). */
+export function renderWeeklyArchive(subject: string, bodyHtml: string, sentAt: Date): string {
+  const banner = `<p style="margin:0 0 18px;font-size:13px;color:#5b6b60;">Archived copy — NDIG Weekly, sent ${sentAt.toISOString().slice(0, 10)}. <a href="${PUBLIC_BASE_URL}/join" style="color:#0b6b3a;">Subscribe</a></p>`;
+  return shell(banner + bodyHtml, `${PUBLIC_BASE_URL}/join`).replace("<head>", `<head><title>${escapeHtml(subject)}</title>`);
+}
+
 export function renderWeeklyEmail(name: string, bodyHtml: string, unsubUrl: string): string {
   return shell(`<p style="margin:0 0 18px;">Hi ${escapeHtml(name)},</p>${bodyHtml}`, unsubUrl);
 }

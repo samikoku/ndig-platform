@@ -194,7 +194,24 @@ export const joinSignups = pgTable("join_signups", {
   nextWeeklyAt: timestamp("nextWeeklyAt"),
   lastWeeklySentAt: timestamp("lastWeeklySentAt"),
   unsubscribedAt: timestamp("unsubscribedAt"),
+  lastWeeklyIssue: integer("lastWeeklyIssue"),
 });
+/**
+ * One row per NDIG Weekly issue actually sent. Bootstrapped at request time like join_signups.
+ * The permanent browsable copy also lives in the repo at archive/weekly/ (see server/weeklyArchive.ts).
+ */
+export const weeklyIssues = pgTable("weekly_issues", {
+  id: serial("id").primaryKey(),
+  issueNumber: integer("issueNumber").notNull().unique(),
+  contentHash: varchar("contentHash", { length: 64 }).notNull().unique(),
+  subject: text("subject").notNull(),
+  bodyHtml: text("bodyHtml").notNull(),
+  sentAt: timestamp("sentAt").defaultNow().notNull(),
+  recipientCount: integer("recipientCount").default(0).notNull(),
+  archivedAt: timestamp("archivedAt"),
+  archivePath: varchar("archivePath", { length: 200 }),
+});
+export type WeeklyIssue = typeof weeklyIssues.$inferSelect;
 export type JoinSignup = typeof joinSignups.$inferSelect;
 export type InsertJoinSignup = typeof joinSignups.$inferInsert;
 /**
