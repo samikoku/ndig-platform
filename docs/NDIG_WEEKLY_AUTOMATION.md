@@ -6,8 +6,8 @@ These instructions supersede all earlier NDIG Weekly instructions.
 
 - **FORTNIGHTLY** sends at **09:00 UTC** (10:00 WAT). First issue: **8 October 2026**, then every 14 days
   (22 Oct, 5 Nov, ...). The schedule is `server/weeklySchedule.ts`.
-- 8 October 2026 is a **Thursday**; Issue #1's own dateline says "Thursday 8 October 2026". The earlier
-  "every 2nd Wednesday" wording did not match the dates and is not what is deployed.
+- Sends fall on **Thursdays** (8 October 2026 is a Thursday). The canonical calendar confirms: fortnightly, every 2nd
+  Thursday, 09:00 UTC; first issue Thu 8 Oct 2026; last issue in its window Thu 31 Dec 2026 (seven issues).
 
 ## Autonomous run (no intervention)
 
@@ -39,7 +39,7 @@ silently** (any hold, `MISSING` or failure is flagged to the user).
 | Drafts (unapproved, never sent) | `content/weekly/drafts/` |
 | Queue | `content/weekly/NDIG_Weekly_Queue.html` (`QUEUED`, `SENT` + timestamp, `MISSING`, `DRAFT - AWAITING APPROVAL`) |
 | Source docx | `C:\Users\samik\OneDrive\Desktop\NDIG Weekly Newsletter` |
-| Canonical content calendar | `/mnt/agents/output/NDIG_Weekly_Content_Calendar_2026.html` — **not present on this machine or the deployment**; drafting from it is blocked until a readable copy exists |
+| Canonical content calendar | `content/weekly/NDIG_Weekly_Content_Calendar_2026.html` (in this repo — the only calendar; the earlier `/mnt/agents/output/...` path is retired and must not be searched for) |
 
 ## How the deployed send works
 
