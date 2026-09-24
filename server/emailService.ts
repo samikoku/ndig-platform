@@ -21,7 +21,8 @@ export async function sendJoinConfirmationEmail(params: {
 }): Promise<boolean> {
   const { name, email, confirmUrl } = params;
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.JOIN_EMAIL_FROM || "NDIG <ndig@nakachiconsulting.com.ng>";
+  const from = process.env.JOIN_EMAIL_FROM || "NDIG Weekly <weekly@ndigateway.org>";
+  const replyTo = process.env.JOIN_EMAIL_REPLY_TO || "ndig@nakachiconsulting.com.ng";
 
   if (!apiKey) {
     console.warn("[Join Confirmation Email] RESEND_API_KEY not configured — skipping send for", email);
@@ -38,6 +39,7 @@ export async function sendJoinConfirmationEmail(params: {
       body: JSON.stringify({
         from,
         to: email,
+        reply_to: replyTo,
         subject: "Confirm your NDIG Weekly subscription",
         html: `<p>Hi ${escapeHtml(name)},</p><p>Confirm your subscription to the NDIG Weekly — one email every two weeks on vetted investment opportunities and regulatory changes affecting the Nigerian diaspora.</p><p><a href="${confirmUrl}">Confirm my subscription</a></p><p>If you didn't request this, you can ignore this email.</p>`,
       }),
