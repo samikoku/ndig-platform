@@ -62,7 +62,7 @@ export function registerJoinRoutes(app: Express): void {
         res.status(404).send(confirmPage("This confirmation link is invalid or has expired.", false));
         return;
       }
-      res.status(200).send(confirmPage("Welcome to the NDIG Weekly — one email every two weeks, starting with the 1 October launch.", true));
+      res.status(200).send(confirmPage("You will receive the NDIG-NAKACHI Intelligence Brief first, followed by the NDIG Weekly every two weeks thereafter.", true));
     } catch (error) {
       console.error("[Join Confirm Error]", error);
       res.status(500).send(confirmPage("Something went wrong confirming your subscription. Please try again.", false));

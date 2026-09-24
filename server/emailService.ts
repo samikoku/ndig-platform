@@ -41,7 +41,7 @@ export async function sendJoinConfirmationEmail(params: {
         to: email,
         reply_to: replyTo,
         subject: "Confirm your NDIG Weekly subscription",
-        html: `<p>Hi ${escapeHtml(name)},</p><p>Confirm your subscription to the NDIG Weekly — one email every two weeks on vetted investment opportunities and regulatory changes affecting the Nigerian diaspora.</p><p><a href="${confirmUrl}">Confirm my subscription</a></p><p>If you didn't request this, you can ignore this email.</p>`,
+        html: `<p>Hi ${escapeHtml(name)},</p><p>Confirm your subscription to NDIG. Once confirmed, you will receive the NDIG-NAKACHI Intelligence Brief first, followed by the NDIG Weekly every two weeks thereafter.</p><p><a href="${confirmUrl}">Confirm my subscription</a></p><p>If you didn't request this, you can ignore this email.</p>`,
       }),
     });
 
