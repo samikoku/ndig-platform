@@ -9,6 +9,80 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+export type OutboundEmail = {
+  to: string;
+  subject: string;
+  html: string;
+  unsubscribeUrl?: string;
+};
+
+function buildResendPayload(mail: OutboundEmail) {
+  return {
+    from: process.env.JOIN_EMAIL_FROM || "NDIG Weekly <weekly@ndigateway.org>",
+    to: mail.to,
+    reply_to: process.env.JOIN_EMAIL_REPLY_TO || "ndig@nakachiconsulting.com.ng",
+    subject: mail.subject,
+    html: mail.html,
+    ...(mail.unsubscribeUrl
+      ? {
+          headers: {
+            "List-Unsubscribe": `<${mail.unsubscribeUrl}>`,
+            "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+          },
+        }
+      : {}),
+  };
+}
+
+/** Sends one email through Resend. Returns the Resend message id, or null on failure/unconfigured. */
+export async function sendResendEmail(mail: OutboundEmail): Promise<string | null> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn("[Email] RESEND_API_KEY not configured — skipping send for", mail.to);
+    return null;
+  }
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+      body: JSON.stringify(buildResendPayload(mail)),
+    });
+    if (!response.ok) {
+      console.error("[Email] Resend API error", response.status, await response.text());
+      return null;
+    }
+    const data = (await response.json()) as { id?: string };
+    return data.id ?? "sent";
+  } catch (error) {
+    console.error("[Email] Failed to send:", error);
+    return null;
+  }
+}
+
+/** Sends up to 100 emails in one Resend batch call. Returns true only if the whole batch was accepted. */
+export async function sendResendBatch(mails: OutboundEmail[]): Promise<boolean> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn("[Email] RESEND_API_KEY not configured — skipping batch of", mails.length);
+    return false;
+  }
+  try {
+    const response = await fetch("https://api.resend.com/emails/batch", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+      body: JSON.stringify(mails.map(buildResendPayload)),
+    });
+    if (!response.ok) {
+      console.error("[Email] Resend batch error", response.status, await response.text());
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("[Email] Batch failed:", error);
+    return false;
+  }
+}
+
 /**
  * Sends the double opt-in confirmation email for an NDIG Weekly /join signup via
  * Resend's REST API. Requires RESEND_API_KEY — if unset, logs and skips sending

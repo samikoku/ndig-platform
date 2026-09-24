@@ -190,6 +190,10 @@ export const joinSignups = pgTable("join_signups", {
   confirmationToken: varchar("confirmationToken", { length: 64 }).notNull().unique(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   confirmedAt: timestamp("confirmedAt"),
+  briefSentAt: timestamp("briefSentAt"),
+  nextWeeklyAt: timestamp("nextWeeklyAt"),
+  lastWeeklySentAt: timestamp("lastWeeklySentAt"),
+  unsubscribedAt: timestamp("unsubscribedAt"),
 });
 export type JoinSignup = typeof joinSignups.$inferSelect;
 export type InsertJoinSignup = typeof joinSignups.$inferInsert;
