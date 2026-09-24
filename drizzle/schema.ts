@@ -12,6 +12,7 @@ export const accountTypeEnum = pgEnum("account_type", ["nrnia", "nrnoa", "nrbvn"
 export const countryAnchorStatusEnum = pgEnum("country_anchor_status", ["new", "reviewing", "approved", "declined"]);
 export const mentorshipRoleEnum = pgEnum("mentorship_role", ["mentor", "mentee"]);
 export const mentorshipStatusEnum = pgEnum("mentorship_status", ["new", "matched", "closed"]);
+export const joinSignupStatusEnum = pgEnum("join_signup_status", ["pending", "confirmed"]);
 
 /**
  * Core user table backing auth flow.
@@ -172,6 +173,26 @@ export const newsletterSignups = pgTable("newsletter_signups", {
 });
 export type NewsletterSignup = typeof newsletterSignups.$inferSelect;
 export type InsertNewsletterSignup = typeof newsletterSignups.$inferInsert;
+/**
+ * NDIG Weekly signups from the /join landing page, with double opt-in confirmation.
+ * Table is bootstrapped at request time via raw SQL (see server/joinSignups.ts) rather
+ * than a drizzle-kit migration, since DATABASE_URL isn't available in every environment
+ * that edits this schema. Reconcile with a proper migration when convenient.
+ */
+export const joinSignups = pgTable("join_signups", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 200 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  country: varchar("country", { length: 120 }).notNull(),
+  association: varchar("association", { length: 200 }),
+  source: varchar("source", { length: 120 }).default("/join").notNull(),
+  status: joinSignupStatusEnum("status").default("pending").notNull(),
+  confirmationToken: varchar("confirmationToken", { length: 64 }).notNull().unique(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  confirmedAt: timestamp("confirmedAt"),
+});
+export type JoinSignup = typeof joinSignups.$inferSelect;
+export type InsertJoinSignup = typeof joinSignups.$inferInsert;
 /**
  * Productivity Network mentorship requests
  */

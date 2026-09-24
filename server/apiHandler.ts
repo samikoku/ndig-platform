@@ -4,6 +4,7 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./_core/oauth";
 import { appRouter } from "./routers";
 import { createContext } from "./_core/context";
+import { registerJoinRoutes } from "./joinRoutes";
 
 const app = express();
 
@@ -28,6 +29,9 @@ app.use(
     createContext,
   })
 );
+
+// NDIG Weekly signup (client/public/join/index.html)
+registerJoinRoutes(app);
 
 // Static files are served by Vercel's static server (outputDirectory: "public")
 // This Lambda only handles API routes. Vercel's rewrites handle SPA routing to index.html

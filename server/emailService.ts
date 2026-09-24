@@ -1,5 +1,60 @@
 import { notifyOwner } from "./_core/notification";
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/**
+ * Sends the double opt-in confirmation email for an NDIG Weekly /join signup via
+ * Resend's REST API. Requires RESEND_API_KEY — if unset, logs and skips sending
+ * rather than failing the signup (the record is still stored either way).
+ */
+export async function sendJoinConfirmationEmail(params: {
+  name: string;
+  email: string;
+  confirmUrl: string;
+}): Promise<boolean> {
+  const { name, email, confirmUrl } = params;
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.JOIN_EMAIL_FROM || "NDIG <ndig@nakachiconsulting.com.ng>";
+
+  if (!apiKey) {
+    console.warn("[Join Confirmation Email] RESEND_API_KEY not configured — skipping send for", email);
+    return false;
+  }
+
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from,
+        to: email,
+        subject: "Confirm your NDIG Weekly subscription",
+        html: `<p>Hi ${escapeHtml(name)},</p><p>Confirm your subscription to the NDIG Weekly — one email every two weeks on vetted investment opportunities and regulatory changes affecting the Nigerian diaspora.</p><p><a href="${confirmUrl}">Confirm my subscription</a></p><p>If you didn't request this, you can ignore this email.</p>`,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("[Join Confirmation Email] Resend API error", response.status, await response.text());
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("[Join Confirmation Email] Failed to send:", error);
+    return false;
+  }
+}
+
 /**
  * Email service for sending automated emails to registrants and notifications to admins
  */
