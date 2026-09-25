@@ -101,4 +101,46 @@ Broken images still present on `/`: `/images/hero-banner.jpg`, `/images/trust-ce
 8. CONFIRM: NiDCOM `/investment/` and SEC `find-a-registered-operator` pages in a normal browser.
 9. CONFIRM: delete the unlinked `/policy-interface` route?
 10. CONFIRM: rules 1-3 review of `/investor-protections`, `/compliance-tracker`, `/about`, `/concept-note`, `/faqs`, Terms.
-11. CONFIRM: broken hero and module images.
+11. ~~CONFIRM: broken hero and module images.~~ Closed by Work Order 3 (below).
+
+---
+
+# Work Order 3 addendum, 25 September 2026
+
+Code commit: `89ffd5a`, live. Verified from the served HTML and the deployed JavaScript bundle (`assets/index-Dy_7j3Zz.js`), not in a rendered browser: the in-app browser could not load the site after the deploy (navigation refused, most likely Vercel's bot checkpoint). Rendered-browser verification of this pass is therefore NOT done. CONFIRM: open `/assurance`, `/trust-centre` and `/` once in a normal browser.
+
+## Execution log
+
+| Task | Result | Evidence |
+|---|---|---|
+| 1 Hero images | DONE. The hero background image and the two module images are removed; the two module cards were restyled as text cards (with the images gone, the old overlay styling would have shown white text on a light background). | Bundle contains only three `/images/` paths, all `/images/trust/*.jpg`, which exist and served 200 at the correct sizes earlier today. `/join` has three empty logo `<img>` tags that are hidden by its script (no logo URL configured); they display nothing. |
+| 2 Trust Centre roles | DONE. "Founder & Chairman, NDIG"; "Technical Advisory Board (TAB) Member" for Uduk and Abubakar. Bios and photos unchanged. | Strings present in the live bundle. |
+| 3 Contact block | DONE. Exact address, both emails, phone. In the site footer (every page) and on `/trust-centre`; also added to the `/join` page footer. Email and phone are links. | Strings present in the bundle; `/join` HTML contains the block. |
+| 4 Assurance page | DONE at `/assurance`. Doctrine banner, zero-entry line, empty register (columns: Date, Institution, Regulator, Licence number, Verification date, Re-check due; "Listed alphabetically by institution"; no sort controls), withdrawal log "No withdrawals to date.", funding panel with both fee figures, boundary line under the heading and inside the funding panel, nav entry beside Professional Network (desktop and mobile). All copy verbatim from the work order. | Every phrase found once in the live bundle. |
+| 4(h) Not built | CEO video, Noticeboard, advertising, insurance: not built. | Bundle and `/join` contain no "Noticeboard", "Warlord", "war council" or "CEO video". |
+
+## Points to know
+- **Plan v2.0 not found.** "NDIG Assurance Page — Design and Implementation Plan — 25 Sep 2026.html" is not on this machine (searched Downloads, OneDrive, Documents, Desktop). I built from the verbatim text in the work order. Where the plan adds structure I have not seen, it is not reflected. CONFIRM: send the file.
+- **Fee figures are public.** ₦2,500,000, $75 and ₦100,000 now appear on a public page on the founder's explicit ruling. Rule 9 in the original brief lists partner fee figures as never public; this pass follows the later, specific ruling. Noted here so the change is on record.
+- **Forbidden-phrase scan** of the live bundle and `/join`: no game changer, act now, limited slots, guaranteed, hurry, last chance, high-yield, Noticeboard. One hit for "government-backed": the FAQ sentence "NDIG itself is not government-backed or government-endorsed" (a negation required by rule 2). The scan covers every route's text because the site ships as one bundle; it is a string scan, not a per-route rendered scan.
+- Rules 1 to 3 on the six pages scheduled for the post-launch audit remain unaudited, as ruled.
+
+## Self-evaluation (Work Order 3)
+
+| Task | Score | Note |
+|---|---|---|
+| 1 | 95 | Done; module cards redesigned to stay legible. Rendered check outstanding. |
+| 2 | 98 | Exact wording. |
+| 3 | 95 | Done on the SPA footer, `/trust-centre` and `/join`. |
+| 4 | 82 | Built to the order's verbatim copy; plan v2.0 unavailable, so any plan detail beyond the order is missing. |
+| 5 | 70 | Deployed and verified by bundle and HTML, not in a rendered browser; report updated. Remediation: one rendered check in a normal browser. |
+| **Overall** | **84** | |
+
+## Remaining CONFIRM items
+1. Eko Atlantic image rights: slot still `CONFIRM: image rights pending`.
+2. Noticeboard: locked to Phase 2; not built, not mentioned on the site.
+3. First verified institution: awaiting confirmation (register is empty by design).
+4. Insurance category at launch or Phase 2: awaiting ruling.
+5. Post-launch audit of `/investor-protections`, `/compliance-tracker`, `/about`, `/concept-note`, FAQ, Terms.
+6. Assurance plan v2.0 file: not available to me.
+7. Rendered-browser check of this pass.
