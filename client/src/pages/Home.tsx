@@ -311,7 +311,7 @@ export default function Home() {
                   </div>
                   <h3 className="font-bold text-lg mb-2">Diaspora Bonds</h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Diaspora bonds are issued by the Federal Government of Nigeria through the Debt Management Office. NDIG does not sell them; it points to the official channel.
+                    NDIG does not sell diaspora bonds or advise on them. Register interest to be pointed to the official channel.
                   </p>
                   <Link href="/diaspora-bonds" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
                     Register Interest <ArrowRight className="w-3 h-3" />
