@@ -587,12 +587,16 @@ export default function Home() {
                 Join thousands of professional Nigerians in the diaspora who are already registering their interest. Be part of the movement.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100 text-lg px-10 py-6 h-auto rounded-full shadow-xl">
-                  Register Now
+                <a href="/join">
+                  <Button size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100 text-lg px-10 py-6 h-auto rounded-full shadow-xl">
+                  Join the NDIG Weekly
                 </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10 text-lg px-10 py-6 h-auto rounded-full">
+                </a>
+                <a href="mailto:diaspora@ndigateway.org">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10 text-lg px-10 py-6 h-auto rounded-full">
                   Contact Support
                 </Button>
+                </a>
               </div>
             </div>
           </div>

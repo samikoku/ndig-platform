@@ -163,7 +163,7 @@ export default function ComplianceTracker() {
           <CardHeader>
             <CardTitle className="text-2xl font-serif flex items-center gap-3">
               <Shield className="w-7 h-7 text-primary" />
-              Investor Protection Guarantee
+              Investor Protections
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -181,7 +181,7 @@ export default function ComplianceTracker() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Capital repatriation guaranteed under CBN forex policies</span>
+                    <span>Capital repatriation is subject to CBN forex policies</span>
                   </li>
                 </ul>
               </div>

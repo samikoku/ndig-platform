@@ -323,9 +323,6 @@ export default function Dashboard() {
                 productive investments.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Create Full Account
-                </Button>
                 <Button variant="outline" size="lg" onClick={handleExitDemo}>
                   Exit Demo
                 </Button>

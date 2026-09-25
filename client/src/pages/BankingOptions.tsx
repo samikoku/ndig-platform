@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -146,10 +147,6 @@ export default function BankingOptions() {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" className="gap-2">
-              Open Your NRNIA Account
-              <ArrowRight className="w-4 h-4" />
-            </Button>
           </div>
         </div>
       </section>
@@ -220,10 +217,12 @@ export default function BankingOptions() {
                   </div>
                 </div>
 
-                <Button variant="outline" className="gap-2">
+                <Link href="/get-nrbvn">
+                  <Button variant="outline" className="gap-2">
                   Get Your NRBVN Now
                   <ExternalLink className="w-4 h-4" />
                 </Button>
+                </Link>
               </div>
 
               <Card>
@@ -371,7 +370,7 @@ export default function BankingOptions() {
                   </div>
                   <h3 className="font-bold mb-2">NIPC Act</h3>
                   <p className="text-sm text-muted-foreground">
-                    100% foreign ownership allowed, full repatriation rights guaranteed
+                    Foreign ownership and repatriation are governed by Nigerian law and CBN rules; confirm current terms with the CBN and NIPC
                   </p>
                 </CardContent>
               </Card>
@@ -446,10 +445,6 @@ export default function BankingOptions() {
                 </div>
 
                 <div className="mt-8 flex gap-4">
-                  <Button variant="outline" className="gap-2">
-                    View Full Legal Framework
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -539,10 +534,6 @@ export default function BankingOptions() {
                 </div>
 
                 <div className="text-center mt-8">
-                  <Button size="lg" className="gap-2">
-                    Compare Banks & Open Account
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -562,14 +553,12 @@ export default function BankingOptions() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="gap-2">
-                Open NRNIA Account
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2 bg-transparent text-white border-white hover:bg-white/10">
+              <Link href="/investment-nexus">
+                <Button size="lg" variant="outline" className="gap-2 bg-transparent text-white border-white hover:bg-white/10">
                 Explore Investment Opportunities
                 <ArrowRight className="w-4 h-4" />
               </Button>
+              </Link>
             </div>
           </div>
         </div>

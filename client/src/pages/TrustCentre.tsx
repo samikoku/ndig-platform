@@ -424,10 +424,12 @@ export default function TrustCentre() {
           </Card>
 
           <div className="mt-12 text-center">
-            <Button size="lg" className="gap-2">
+            <Link href="/banking-options">
+              <Button size="lg" className="gap-2">
               Learn More About Banking Options
               <ArrowRight className="w-4 h-4" />
             </Button>
+            </Link>
           </div>
 
           {/* CAC Lookup */}

@@ -186,9 +186,6 @@ export default function InvestmentNexus() {
                       <p className="text-lg font-bold text-foreground">{selectedProject.minEntry}</p>
                     </div>
                   </div>
-                  <Button className="w-full bg-primary text-white hover:bg-primary/90">
-                    View Prospectus <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
                 </div>
               )}
             </div>
@@ -228,7 +225,6 @@ export default function InvestmentNexus() {
                     Managed Rental Yields
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full">Explore Projects</Button>
               </CardContent>
             </Card>
 
@@ -253,7 +249,6 @@ export default function InvestmentNexus() {
                     Sovereign Guarantee
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full">View Market</Button>
               </CardContent>
             </Card>
 
@@ -278,7 +273,6 @@ export default function InvestmentNexus() {
                     Lower Entry Threshold
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full">Find Funds</Button>
               </CardContent>
             </Card>
           </div>
