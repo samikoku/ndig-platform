@@ -67,11 +67,11 @@ function renderArticle(text: string): string {
   return out.join("\n");
 }
 
-export const BRIEF_SUBJECT = "The NDIG–NAKACHI Intelligence Brief: Two Layers of Failed Trust";
+export const BRIEF_SUBJECT = "Two Layers of Failed Trust";
 
 export function renderBriefEmail(name: string, unsubUrl: string): string {
   const intro = `<p style="margin:0 0 6px;">Hi ${escapeHtml(name)},</p>
-<p style="margin:0 0 22px;">Your subscription is confirmed. Below is the <strong>NDIG–NAKACHI Intelligence Brief (Special Edition)</strong> — the first document every confirmed subscriber receives. The NDIG Weekly follows every two weeks thereafter.</p>
+<p style="margin:0 0 22px;">Your subscription is confirmed. Below is <strong>“Two Layers of Failed Trust”</strong> — the first article every confirmed subscriber receives. The NDIG Weekly follows every two weeks thereafter.</p>
 <hr style="border:none;border-top:1px solid #e3dfd0;margin:0 0 24px;">`;
   return shell(intro + renderArticle(BRIEF_ARTICLE_TEXT), unsubUrl);
 }

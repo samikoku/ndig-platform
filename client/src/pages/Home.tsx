@@ -50,12 +50,6 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/diaspora-bonds">
-                <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white text-base md:text-lg px-8 py-6 h-auto rounded-full shadow-lg shadow-primary/25 transition-all hover:scale-105">
-                  View Diaspora Bonds
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
             </div>
 
             <div className="pt-8 md:pt-12 space-y-6 md:space-y-8">
@@ -243,90 +237,6 @@ export default function Home() {
               <p className="text-lg text-gray-300 mb-6">
                 <strong className="text-white">Result:</strong> Faster decisions, zero missed opportunities, and confidence that you're always working with the latest official information.
               </p>
-              <Link href="/investment-nexus">
-                <Button size="lg" className="bg-gold hover:bg-gold/90 text-sidebar">
-                  Explore Investment Opportunities
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CBN Infrastructure Highlight Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-chart-1/5 via-primary/5 to-chart-2/5">
-        <div className="container px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-chart-1/10 border border-chart-1/20 mb-4">
-                <span className="w-2 h-2 rounded-full bg-chart-1 animate-pulse" />
-                <span className="text-sm font-medium text-chart-1 tracking-wide uppercase">
-                  New: CBN 2025 Infrastructure
-                </span>
-              </div>
-              <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4">
-                Nigeria Is Ready for Your Capital
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                The Central Bank has built unprecedented diaspora investment infrastructure. NDIG connects 350,000+ diaspora Nigerians (from 20M total) to these regulator-vetted opportunities. Your country is open for business.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <Card className="border-2 border-chart-1/20 hover:border-chart-1/40 transition-colors">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-chart-1/20 flex items-center justify-center mb-4">
-                    <ShieldCheck className="w-6 h-6 text-chart-1" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">NRNIA Accounts</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Invest in diaspora bonds, stocks, real estate with full repatriation rights. Launched January 2025.
-                  </p>
-                  <Link href="/banking-options" className="text-sm font-medium text-chart-1 hover:underline flex items-center gap-1">
-                    Learn More <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-chart-2/20 hover:border-chart-2/40 transition-colors">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-chart-2/20 flex items-center justify-center mb-4">
-                    <Globe2 className="w-6 h-6 text-chart-2" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">Non-Resident BVN</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Get your Bank Verification Number without traveling to Nigeria. Fully digital enrollment.
-                  </p>
-                  <Link href="/banking-options" className="text-sm font-medium text-chart-2 hover:underline flex items-center gap-1">
-                    Learn More <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-colors">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
-                    <BarChart3 className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">Diaspora Bonds</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    NDIG does not sell diaspora bonds or advise on them. Register interest to be pointed to the official channel.
-                  </p>
-                  <Link href="/diaspora-bonds" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
-                    Register Interest <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="text-center">
-              <Link href="/diaspora-bonds">
-                <Button size="lg" className="gap-2">
-                  Explore Diaspora Bonds
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
@@ -340,73 +250,17 @@ export default function Home() {
               A Comprehensive Ecosystem
             </h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              NDIG integrates four powerful modules to ensure your investments are safe, productive, and impactful.
+              Where NDIG applies its verification standard.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {/* Module 1: Investment Nexus */}
-            <Link href="/investment-nexus" className="group relative overflow-hidden rounded-2xl flex flex-col md:block bg-card md:bg-transparent shadow-sm md:shadow-none border md:border-none border-border">
-                {/* Mobile: Image on top, Text below. Desktop: Image background with overlay */}
-                <div className="relative h-48 md:h-auto md:aspect-[16/9] w-full overflow-hidden">
-                  <img
-                    src="/images/investment-nexus.jpg"
-                    alt="Investment Nexus"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
-
-                {/* Content Container */}
-                <div className="p-6 md:absolute md:bottom-0 md:left-0 md:p-12 w-full bg-card md:bg-transparent">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-chart-1/20 backdrop-blur-md flex items-center justify-center mb-4 md:mb-6 border border-chart-1/30">
-                    <BarChart3 className="w-5 h-5 md:w-6 md:h-6 text-chart-1" />
-                  </div>
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground md:text-white mb-2 md:mb-3 group-hover:text-chart-1 transition-colors">
-                    Investment Nexus
-                  </h3>
-                  <p className="text-muted-foreground md:text-gray-300 max-w-md mb-4 md:mb-6 md:opacity-0 md:transform md:translate-y-4 md:transition-all md:duration-500 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    Access vetted opportunities in Real Estate, Stock Market, and Collective Investment Schemes.
-                  </p>
-                  <div className="flex items-center text-chart-1 font-medium text-sm uppercase tracking-widest">
-                    Explore Nexus <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-            </Link>
-
-            {/* Module 2: Policy Interface */}
-            <Link href="/policy-interface" className="group relative overflow-hidden rounded-2xl flex flex-col md:block bg-card md:bg-transparent shadow-sm md:shadow-none border md:border-none border-border">
-                <div className="relative h-48 md:h-auto md:aspect-[16/9] w-full overflow-hidden">
-                  <img
-                    src="/images/policy-interface.jpg"
-                    alt="Policy Interface"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
-
-                <div className="p-6 md:absolute md:bottom-0 md:left-0 md:p-12 w-full bg-card md:bg-transparent">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-chart-2/20 backdrop-blur-md flex items-center justify-center mb-4 md:mb-6 border border-chart-2/30">
-                    <Building2 className="w-5 h-5 md:w-6 md:h-6 text-chart-2" />
-                  </div>
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground md:text-white mb-2 md:mb-3 group-hover:text-chart-2 transition-colors">
-                    Policy & Governance
-                  </h3>
-                  <p className="text-muted-foreground md:text-gray-300 max-w-md mb-4 md:mb-6 md:opacity-0 md:transform md:translate-y-4 md:transition-all md:duration-500 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    Directly participate in legislative discussions and shape the policies that affect your investments.
-                  </p>
-                  <div className="flex items-center text-chart-2 font-medium text-sm uppercase tracking-widest">
-                    Shape Policy <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-            </Link>
-
-            {/* Module 3: Productivity Network */}
-            <Link href="/productivity-network" className="group relative overflow-hidden rounded-2xl flex flex-col md:block bg-card md:bg-transparent shadow-sm md:shadow-none border md:border-none border-border">
+            {/* Module: Professional Network */}
+            <Link href="/professional-network" className="group relative overflow-hidden rounded-2xl flex flex-col md:block bg-card md:bg-transparent shadow-sm md:shadow-none border md:border-none border-border">
                 <div className="relative h-48 md:h-auto md:aspect-[16/9] w-full overflow-hidden">
                   <img
                     src="/images/productivity-network.jpg"
-                    alt="Productivity Network"
+                    alt="Professional Network"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -417,13 +271,13 @@ export default function Home() {
                     <Users className="w-5 h-5 md:w-6 md:h-6 text-chart-3" />
                   </div>
                   <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground md:text-white mb-2 md:mb-3 group-hover:text-chart-3 transition-colors">
-                    Productivity Network
+                    Professional Network
                   </h3>
                   <p className="text-muted-foreground md:text-gray-300 max-w-md mb-4 md:mb-6 md:opacity-0 md:transform md:translate-y-4 md:transition-all md:duration-500 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    Connect with fellow professionals, mentor entrepreneurs, and advertise your services.
+                    A verified directory of Nigerian professionals abroad. Members return to it; institutions search it.
                   </p>
                   <div className="flex items-center text-chart-3 font-medium text-sm uppercase tracking-widest">
-                    Join Network <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    View Network <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
             </Link>

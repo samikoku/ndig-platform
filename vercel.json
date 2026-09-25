@@ -15,6 +15,12 @@
   "crons": [
     { "path": "/api/cron/weekly", "schedule": "0 9 * * *" }
   ],
+  "redirects": [
+    { "source": "/investment-nexus", "destination": "/", "statusCode": 301 },
+    { "source": "/diaspora-bonds", "destination": "/", "statusCode": 301 },
+    { "source": "/banking-options", "destination": "/", "statusCode": 301 },
+    { "source": "/investment-index", "destination": "/", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }

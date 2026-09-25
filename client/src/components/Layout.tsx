@@ -61,13 +61,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [registrationDialogOpen, setRegistrationDialogOpen] = useState(false);
 
-  const navItems = [
-    { name: "Investment Nexus", path: "/investment-nexus" },
-    { name: "Investor Protections", path: "/investor-protections" },
-    { name: "Trust Centre", path: "/trust-centre" },
-    { name: "Diaspora Readiness", path: "/diaspora-readiness" },
-    { name: "Compliance", path: "/compliance-tracker" },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-primary selection:text-primary-foreground">
@@ -97,18 +90,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/investment-nexus" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/investment-nexus" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
-              Investment Nexus
-            </Link>
-            <Link href="/diaspora-bonds" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/diaspora-bonds" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
-              Diaspora Bonds
-            </Link>
-            <Link href="/banking-options" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/banking-options" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
-              Banking
-            </Link>
-            <Link href="/investment-index" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/investment-index" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
-              Investment Index
-            </Link>
             <Link href="/trust-centre" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/trust-centre" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Trust Centre
             </Link>
@@ -146,19 +127,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col gap-6 mt-10">
-                  <Link href="/investment-nexus" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/investment-nexus" ? "text-primary" : "text-muted-foreground"}`}>
-                    Investment Nexus
-                  </Link>
-                  <Link href="/diaspora-bonds" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/diaspora-bonds" ? "text-primary" : "text-muted-foreground"}`}>
-                    Diaspora Bonds
-                  </Link>
-                  <Link href="/banking-options" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/banking-options" ? "text-primary" : "text-muted-foreground"}`}>
-                    Banking Options
-                  </Link>
-                  <Link href="/investment-index" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/investment-index" ? "text-primary" : "text-muted-foreground"}`}>
-                    Investment Index
-                  </Link>
-                  <Link href="/trust-centre" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/trust-centre" ? "text-primary" : "text-muted-foreground"}`}>
+                                          <Link href="/trust-centre" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/trust-centre" ? "text-primary" : "text-muted-foreground"}`}>
                     Trust Centre
                   </Link>
                   <Link href="/diaspora-readiness" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/diaspora-readiness" ? "text-primary" : "text-muted-foreground"}`}>
@@ -259,15 +228,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </h3>
               <ul className="space-y-3 text-sm text-sidebar-foreground/80">
                 <li>
-                  <Link href="/investment-nexus" className="hover:text-gold transition-colors">
-                    Investment Nexus
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/policy-interface" className="hover:text-gold transition-colors">
-                    Policy Interface
-                  </Link>
-                </li>
+                      </li>
                 <li>
                   <Link href="/professional-network" className="hover:text-gold transition-colors">
                     Professional Network
@@ -337,10 +298,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Partners */}
             <div>
               <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
-                Strategic Partners
+                Official Sources
               </h3>
               <div className="grid grid-cols-2 gap-4">
-                <a href="https://www.nidcom.gov.ng/" target="_blank" rel="noopener noreferrer" className="h-8 bg-sidebar-accent/50 rounded flex items-center justify-center text-xs font-bold text-sidebar-foreground/50 hover:bg-primary hover:text-white transition-colors">
+                <a href="https://nidcom.gov.ng/investment/" target="_blank" rel="noopener noreferrer" className="h-8 bg-sidebar-accent/50 rounded flex items-center justify-center text-xs font-bold text-sidebar-foreground/50 hover:bg-primary hover:text-white transition-colors">
                   NiDCOM
                 </a>
                 <a href="https://www.nipc.gov.ng/" target="_blank" rel="noopener noreferrer" className="h-8 bg-sidebar-accent/50 rounded flex items-center justify-center text-xs font-bold text-sidebar-foreground/50 hover:bg-primary hover:text-white transition-colors">
@@ -349,19 +310,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <a href="https://www.cbn.gov.ng/" target="_blank" rel="noopener noreferrer" className="h-8 bg-sidebar-accent/50 rounded flex items-center justify-center text-xs font-bold text-sidebar-foreground/50 hover:bg-primary hover:text-white transition-colors">
                   CBN
                 </a>
-                <a href="https://sec.gov.ng/" target="_blank" rel="noopener noreferrer" className="h-8 bg-sidebar-accent/50 rounded flex items-center justify-center text-xs font-bold text-sidebar-foreground/50 hover:bg-primary hover:text-white transition-colors">
+                <a href="https://sec.gov.ng/for-investors/find-a-registered-operator/" target="_blank" rel="noopener noreferrer" className="h-8 bg-sidebar-accent/50 rounded flex items-center justify-center text-xs font-bold text-sidebar-foreground/50 hover:bg-primary hover:text-white transition-colors">
                   SEC
                 </a>
               </div>
+              <p className="text-xs text-sidebar-foreground/60 mt-3">Government sites are intermittently unavailable. NDIG offers boots-on-the-ground verification where possible.</p>
             </div>
 
             {/* HomeFund NG */}
             <div>
               <h3 className="font-serif font-semibold text-lg mb-6 text-gold">
-                <Link href="/homefund" className="hover:underline">HomeFund NG</Link>
+                <Link href="/homefund" className="hover:underline">FMBN Diaspora Mortgage</Link>
               </h3>
               <p className="text-sm text-sidebar-foreground/80 leading-relaxed">
-                Housing Gateway — Connecting diaspora investment to Nigeria's housing development initiatives
+                FMBN's NHF Diaspora Mortgage Loan, launched in London on 7 August 2026. NDIG links to the source.
               </p>
             </div>
           </div>

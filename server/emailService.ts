@@ -115,7 +115,7 @@ export async function sendJoinConfirmationEmail(params: {
         to: email,
         reply_to: replyTo,
         subject: "Confirm your NDIG Weekly subscription",
-        html: `<p>Hi ${escapeHtml(name)},</p><p>Confirm your subscription to NDIG. Once confirmed, you will receive the NDIG-NAKACHI Intelligence Brief first, followed by the NDIG Weekly every two weeks thereafter.</p><p><a href="${confirmUrl}">Confirm my subscription</a></p><p>If you didn't request this, you can ignore this email.</p>`,
+        html: `<p>Hi ${escapeHtml(name)},</p><p>Confirm your subscription to NDIG. Once confirmed, you will receive our launch article, “Two Layers of Failed Trust”, first, followed by the NDIG Weekly every two weeks thereafter.</p><p><a href="${confirmUrl}">Confirm my subscription</a></p><p>If you didn't request this, you can ignore this email.</p>`,
       }),
     });
 
@@ -155,7 +155,7 @@ Welcome to NDIG - Nigeria Diaspora Investment Gateway
 
 Dear ${name},
 
-Thank you for registering your interest in the Nigeria Diaspora Investment Gateway (NDIG). We're excited to connect you with high-yield, government-backed productive investment opportunities in Nigeria.
+Thank you for registering your interest. NDIG is a private-sector, independent verification institution for the Nigerian diaspora. It is regulator-vetted, not government-backed.
 
 YOUR REGISTRATION DETAILS:
 • Name: ${name}
@@ -163,58 +163,13 @@ YOUR REGISTRATION DETAILS:
 • Location: ${location}
 • Investment Capacity: ${investmentCapacity}
 
-NEXT STEPS:
+NDIG does not hold funds, sell products or give investment advice. Any opportunity is transacted directly with the licensed institution named.
 
-1. EXPLORE OPPORTUNITIES
-   Visit our Investment Nexus to browse vetted opportunities in:
-   - Real Estate (Eko Atlantic, Smart Cities)
-   - Infrastructure Bonds
-   - Collective Investment Schemes
-   - Stock Market Investments
+Contact: diaspora@ndigateway.org
+More: https://www.ndigateway.org
 
-2. COMPLETE YOUR PROFILE
-   Log in to your dashboard to complete your investor profile and access exclusive opportunities.
-
-3. VERIFY YOUR IDENTITY
-   For regulatory compliance, you'll need to complete KYC verification before making investments.
-
-4. CONNECT WITH OUR TEAM
-   Our investment advisors are ready to help you navigate opportunities.
-
-PLATFORM OVERVIEW:
-
-✓ Government Endorsed: Backed by NPA, NiDCOM, NIPC, CBN, and SEC
-✓ Transparent: Full regulatory compliance and investment verification
-✓ Secure: Bank-level security for all transactions
-✓ Impactful: Your investments drive Nigeria's economic development
-
-INVESTMENT TEAM CONTACT:
-
-Email: investments@ndig.gov.ng
-Phone: +234 (0) 800 NDIG-INVEST
-WhatsApp: +234 (0) 803 000 0000
-
-Office Hours: Monday - Friday, 9:00 AM - 5:00 PM (WAT)
-
-EXPLORE THE PLATFORM:
-
-• Investment Nexus: https://ndig.gov.ng/investment-nexus
-• Trust Centre: https://ndig.gov.ng/trust-centre
-• Authority Statements: https://ndig.gov.ng/authority-statements
-• Dashboard: https://ndig.gov.ng/dashboard
-
-We look forward to partnering with you to transform your remittances into generational wealth while contributing to Nigeria's growth.
-
-Best regards,
-
-The NDIG Investment Team
+The NDIG Team
 Nigeria Diaspora Investment Gateway
-A Public-Private Partnership Initiative
-
----
-
-This is an automated message. Please do not reply to this email.
-For inquiries, contact: investments@ndig.gov.ng
   `.trim();
 
   // Send notification to owner (admin) about the new registration
@@ -222,7 +177,7 @@ For inquiries, contact: investments@ndig.gov.ng
   try {
     await notifyOwner({
       title: `New Registration: ${name}`,
-      content: `New investor registration received:\n\nName: ${name}\nEmail: ${email}\nLocation: ${location}\nInvestment Capacity: ${investmentCapacity}\n\nWelcome email sent to registrant.`,
+      content: `New investor registration received:\n\nName: ${name}\nEmail: ${email}\nLocation: ${location}\nInvestment Capacity: ${investmentCapacity}\n\nNo email was sent to the registrant.`,
     });
 
     // Log the email content for development/testing

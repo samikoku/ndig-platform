@@ -102,7 +102,7 @@ const resources: ReadinessResource[] = [
     color: "chart-4",
     category: "Investment Guidance",
     agency: "iGuide Nigeria",
-    description: "Official investor guide to Nigeria's regulatory environment, procedures, and opportunities.",
+    description: "iGuide Nigeria, an NIPC-linked investment guide portal, referenced in US State Department Investment Climate Statements.",
     links: [
       {
         href: "https://theiguides.org/public-docs/guides/nigeria",
@@ -116,7 +116,7 @@ const resources: ReadinessResource[] = [
     category: "Diaspora Services",
     agency: "NiDCOM",
     description: "Nigerians in Diaspora Commission — official diaspora services and engagement.",
-    links: [{ href: "https://nidcom.gov.ng", label: "nidcom.gov.ng" }],
+    links: [{ href: "https://nidcom.gov.ng/investment/", label: "nidcom.gov.ng/investment" }],
   },
 ];
 
@@ -187,8 +187,10 @@ export default function DiasporaReadiness() {
                     <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/50 border border-border">
                       <AlertCircle className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        This is an official external page. NDIG does not control or endorse the
+                        This is an external page. NDIG does not control or endorse the
                         content.
+                        {["NIMC", "NIPC", "NiDCOM"].includes(resource.agency) &&
+                          " Government sites are intermittently unavailable. NDIG offers boots-on-the-ground verification where possible."}
                       </p>
                     </div>
                   </CardContent>

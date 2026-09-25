@@ -52,7 +52,7 @@ silently** (any hold, `MISSING` or failure is flagged to the user).
   (tracked per subscriber), with one-click unsubscribe.
 - After the first successful send it records the issue in the `weekly_issues` table and saves a copy to
   `archive/weekly/YYYY-MM-DD-issue-NNN.html` (needs `GITHUB_TOKEN` in Vercel).
-- The NDIG-NAKACHI Intelligence Brief is sent at confirmation, before the first Weekly.
+- The launch article "Two Layers of Failed Trust" (class ARTICLE) is sent at confirmation, before the first Weekly. It is not the NDIG-NAKACHI Intelligence Brief.
 
 ## Source routing and pre-send check
 

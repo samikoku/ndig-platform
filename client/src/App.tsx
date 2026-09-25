@@ -7,17 +7,13 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import ComplianceTracker from "./pages/ComplianceTracker";
-import InvestmentNexus from "./pages/InvestmentNexus";
 import Dashboard from "./pages/Dashboard";
 import TrustCentre from "./pages/TrustCentre";
 import BusinessNews from "./pages/BusinessNews";
 import ProjectDetail from "./pages/ProjectDetail";
 import InvestorProtections from "./pages/InvestorProtections";
 import Admin from "./pages/Admin";
-import BankingOptions from "./pages/BankingOptions";
-import DiasporaBonds from "./pages/DiasporaBonds";
 import GetNRBVN from "./pages/GetNRBVN";
-import InvestmentIndex from "./pages/InvestmentIndex";
 import DiasporaReadiness from "./pages/DiasporaReadiness";
 import CountryAnchors from "./pages/CountryAnchors";
 import About from "./pages/About";
@@ -38,7 +34,6 @@ function Router() {
     <Layout>
       <Switch>
         <Route path={"/"} component={Home} />
-      <Route path={"/investment-nexus"} component={InvestmentNexus} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/trust-centre"} component={TrustCentre} />
       <Route path={"/business-news"} component={BusinessNews} />
@@ -46,10 +41,7 @@ function Router() {
         <Route path={"/compliance-tracker"} component={ComplianceTracker} />
       <Route path={"/investor-protections"} component={InvestorProtections} />
       <Route path={"/admin"} component={Admin} />
-        <Route path="/banking-options" component={BankingOptions} />
-        <Route path="/diaspora-bonds" component={DiasporaBonds} />
         <Route path="/get-nrbvn" component={GetNRBVN} />
-        <Route path="/investment-index" component={InvestmentIndex} />
         <Route path="/diaspora-readiness" component={DiasporaReadiness} />
         <Route path="/country-anchors" component={CountryAnchors} />
         <Route path="/about" component={About} />

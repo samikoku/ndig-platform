@@ -7,6 +7,38 @@ import { ArrowRight, CheckCircle2, FileCheck, Lock, Upload, Search, ClipboardLis
 import { Link } from "wouter";
 import { useState } from "react";
 
+const leadership = [
+  {
+    name: "Dr. Sam Ikoku",
+    role: "Founder & Chairman",
+    photo: "/images/trust/trust_sam_ikoku.jpg",
+    bio: [
+      "Dr. Sam Ikoku is the Founder and Chairman of NDIG — Nigeria Diaspora Investment Gateway. He is Chairman & CEO of the Sam Ikoku Group and Managing Consultant & CEO of NAKACHI Consulting, one of Africa's leading productivity consulting firms, with over four decades of experience at the intersection of strategy, execution, and institutional reform across Nigeria's public and private sectors.",
+      "He holds a Doctor of Business Administration (Commonwealth University), a B.Sc. in Civil Engineering (University of Lagos), and a B.Sc. in Business Administration (University of North London). His consulting engagements have included the Bureau of Public Service Reforms, the Securities and Exchange Commission, the Nigeria Investment Promotion Commission, NACA, NESREA, NIWA, SMEDAN, ECOWAS, and the Nigeria Customs Service. He has served on the Business Competitiveness Thematic Group of Nigerian Vision 20:2020, the Presidential Committee on Affordable Housing, and the National Council on Privatisation Technical Committee.",
+      "He is the author of eight books on leadership, execution, and performance, including \"Flawless Execution,\" \"Relentless Execution,\" and \"Trust God! Think Big! Act Dumb! & Move Fast!\"",
+    ],
+  },
+  {
+    name: "Mary Uduk",
+    role: "Technical Advisory Board",
+    photo: "/images/trust/trust_mary_uduk.jpg",
+    bio: [
+      "Ms. Mary Uduk is a Capital Market Specialist and Investment Advisor with over 30 years of experience as a regulator, culminating as Acting Director-General of the Securities and Exchange Commission (SEC) Nigeria (2017–2020), where she provided leadership across all functions and operations of the Commission. During her tenure she represented SEC Nigeria on the IOSCO Board and the Africa/Middle East Regional Committee (AMERC), was a member of the committee that facilitated the floatation of the first Nigerian Sovereign Bond, and led SEC Nigeria as the first African regulator to participate in FSD Africa's flagship institutional capacity programme.",
+      "She is currently Vice-Chair and Non-Executive Director of Emerging Africa Trustees Limited. She holds an MBA from Business School Netherlands and a B.Sc. (Hons.) in Business Administration from Ahmadu Bello University, Zaria. She is a Fellow of the Chartered Institute of Bankers (CIBN), a Fellow of the Chartered Institute of Stockbrokers (CIS), a Fellow of the Institute of Capital Market Registrars (ICMR), and is currently attending the Senior Executive Course at the National Institute for Policy and Strategic Studies (NIPSS).",
+    ],
+  },
+  {
+    name: "Aisha Abubakar",
+    role: "Technical Advisory Board",
+    photo: "/images/trust/trust_aisha_abubakar.jpg",
+    bio: [
+      "Aisha Abubakar, FCIPM, FPMA, is a seasoned administrator, development strategist, and business leader with over three decades of professional experience spanning public service administration, pension administration, investment banking, SME finance, rural enterprise development, microcredit administration, and human resource management.",
+      "She earned a Bachelor's degree in Politics and International Relations from the University of Warwick and a Master's degree in Development Studies from the University of Leeds. She began her international career with the African Development Bank in Abidjan in 1993, later joining African International Bank in Lagos where she rose to Principal Manager. She served as Managing Director/CEO of the Abuja Enterprise Agency (2015), where the Agency received the Global Citizen Movement Award for Entrepreneurship and Innovation Leadership in New York in 2013. She subsequently served as a Pioneer Director of the Pension Transitional Arrangement Directorate (PTAD), overseeing pension welfare administration for retirees of the Customs, Immigration, and Prisons services. In November 2015 she was appointed Federal Minister of the Federal Republic of Nigeria by President Muhammadu Buhari.",
+      "She is the co-founder of Tarihaan Integrated Services (TIS), a management consulting firm focused on MSMEs, and the Fatimah Balaraba Foundation, which promotes mental well-being, sustainable livelihoods, and educational opportunities for single mothers and girls in Northern Nigeria.",
+    ],
+  },
+];
+
 export default function TrustCentre() {
   const [step, setStep] = useState(1);
   const [cacQuery, setCacQuery] = useState("");
@@ -242,22 +274,27 @@ export default function TrustCentre() {
                     Who Operates NDIG?
                   </h3>
 
-                  {/* Dr. Sam Ikoku Photo and Bio */}
-                  <div className="flex flex-col md:flex-row gap-6 mb-6">
-                    <div className="flex-shrink-0">
-                      <img
-                        src="/images/dr-sam-ikoku.jpg"
-                        alt="Dr. Sam Ikoku, Managing Consultant, NAKACHI Consulting"
-                        className="w-32 h-32 md:w-40 md:h-40 rounded-lg object-cover shadow-lg border-2 border-primary/20"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg mb-2">Dr. Sam Ikoku</h4>
-                      <p className="text-sm text-primary font-medium mb-2">Managing Consultant, NAKACHI Consulting</p>
-                      <p className="text-xs text-muted-foreground">
-                        40+ years consulting to Nigerian government agencies including NIPC, NCP, SEC, BPSR, FERMA, NESREA, NEPZA, NACA, NAMA, FAAN, National Planning Commission, Vision 2020, and Nigeria Project 2050. Deep expertise in diaspora engagement, productivity consulting, and public-private partnerships.
-                      </p>
-                    </div>
+                  {/* Founder and Technical Advisory Board (public bios only) */}
+                  <div className="space-y-8 mb-8">
+                    {leadership.map((person) => (
+                      <div key={person.name} className="flex flex-col sm:flex-row gap-6">
+                        <img
+                          src={person.photo}
+                          alt={`${person.name}, ${person.role}`}
+                          className="w-full max-w-[240px] aspect-square rounded-2xl object-cover object-top shadow-lg border-2 border-primary/20 flex-shrink-0"
+                          loading="lazy"
+                        />
+                        <div className="flex-1">
+                          <h4 className="font-serif font-bold text-xl">{person.name}</h4>
+                          <p className="text-sm text-primary font-medium mb-3">{person.role}</p>
+                          <div className="space-y-3 text-sm text-muted-foreground">
+                            {person.bio.map((para, i) => (
+                              <p key={i}>{para}</p>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
                   <p className="text-muted-foreground mb-4">
@@ -398,11 +435,6 @@ export default function TrustCentre() {
           <Card className="bg-gradient-to-br from-primary/5 to-chart-1/5 border-2 border-primary/20">
             <CardContent className="p-8">
               <div className="flex flex-col md:flex-row items-start gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center">
-                    <img src="/cbn-logo.jpg" alt="CBN Logo" className="w-12 h-12 object-contain" />
-                  </div>
-                </div>
                 <div className="flex-1">
                   <h3 className="font-serif text-2xl font-bold mb-4">
                     Official CBN Framework: Diaspora Bonds Explicitly Supported
@@ -422,15 +454,6 @@ export default function TrustCentre() {
               </div>
             </CardContent>
           </Card>
-
-          <div className="mt-12 text-center">
-            <Link href="/banking-options">
-              <Button size="lg" className="gap-2">
-              Learn More About Banking Options
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-            </Link>
-          </div>
 
           {/* CAC Lookup */}
           <Card className="mt-16 border-2">

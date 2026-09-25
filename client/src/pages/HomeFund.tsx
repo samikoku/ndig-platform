@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Home, AlertCircle } from "lucide-react";
 
-const HOMEFUND_URL = "https://homefund.ng";
+const FMBN_URL =
+  "https://fmbn.gov.ng/resources/news/fmbn-opens-secure-pathway-for-nigerians-abroad-to-own-homes-in-nigeria-with-official-launch-of-diaspora-mortgage-product";
 
 export default function HomeFund() {
   return (
@@ -13,16 +14,21 @@ export default function HomeFund() {
               <Home className="w-8 h-8 text-gold" />
             </div>
             <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight text-white">
-              HomeFund NG
+              FMBN Diaspora Mortgage
             </h1>
             <p className="text-lg md:text-xl text-gray-300">
-              Nigeria's diaspora housing initiative - a dedicated platform for financing and building
-              your home in Nigeria from abroad.
+              The Federal Mortgage Bank of Nigeria launched its NHF Diaspora Mortgage Loan in London on 7 August 2026.
+              Eligible contributors can access up to ₦100 million at 9% per annum over a maximum of 10 years, subject to
+              affordability and applicable requirements.
+            </p>
+            <p className="text-sm text-gray-400">
+              Source: FMBN press release on the launch (fmbn.gov.ng). The FMBN release names NiDCOM and the Central Bank
+              of Nigeria among the institutions present. Terms are FMBN's; confirm them with FMBN before relying on them.
             </p>
             <div className="pt-4">
-              <a href={HOMEFUND_URL} target="_blank" rel="noopener noreferrer">
+              <a href={FMBN_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-gold hover:bg-gold/90 text-sidebar gap-2">
-                  Go to HomeFund NG
+                  Read the FMBN announcement
                   <ExternalLink className="w-4 h-4" />
                 </Button>
               </a>
@@ -36,9 +42,8 @@ export default function HomeFund() {
           <div className="max-w-xl mx-auto flex items-start gap-3 p-4 rounded-lg bg-muted/50 border border-border">
             <AlertCircle className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              HomeFund NG is an independent housing initiative. NDIG provides a direct link to
-              HomeFund NG's own platform and does not process housing applications, payments, or
-              approvals on its behalf.
+              NDIG links to FMBN's own announcement. NDIG does not process mortgage applications, payments or approvals,
+              and does not recommend this product. NDIG has not verified FMBN's lending terms.
             </p>
           </div>
         </div>

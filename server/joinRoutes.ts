@@ -82,7 +82,7 @@ export function registerJoinRoutes(app: Express): void {
 
       const claimed = await claimBriefSend(token);
       if (!claimed) {
-        res.status(200).send(page("You're already confirmed", "Your subscription is active and the NDIG-NAKACHI Intelligence Brief has already been sent to your inbox. The NDIG Weekly follows every two weeks thereafter.", true));
+        res.status(200).send(page("You're already confirmed", "Your subscription is active and the article “Two Layers of Failed Trust” has already been sent to your inbox. The NDIG Weekly follows every two weeks thereafter.", true));
         return;
       }
 
@@ -95,12 +95,12 @@ export function registerJoinRoutes(app: Express): void {
 
       if (!messageId) {
         await releaseBriefClaim(token);
-        res.status(502).send(page("Almost there", "Your subscription is confirmed, but we couldn't send the Intelligence Brief just now. Please click your confirmation link again in a few minutes.", false));
+        res.status(502).send(page("Almost there", "Your subscription is confirmed, but we couldn't send the article just now. Please click your confirmation link again in a few minutes.", false));
         return;
       }
 
       console.log("[Join] Brief sent to", claimed.email, "resend id", messageId);
-      res.status(200).send(page("You're confirmed", "The NDIG-NAKACHI Intelligence Brief is on its way to your inbox now, followed by the NDIG Weekly every two weeks thereafter.", true));
+      res.status(200).send(page("You're confirmed", "The article “Two Layers of Failed Trust” is on its way to your inbox now, followed by the NDIG Weekly every two weeks thereafter.", true));
     } catch (error) {
       console.error("[Join Confirm Error]", error);
       res.status(500).send(page("Confirmation issue", "Something went wrong confirming your subscription. Please try again.", false));
@@ -116,7 +116,7 @@ export function registerJoinRoutes(app: Express): void {
       return;
     }
     res.status(200).send(
-      page("Unsubscribe", "Click below to stop receiving the NDIG Intelligence Brief and NDIG Weekly.", true,
+      page("Unsubscribe", "Click below to stop receiving the NDIG Weekly.", true,
         `<form method="POST" action="/api/unsubscribe?token=${encodeURIComponent(token)}"><button type="submit">Unsubscribe</button></form>`),
     );
   });
