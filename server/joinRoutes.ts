@@ -12,6 +12,7 @@ import {
 import { sendJoinConfirmationEmail, sendResendEmail, sendResendBatch } from "./emailService";
 import { BRIEF_SUBJECT, renderBriefEmail, renderWeeklyEmail, unsubscribeUrl } from "./emailTemplates";
 import { currentWeekly } from "./weeklyContent";
+import { checkBeforeSend } from "./newsletterRouting";
 import { isScheduledSendDate, utcDateString } from "./weeklySchedule";
 import { addRecipients, archiveIssue, ensureIssueRecord, findIssueByContent, issueNumberFor } from "./weeklyArchive";
 
@@ -168,6 +169,14 @@ export function registerJoinRoutes(app: Express): void {
       if (!weekly) {
         console.error("[Cron Weekly] MISSING — scheduled send date", utcDateString(now), "but no issue is configured in server/weeklyContent.ts");
         res.status(503).json({ status: "MISSING", reason: "no issue content configured", date: utcDateString(now) });
+        return;
+      }
+
+      // Pre-send gate: a draft that pairs a VERIFIED/FAILED verdict with the Intelligence Brief, or a verdict with no log entry, is blocked.
+      const gate = checkBeforeSend(weekly);
+      if (!gate.ok) {
+        console.error("[Cron Weekly] BLOCKED — flagged for desk review:", gate.blocked.join(" | "));
+        res.status(503).json({ status: "BLOCKED", reason: "flagged for desk review", details: gate.blocked, date: utcDateString(now) });
         return;
       }
 

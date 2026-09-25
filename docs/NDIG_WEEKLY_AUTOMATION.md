@@ -53,3 +53,17 @@ silently** (any hold, `MISSING` or failure is flagged to the user).
 - After the first successful send it records the issue in the `weekly_issues` table and saves a copy to
   `archive/weekly/YYYY-MM-DD-issue-NNN.html` (needs `GITHUB_TOKEN` in Vercel).
 - The NDIG-NAKACHI Intelligence Brief is sent at confirmation, before the first Weekly.
+
+## Source routing and pre-send check
+
+Code: `server/newsletterRouting.ts` (tests in `server/newsletterRouting.test.ts`), called from `/api/cron/weekly`.
+
+| Source class | Rule |
+|---|---|
+| `INTEL_BRIEF` (NDIG-NAKACHI Intelligence Brief) | Reference only. Never summarised into newsletter copy, and never the source of a VERIFIED or FAILED verdict, without a completed verification log entry for that claim. |
+| `ARTICLE` (e.g. "Two Layers of Failed Trust") | Publishable copy. |
+| `WEEKLY` | Log-gated. Only log-verified items may appear in VERIFIED / FAILED sections. |
+
+Pre-send check: on a send date the cron blocks (HTTP 503, status `BLOCKED`, logged for desk review) any draft that
+cites the Intelligence Brief for a VERIFIED or FAILED verdict, or carries a VERIFIED/FAILED verdict with no log entry.
+A draft can declare structured `claims` (verdict, source class, `logEntryId`); the body text is also scanned.
