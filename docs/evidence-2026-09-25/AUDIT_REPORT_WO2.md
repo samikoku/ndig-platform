@@ -107,7 +107,7 @@ Broken images still present on `/`: `/images/hero-banner.jpg`, `/images/trust-ce
 
 # Work Order 3 addendum, 25 September 2026
 
-Code commit: `89ffd5a`, live. Verified from the served HTML and the deployed JavaScript bundle (`assets/index-Dy_7j3Zz.js`), not in a rendered browser: the in-app browser could not load the site after the deploy (navigation refused, most likely Vercel's bot checkpoint). Rendered-browser verification of this pass is therefore NOT done. CONFIRM: open `/assurance`, `/trust-centre` and `/` once in a normal browser.
+Code commit: `89ffd5a`, live. First verified from the served HTML and deployed bundle. The in-app browser then loaded the site and the rendered check was completed on 25 Sep 2026: `/assurance` shows the doctrine banner, zero-entry line, all six register columns, "No withdrawals to date.", the funding panel with both fee figures, and the boundary line three times; the primary nav reads Trust Centre, Diaspora Readiness, Country Anchors, About, Professional Network, Assurance. `/trust-centre` shows the three names, "Founder & Chairman, NDIG", "Technical Advisory Board (TAB) Member" twice, and the contact block. The footer contact block renders on both pages. Forbidden-phrase scan of rendered text on 22 routes: zero hits. Broken visible images on those routes: zero. The three Trust Centre photos were not in the rendered image list (the pane was hidden, so lazy images did not load); their files were fetched directly and served 200 at the correct sizes.
 
 ## Execution log
 
@@ -133,8 +133,8 @@ Code commit: `89ffd5a`, live. Verified from the served HTML and the deployed Jav
 | 2 | 98 | Exact wording. |
 | 3 | 95 | Done on the SPA footer, `/trust-centre` and `/join`. |
 | 4 | 82 | Built to the order's verbatim copy; plan v2.0 unavailable, so any plan detail beyond the order is missing. |
-| 5 | 70 | Deployed and verified by bundle and HTML, not in a rendered browser; report updated. Remediation: one rendered check in a normal browser. |
-| **Overall** | **84** | |
+| 5 | 92 | Deployed and verified in a rendered browser and by bundle; report updated. Trust Centre photos verified by file fetch only. |
+| **Overall** | **91** | |
 
 ## Remaining CONFIRM items
 1. Eko Atlantic image rights: slot still `CONFIRM: image rights pending`.
@@ -143,4 +143,4 @@ Code commit: `89ffd5a`, live. Verified from the served HTML and the deployed Jav
 4. Insurance category at launch or Phase 2: awaiting ruling.
 5. Post-launch audit of `/investor-protections`, `/compliance-tracker`, `/about`, `/concept-note`, FAQ, Terms.
 6. Assurance plan v2.0 file: not available to me.
-7. Rendered-browser check of this pass.
+7. Trust Centre photos on screen (pane was hidden, lazy images did not load).
