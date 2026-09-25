@@ -6,6 +6,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Assurance from "./pages/Assurance";
 import ComplianceTracker from "./pages/ComplianceTracker";
 import Dashboard from "./pages/Dashboard";
 import TrustCentre from "./pages/TrustCentre";
@@ -50,6 +51,7 @@ function Router() {
         <Route path="/vod" component={VOD} />
         <Route path="/sovereign-brief/:slug" component={SovereignBrief} />
         <Route path="/sovereign-brief" component={SovereignBriefIndex} />
+        <Route path="/assurance" component={Assurance} />
         <Route path="/professional-network" component={ProductivityNetwork} />
         <Route path="/productivity-network" component={ProductivityNetwork} />
         <Route path="/concept-note" component={ConceptNote} />

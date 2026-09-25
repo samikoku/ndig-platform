@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import ChatWidget from "./ChatWidget";
+import ContactBlock from "./ContactBlock";
 import { InterestRegistrationDialog } from "./InterestRegistrationDialog";
 import { trpc } from "@/lib/trpc";
 
@@ -105,6 +106,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/professional-network" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/professional-network" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Professional Network
             </Link>
+            <Link href="/assurance" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/assurance" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
+              Assurance
+            </Link>
           </nav>
 
           {/* CTA & Mobile Menu */}
@@ -141,6 +145,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                   <Link href="/professional-network" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/professional-network" ? "text-primary" : "text-muted-foreground"}`}>
                     Professional Network
+                  </Link>
+                  <Link href="/assurance" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/assurance" ? "text-primary" : "text-muted-foreground"}`}>
+                    Assurance
                   </Link>
                   <div className="h-px bg-border my-2" />
                       <Button
@@ -329,6 +336,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="border-t border-sidebar-border mt-12 pt-8">
+            <ContactBlock className="text-sidebar-foreground/80 mb-6" />
             <p className="text-xs text-sidebar-foreground/70 mb-2">
               The Diaspora Assurance Report — first edition Q4 2027. NDIG does not guarantee the products or performance of any partner institution.
             </p>

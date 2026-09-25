@@ -17,11 +17,6 @@ export default function Home() {
       <section className="relative min-h-[100vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-sidebar pt-20 md:pt-0">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/hero-banner.jpg"
-            alt="Futuristic Lagos Skyline"
-            className="w-full h-full object-cover opacity-60"
-          />
           <div className="absolute inset-0 bg-gradient-to-r from-sidebar/95 via-sidebar/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-sidebar via-transparent to-transparent" />
         </div>
@@ -255,58 +250,26 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {/* Module: Professional Network */}
-            <Link href="/professional-network" className="group relative overflow-hidden rounded-2xl flex flex-col md:block bg-card md:bg-transparent shadow-sm md:shadow-none border md:border-none border-border">
-                <div className="relative h-48 md:h-auto md:aspect-[16/9] w-full overflow-hidden">
-                  <img
-                    src="/images/productivity-network.jpg"
-                    alt="Professional Network"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
-
-                <div className="p-6 md:absolute md:bottom-0 md:left-0 md:p-12 w-full bg-card md:bg-transparent">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-chart-3/20 backdrop-blur-md flex items-center justify-center mb-4 md:mb-6 border border-chart-3/30">
-                    <Users className="w-5 h-5 md:w-6 md:h-6 text-chart-3" />
-                  </div>
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground md:text-white mb-2 md:mb-3 group-hover:text-chart-3 transition-colors">
-                    Professional Network
-                  </h3>
-                  <p className="text-muted-foreground md:text-gray-300 max-w-md mb-4 md:mb-6 md:opacity-0 md:transform md:translate-y-4 md:transition-all md:duration-500 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    A verified directory of Nigerian professionals abroad. Members return to it; institutions search it.
-                  </p>
-                  <div className="flex items-center text-chart-3 font-medium text-sm uppercase tracking-widest">
-                    View Network <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
+            <Link href="/professional-network" className="group rounded-2xl border border-border bg-card p-6 md:p-10 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-chart-3/20 flex items-center justify-center mb-4 md:mb-6 border border-chart-3/30">
+                <Users className="w-5 h-5 md:w-6 md:h-6 text-chart-3" />
+              </div>
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-2 md:mb-3">Professional Network</h3>
+              <p className="text-muted-foreground max-w-md mb-4 md:mb-6">A verified directory of Nigerian professionals abroad. Members return to it; institutions search it.</p>
+              <div className="flex items-center text-chart-3 font-medium text-sm uppercase tracking-widest">
+                View Network <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
             </Link>
 
-            {/* Module 4: Trust Centre */}
-            <Link href="/trust-centre" className="group relative overflow-hidden rounded-2xl flex flex-col md:block bg-card md:bg-transparent shadow-sm md:shadow-none border md:border-none border-border">
-                <div className="relative h-48 md:h-auto md:aspect-[16/9] w-full overflow-hidden">
-                  <img
-                    src="/images/trust-centre.jpg"
-                    alt="Trust Centre"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
-
-                <div className="p-6 md:absolute md:bottom-0 md:left-0 md:p-12 w-full bg-card md:bg-transparent">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-chart-5/20 backdrop-blur-md flex items-center justify-center mb-4 md:mb-6 border border-chart-5/30">
-                    <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-chart-5" />
-                  </div>
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground md:text-white mb-2 md:mb-3 group-hover:text-chart-5 transition-colors">
-                    Trust & Transparency
-                  </h3>
-                  <p className="text-muted-foreground md:text-gray-300 max-w-md mb-4 md:mb-6 md:opacity-0 md:transform md:translate-y-4 md:transition-all md:duration-500 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    Verify investments, access legal resources, and ensure full regulatory compliance.
-                  </p>
-                  <div className="flex items-center text-chart-5 font-medium text-sm uppercase tracking-widest">
-                    Verify Trust <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
+            <Link href="/trust-centre" className="group rounded-2xl border border-border bg-card p-6 md:p-10 shadow-sm hover:shadow-lg transition-shadow">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-chart-5/20 flex items-center justify-center mb-4 md:mb-6 border border-chart-5/30">
+                <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-chart-5" />
+              </div>
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-2 md:mb-3">Trust Centre</h3>
+              <p className="text-muted-foreground max-w-md mb-4 md:mb-6">How NDIG verifies, and who stands behind it.</p>
+              <div className="flex items-center text-chart-5 font-medium text-sm uppercase tracking-widest">
+                View Trust Centre <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
             </Link>
           </div>
         </div>

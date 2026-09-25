@@ -4,13 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, CheckCircle2, FileCheck, Lock, Upload, Search, ClipboardList } from "lucide-react";
+import ContactBlock from "@/components/ContactBlock";
 import { Link } from "wouter";
 import { useState } from "react";
 
 const leadership = [
   {
     name: "Dr. Sam Ikoku",
-    role: "Founder & Chairman",
+    role: "Founder & Chairman, NDIG",
     photo: "/images/trust/trust_sam_ikoku.jpg",
     bio: [
       "Dr. Sam Ikoku is the Founder and Chairman of NDIG — Nigeria Diaspora Investment Gateway. He is Chairman & CEO of the Sam Ikoku Group and Managing Consultant & CEO of NAKACHI Consulting, one of Africa's leading productivity consulting firms, with over four decades of experience at the intersection of strategy, execution, and institutional reform across Nigeria's public and private sectors.",
@@ -20,7 +21,7 @@ const leadership = [
   },
   {
     name: "Mary Uduk",
-    role: "Technical Advisory Board",
+    role: "Technical Advisory Board (TAB) Member",
     photo: "/images/trust/trust_mary_uduk.jpg",
     bio: [
       "Ms. Mary Uduk is a Capital Market Specialist and Investment Advisor with over 30 years of experience as a regulator, culminating as Acting Director-General of the Securities and Exchange Commission (SEC) Nigeria (2017–2020), where she provided leadership across all functions and operations of the Commission. During her tenure she represented SEC Nigeria on the IOSCO Board and the Africa/Middle East Regional Committee (AMERC), was a member of the committee that facilitated the floatation of the first Nigerian Sovereign Bond, and led SEC Nigeria as the first African regulator to participate in FSD Africa's flagship institutional capacity programme.",
@@ -29,7 +30,7 @@ const leadership = [
   },
   {
     name: "Aisha Abubakar",
-    role: "Technical Advisory Board",
+    role: "Technical Advisory Board (TAB) Member",
     photo: "/images/trust/trust_aisha_abubakar.jpg",
     bio: [
       "Aisha Abubakar, FCIPM, FPMA, is a seasoned administrator, development strategist, and business leader with over three decades of professional experience spanning public service administration, pension administration, investment banking, SME finance, rural enterprise development, microcredit administration, and human resource management.",
@@ -535,6 +536,10 @@ export default function TrustCentre() {
               </Link>
             </CardContent>
           </Card>
+          <div className="mt-16 border-t border-border pt-8">
+            <h2 className="font-serif text-2xl font-bold mb-4">Contact</h2>
+            <ContactBlock className="text-muted-foreground" />
+          </div>
         </div>
       </div>
     </div>
