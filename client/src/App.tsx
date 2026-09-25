@@ -58,6 +58,7 @@ function Router() {
         <Route path="/vod" component={VOD} />
         <Route path="/sovereign-brief/:slug" component={SovereignBrief} />
         <Route path="/sovereign-brief" component={SovereignBriefIndex} />
+        <Route path="/professional-network" component={ProductivityNetwork} />
         <Route path="/productivity-network" component={ProductivityNetwork} />
         <Route path="/concept-note" component={ConceptNote} />
         <Route path="/policy-interface" component={PolicyInterface} />

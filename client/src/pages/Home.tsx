@@ -2,21 +2,14 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, BarChart3, Building2, Globe2, ShieldCheck, Users, PlayCircle } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { Link } from "wouter";
 import SuccessStories from "@/components/SuccessStories";
-import { useDemoMode } from "@/contexts/DemoModeContext";
 
 export default function Home() {
   // The userAuth hooks provides authentication state
   // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
   let { user, loading, error, isAuthenticated, logout } = useAuth();
-  const { enterDemoMode } = useDemoMode();
-  const [, setLocation] = useLocation();
 
-  const handleTryDemo = () => {
-    enterDemoMode();
-    setLocation("/dashboard");
-  };
 
   return (
     <div className="flex flex-col w-full">
@@ -47,7 +40,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-2xl mt-4 md:mt-6 mb-6 md:mb-8">
-              Government-guaranteed fixed income. Full repatriation rights. Built on CBN's revolutionary 2025 infrastructure—NRNIA accounts, NRBVN system, and seamless diaspora banking. Your country is ready for your capital.
+              NDIG is an independent, private-sector verification institution for the Nigerian diaspora. It checks institutions and opportunities against public regulatory records. It does not hold funds, sell products or give investment advice.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -63,15 +56,6 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Button
-                onClick={handleTryDemo}
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 text-base md:text-lg px-8 py-6 h-auto rounded-full backdrop-blur-sm"
-              >
-                <PlayCircle className="mr-2 w-5 h-5" />
-                Try Demo
-              </Button>
             </div>
 
             <div className="pt-8 md:pt-12 space-y-6 md:space-y-8">
@@ -148,7 +132,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-bold text-lg mb-2">Track & Grow</h3>
                 <p className="text-sm text-muted-foreground">
-                  Monitor your investments and access exclusive advisory services
+                  Track the verification status of the institutions you deal with
                 </p>
               </div>
             </div>
@@ -327,7 +311,7 @@ export default function Home() {
                   </div>
                   <h3 className="font-bold text-lg mb-2">Diaspora Bonds</h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Government-guaranteed fixed income. Nigeria's proven track record: $1.2B raised across 2 issuances (2017: $300M redeemed, 2024: $900M outstanding).
+                    Diaspora bonds are issued by the Federal Government of Nigeria through the Debt Management Office. NDIG does not sell them; it points to the official channel.
                   </p>
                   <Link href="/diaspora-bonds" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
                     Register Interest <ArrowRight className="w-3 h-3" />
@@ -505,8 +489,8 @@ export default function Home() {
                     <BarChart3 className="w-6 h-6 text-sidebar-foreground" />
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2">High-Yield Opportunities</h3>
-                    <p className="text-sm md:text-base text-sidebar-foreground/70">Access exclusive real estate projects, privatization offers, and diaspora bonds not available on the open market.</p>
+                    <h3 className="text-lg md:text-xl font-bold mb-2">Verified Listings</h3>
+                    <p className="text-sm md:text-base text-sidebar-foreground/70">Verified listings, each checked against public regulatory records before publication. NDIG does not sell or recommend any listing.</p>
                   </div>
                 </div>
 
@@ -528,42 +512,53 @@ export default function Home() {
                 <CardContent className="p-6 md:p-8">
                   <div className="space-y-6">
                     <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                      <h3 className="font-serif text-lg md:text-xl font-bold">Featured Opportunity</h3>
-                      <span className="px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase">Open Now</span>
+                      <h3 className="font-serif text-lg md:text-xl font-bold">Listing Under Review</h3>
+                      <span className="px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase">Not yet verified</span>
                     </div>
 
                     <div className="aspect-video rounded-lg bg-black/20 overflow-hidden relative">
-                       {/* Placeholder for a specific project image */}
-                       <div className="absolute inset-0 flex items-center justify-center text-white/20 font-serif text-2xl md:text-4xl font-bold text-center px-4">
-                         Eko Atlantic Phase 4
-                       </div>
+                      {/* CONFIRM: image rights pending. No third-party image is published until reproduction rights are in evidence. */}
+                      <div className="absolute inset-0 flex items-center justify-center text-white/40 text-xs md:text-sm text-center px-4">
+                        CONFIRM: image rights pending
+                      </div>
                     </div>
 
                     <div>
-                      <h4 className="text-xl md:text-2xl font-bold mb-2">Eko Atlantic Diaspora Tower</h4>
-                      <p className="text-sm md:text-base text-sidebar-foreground/70 mb-4">Premium mixed-use development exclusively for diaspora investors. Guaranteed rental yields and capital appreciation.</p>
-
-                      <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
-                        <div className="text-center p-2 md:p-3 rounded bg-white/5">
-                          <p className="text-[10px] md:text-xs text-sidebar-foreground/50 uppercase">Target Yield</p>
-                          <p className="text-sm md:text-lg font-bold text-gold">12-15%</p>
-                        </div>
-                        <div className="text-center p-2 md:p-3 rounded bg-white/5">
-                          <p className="text-[10px] md:text-xs text-sidebar-foreground/50 uppercase">Min Entry</p>
-                          <p className="text-sm md:text-lg font-bold text-white">$25k</p>
-                        </div>
-                        <div className="text-center p-2 md:p-3 rounded bg-white/5">
-                          <p className="text-[10px] md:text-xs text-sidebar-foreground/50 uppercase">Term</p>
-                          <p className="text-sm md:text-lg font-bold text-white">5 Years</p>
-                        </div>
-                      </div>
-
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-white">View Details</Button>
+                      <h4 className="text-xl md:text-2xl font-bold mb-2">Eko Atlantic, Phase 4</h4>
+                      <p className="text-sm md:text-base text-sidebar-foreground/70 mb-3">
+                        Eko Atlantic is a new coastal city on land reclaimed from the Atlantic at Victoria Island, Lagos (source: Eko Atlantic official site, ekoatlantic.com, checked 25 September 2026).
+                      </p>
+                      <p className="text-sm md:text-base text-sidebar-foreground/70 mb-4">
+                        NDIG has not published a verification verdict on this listing. The scope of Phase 4, unit availability and any return figures are [UNVERIFIED] and are not shown. NDIG does not sell, market or guarantee this development, and does not guarantee the products or performance of any partner institution.
+                      </p>
+                      <a
+                        href="https://www.ekoatlantic.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full text-center rounded-md bg-primary hover:bg-primary/90 text-white py-2 text-sm font-medium"
+                      >
+                        Official project site
+                      </a>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Diaspora Assurance Report */}
+      <section className="py-16 md:py-24 bg-background" id="assurance">
+        <div className="container px-4">
+          <div className="max-w-3xl mx-auto border-2 border-primary/20 rounded-2xl p-8 md:p-10">
+            <h2 className="font-serif text-2xl md:text-4xl font-bold mb-4">The Diaspora Assurance Report</h2>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
+              From day one, NDIG accumulates aggregate, anonymised corridor intelligence: where claims stall, which institutions perform, sector flows, service-level breach patterns. At the end of the first full reporting year — 30 September 2027 — that record becomes the NDIG Diaspora Assurance Report. Published for members; available to institutions by subscription. Insight, never personal data.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              NDIG does not guarantee the products or performance of any partner institution.
+            </p>
           </div>
         </div>
       </section>

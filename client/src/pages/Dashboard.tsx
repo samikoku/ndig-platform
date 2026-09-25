@@ -49,9 +49,6 @@ export default function Dashboard() {
             </p>
             <div className="flex flex-col gap-3 pt-4">
               <Button onClick={() => setLocation("/")}>Return to Home</Button>
-              <Button variant="outline" onClick={() => setLocation("/")}>
-                Try Demo Mode
-              </Button>
             </div>
           </CardContent>
         </Card>

@@ -121,17 +121,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/about" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/about" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               About
             </Link>
-            <Link href="/dashboard" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/dashboard" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
-              My Portfolio
+            <Link href="/professional-network" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/professional-network" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
+              Professional Network
             </Link>
           </nav>
 
           {/* CTA & Mobile Menu */}
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-4">
-              <Link href="/login" className="text-sm font-medium text-sidebar-foreground/80 hover:text-sidebar-foreground transition-colors">
-                Log In
-              </Link>
               <Button
                 onClick={() => setRegistrationDialogOpen(true)}
                 className="bg-gold hover:bg-gold/90 text-sidebar shadow-lg shadow-black/20 rounded-full px-6"
@@ -173,14 +170,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Link href="/about" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/about" ? "text-primary" : "text-muted-foreground"}`}>
                     About
                   </Link>
-                  <Link href="/dashboard" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/dashboard" ? "text-primary" : "text-muted-foreground"}`}>
-                    My Portfolio
+                  <Link href="/professional-network" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/professional-network" ? "text-primary" : "text-muted-foreground"}`}>
+                    Professional Network
                   </Link>
                   <div className="h-px bg-border my-2" />
-                  <Link href="/login" className="text-lg font-medium text-muted-foreground hover:text-foreground">
-                    Log In
-                  </Link>
-                  <Button
+                      <Button
                     onClick={() => setRegistrationDialogOpen(true)}
                     className="w-full bg-primary hover:bg-primary/90 text-white"
                   >
@@ -194,7 +188,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow pt-[6.5rem] md:pt-[7.5rem]">{children}</main>
+      <main className="flex-grow pt-[65px] md:pt-[81px]">{children}</main>
 
       {/* Chat Widget */}
       <ChatWidget />
@@ -275,8 +269,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/productivity-network" className="hover:text-gold transition-colors">
-                    Productivity Network
+                  <Link href="/professional-network" className="hover:text-gold transition-colors">
+                    Professional Network
                   </Link>
                 </li>
                 <li>
@@ -373,6 +367,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="border-t border-sidebar-border mt-12 pt-8">
+            <p className="text-xs text-sidebar-foreground/70 mb-2">
+              The Diaspora Assurance Report — first edition Q4 2027. NDIG does not guarantee the products or performance of any partner institution.
+            </p>
             <p className="text-xs text-sidebar-foreground/70 mb-4">
               NDIG does not provide investment advice, and does not collect or hold investor funds. All investments are made directly with the licensed institutions named.
             </p>

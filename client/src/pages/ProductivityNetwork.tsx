@@ -5,20 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
-import { Users, Briefcase, Store, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
-
-const directory = [
-  { name: "Dr. Amara Nwosu", role: "Healthcare Investment Advisor", location: "London, UK" },
-  { name: "Chidi Okafor", role: "Real Estate Developer", location: "Houston, USA" },
-  { name: "Funke Adeyemi", role: "Fintech Product Lead", location: "Toronto, Canada" },
-  { name: "Tunde Bakare", role: "Agribusiness Consultant", location: "Dubai, UAE" },
-];
-
-const marketplace = [
-  { title: "Diaspora Legal Advisory", description: "Cross-border legal support for property and investment transactions.", category: "Legal" },
-  { title: "Naija Home Interiors", description: "Furnishing and interior design for diaspora-owned properties in Nigeria.", category: "Home Services" },
-  { title: "Bridge Accounting Group", description: "Tax and accounting support for diaspora investors with Nigerian assets.", category: "Finance" },
-];
+import { Users, Briefcase, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 
 export default function ProductivityNetwork() {
   const [formData, setFormData] = useState({
@@ -63,60 +50,33 @@ export default function ProductivityNetwork() {
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 backdrop-blur-sm">
               <Users className="w-4 h-4 text-gold" />
-              <span className="text-sm font-medium text-gold tracking-wide uppercase">Productivity Network</span>
+              <span className="text-sm font-medium text-gold tracking-wide uppercase">Professional Network</span>
             </div>
             <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight text-white">
-              Connect, Mentor, Build
+              Professional Network
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              A professional network for diaspora Nigerians - find mentors, offer expertise, and
-              discover diaspora-run services.
+              A verified directory of Nigerian professionals abroad. Members return to it; institutions search it.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Directory */}
+      {/* Directory status */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container px-4">
           <div className="flex items-center gap-3 mb-8">
             <Briefcase className="w-6 h-6 text-primary" />
-            <h2 className="font-serif text-2xl md:text-3xl font-bold">Member Directory</h2>
+            <h2 className="font-serif text-2xl md:text-3xl font-bold">The Directory</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {directory.map((member) => (
-              <Card key={member.name} className="border-2">
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <span className="font-serif font-bold text-primary text-lg">{member.name.charAt(0)}</span>
-                  </div>
-                  <h3 className="font-bold">{member.name}</h3>
-                  <p className="text-sm text-muted-foreground">{member.role}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{member.location}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Marketplace */}
-      <section className="py-16 md:py-24 bg-muted/40">
-        <div className="container px-4">
-          <div className="flex items-center gap-3 mb-8">
-            <Store className="w-6 h-6 text-primary" />
-            <h2 className="font-serif text-2xl md:text-3xl font-bold">Marketplace</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {marketplace.map((listing) => (
-              <Card key={listing.title} className="border-2">
-                <CardContent className="p-6">
-                  <p className="text-xs uppercase tracking-widest text-primary mb-2">{listing.category}</p>
-                  <h3 className="font-bold text-lg mb-2">{listing.title}</h3>
-                  <p className="text-sm text-muted-foreground">{listing.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="max-w-3xl space-y-4 text-muted-foreground">
+            <p>
+              No member entries are published yet. Entries appear only after the professional has been
+              verified; nothing is listed on the strength of a self-description alone.
+            </p>
+            <p>
+              NDIG does not sell services through the directory and does not recommend any listed professional.
+            </p>
           </div>
         </div>
       </section>
@@ -126,8 +86,8 @@ export default function ProductivityNetwork() {
         <div className="container px-4">
           <Card className="max-w-xl mx-auto border-border shadow-xl">
             <CardContent className="p-8">
-              <h2 className="font-serif text-2xl font-bold mb-2">Join the Mentorship Program</h2>
-              <p className="text-muted-foreground mb-6">Sign up as a mentor or mentee and we'll help match you.</p>
+              <h2 className="font-serif text-2xl font-bold mb-2">Register for the mentorship pilot</h2>
+              <p className="text-muted-foreground mb-6">Register as a mentor or mentee. We will contact you by email.</p>
 
               {submitStatus === "success" ? (
                 <div className="flex flex-col items-center justify-center py-10 space-y-4">
