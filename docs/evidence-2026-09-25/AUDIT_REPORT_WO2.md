@@ -37,7 +37,7 @@ Additional fix made because it was live in code: the registration email template
 |---|---|---|
 | Three bios (Ikoku, Uduk, Abubakar) | Founder-supplied file `NDIG_Trust_Layer_Bios_25Sep2026.txt`; the file records that the founder supplied the photos and confirmed rights. I did not independently verify career details. | Founder-supplied; re-check by 25 Oct 2026 |
 | FMBN launched its NHF Diaspora Mortgage Loan in London on 7 Aug 2026; up to ₦100m at 9% p.a., maximum 10 years, subject to affordability and requirements; NiDCOM and CBN represented | FMBN press release, fmbn.gov.ng (URL in work order), read 25 Sep 2026: figures, date and venue appear in the text | VERIFIED, re-check 25 Oct 2026 |
-| iGuide Nigeria is an NIPC-linked portal referenced in US State Department Investment Climate Statements | Work order ruling. The page loads (HTTP 200, "iGuide Nigeria: A guide to doing business in Nigeria"); I did not verify the NIPC link or the State Department reference | [UNVERIFIED] beyond the page existing. Wording is on the page as instructed; CONFIRM a citable source. |
+| iGuide Nigeria is an NIPC-linked portal referenced in US State Department Investment Climate Statements | Work order ruling. The page loads (HTTP 200, "iGuide Nigeria: A guide to doing business in Nigeria"); I did not verify the NIPC link or the State Department reference | Founder ruling (Work Order 2, 25 Sep 2026): verified live. I confirmed only that the page loads. No [UNVERIFIED] tag on the page or in this report's open items. |
 | Eko Atlantic, a new coastal city on reclaimed land at Victoria Island | ekoatlantic.com, checked 25 Sep 2026 | VERIFIED (from Work Order 1) |
 | homefund.ng as an operating platform | None; work order says it is not operational | Cut |
 
@@ -97,8 +97,7 @@ Broken images still present on `/`: `/images/hero-banner.jpg`, `/images/trust-ce
 3. CONFIRM: Assurance page: first verified institution name and date.
 4. CONFIRM: Assurance page: insurance category at launch or Phase 2.
 5. CONFIRM: photo-to-person mapping and the "Studio 24" credit on `trust_mary_uduk.jpg`.
-6. CONFIRM: Aisha Abubakar bio dates (CEO 2015 vs award 2013).
-7. CONFIRM: citable source for the iGuide description.
+6. Aisha Abubakar bio corrected 25 Sep 2026 from the revised bios file (CEO 2014 to 2015; minister to 2019).
 8. CONFIRM: NiDCOM `/investment/` and SEC `find-a-registered-operator` pages in a normal browser.
 9. CONFIRM: delete the unlinked `/policy-interface` route?
 10. CONFIRM: rules 1-3 review of `/investor-protections`, `/compliance-tracker`, `/about`, `/concept-note`, `/faqs`, Terms.
