@@ -59,7 +59,7 @@ export default function Assurance() {
 
             <div className="border-2 border-primary/20 rounded-xl p-6 md:p-8" id="how-ndig-is-funded">
               <p className="text-base leading-relaxed mb-3">
-                <strong>How NDIG is funded:</strong> institutions pay ₦2,500,000 to undergo verification — the fee buys the process, not the outcome, and is charged whether the institution passes or fails. Members pay $75 / ₦100,000 per year for Assurance membership. NDIG earns nothing from any product sale, takes no commission on any transaction, and accepts no payment that influences a listing.
+                <strong>How NDIG is funded:</strong> Nigerian institutions pay ₦2,500,000 to undergo verification — the fee buys the process, not the outcome, and is charged whether the institution passes or fails. Members pay $75 / ₦100,000 per year for Assurance membership. NDIG earns nothing from any product sale, takes no commission on any transaction, and accepts no payment that influences a listing.
               </p>
               <p className="text-sm text-muted-foreground">{BOUNDARY}</p>
             </div>
