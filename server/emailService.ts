@@ -14,13 +14,16 @@ export type OutboundEmail = {
   subject: string;
   html: string;
   unsubscribeUrl?: string;
+  /** Overrides the default sender (used by mailbox-specific auto-replies). */
+  from?: string;
+  replyTo?: string;
 };
 
 function buildResendPayload(mail: OutboundEmail) {
   return {
-    from: process.env.JOIN_EMAIL_FROM || "NDIG Weekly <weekly@ndigateway.org>",
+    from: mail.from || process.env.JOIN_EMAIL_FROM || "NDIG Weekly <weekly@ndigateway.org>",
     to: mail.to,
-    reply_to: process.env.JOIN_EMAIL_REPLY_TO || "ndig@nakachiconsulting.com.ng",
+    reply_to: mail.replyTo || process.env.JOIN_EMAIL_REPLY_TO || "ndig@nakachiconsulting.com.ng",
     subject: mail.subject,
     html: mail.html,
     ...(mail.unsubscribeUrl

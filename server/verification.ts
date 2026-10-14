@@ -5,7 +5,7 @@ import { z } from "zod";
 import { getDb } from "./db";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { verificationRequests } from "../drizzle/schema";
-import { sendResendEmail } from "./emailService";
+import { routeInternal, sendAutoReply } from "./mailRouting";
 
 type Db = NonNullable<Awaited<ReturnType<typeof getDb>>>;
 
@@ -116,15 +116,17 @@ export const verificationRouter = router({
         })
         .returning(publicDossier);
 
-      // Internal alert; failure must not block the requester's dossier.
-      await sendResendEmail({
-        to: process.env.VERIFICATION_ALERT_TO || "execution@ndigateway.org",
-        subject: `Verification request ${reference}: ${input.subject}`,
-        html: `<p><strong>${esc(reference)}</strong></p>
+      // Internal alert to info@ with [VERIFY] prefix, plus an acknowledgement to the requester.
+      // Mail failures must not block the requester's dossier.
+      await routeInternal(
+        "verification",
+        `${reference}: ${input.subject}`,
+        `<p><strong>${esc(reference)}</strong></p>
 <p>Subject: ${esc(input.subject)}<br/>Regulator claimed: ${esc(input.regulatorClaimed || "Not stated")}<br/>Link/contact: ${esc(input.sourceLink || "None")}</p>
 <p>${esc(input.details || "")}</p>
-<p>Requester: ${esc(input.name)} &lt;${esc(input.email)}&gt;</p>`,
-      }).catch(() => null);
+<p>Requester: ${esc(input.name)} &lt;${esc(input.email)}&gt;</p>`
+      ).catch(() => null);
+      await sendAutoReply("verification", input.email, { name: input.name, reference }).catch(() => null);
 
       return row;
     }),

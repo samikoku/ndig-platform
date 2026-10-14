@@ -40,6 +40,7 @@ const TARGETS = [
   { file: "knowledge_base.md" },
   { file: "server/emailTemplates.ts" },
   { file: "server/emailService.ts" },
+  { file: "server/mailRouting.ts" },
   { dir: "content/weekly/issues", exts: [".html", ".md"] },
 ];
 
