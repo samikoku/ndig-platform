@@ -391,7 +391,7 @@ export default function Home() {
                   Join the NDIG Weekly
                 </Button>
                 </a>
-                <a href="mailto:diaspora@ndigateway.org">
+                <a href="mailto:info@ndigateway.org">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto border-white text-white hover:bg-white/10 text-lg px-10 py-6 h-auto rounded-full">
                   Contact Support
                 </Button>

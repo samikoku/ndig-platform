@@ -168,7 +168,7 @@ YOUR REGISTRATION DETAILS:
 
 NDIG does not hold funds, sell products or give investment advice. Any opportunity is transacted directly with the licensed institution named.
 
-Contact: diaspora@ndigateway.org
+Contact: info@ndigateway.org
 More: https://www.ndigateway.org
 
 The NDIG Team
