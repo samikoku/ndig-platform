@@ -49,6 +49,7 @@ export default function DossierCard({
   className = "",
 }: DossierCardProps) {
   const statusText = DOSSIER.statusText[status];
+  const confirmed = status === "CONFIRMED";
   return (
     <article
       className={`ndig-dossier ${className}`}
@@ -60,7 +61,7 @@ export default function DossierCard({
         <header className="ndig-dossier__band">
           <NdigShieldMark className="ndig-dossier__mark" field={variant === "dark" ? "#054d28" : "#0b6b3a"} />
           <div>
-            <p className="ndig-dossier__title">{DOSSIER.title}</p>
+            <p className="ndig-dossier__title">{confirmed ? DOSSIER.title : DOSSIER.neutralTitle}</p>
             <p className="ndig-dossier__subtitle">{DOSSIER.subtitle}</p>
           </div>
         </header>
@@ -94,7 +95,7 @@ export default function DossierCard({
         <footer className="ndig-dossier__footer">
           {illustrative ? <p className="ndig-dossier__illustrative">{DOSSIER.illustrative}</p> : <span />}
         </footer>
-        <NdigSeal variant="master" className="ndig-dossier__seal" title={DOSSIER.sealLabel} />
+        {confirmed && <NdigSeal variant="master" className="ndig-dossier__seal" title={DOSSIER.sealLabel} />}
       </div>
     </article>
   );

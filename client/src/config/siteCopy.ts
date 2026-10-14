@@ -232,7 +232,9 @@ export const DIASPORA_READINESS = {
 
 /* Dossier card (verification component) */
 export const DOSSIER = {
+  /** The stamp is earned by the verdict: only CONFIRMED carries it. */
   title: "VERIFIED BY NDIG",
+  neutralTitle: "NDIG VERIFICATION",
   subtitle: "The Nigeria Diaspora Investment Gateway",
   statusPrefix: "STATUS:",
   statusText: { CONFIRMED: "CONFIRMED", FLAGGED: "FLAGGED", REJECTED: "REJECTED", PENDING: "UNDER REVIEW" },
@@ -334,4 +336,10 @@ export const VERIFICATION_EXAMPLES = {
       },
     },
   ],
+};
+
+/* Country Anchors: states the Anchor covenant. */
+export const COUNTRY_ANCHORS = {
+  compensation:
+    "Anchors receive a fixed monthly honorarium for verified community engagement. They earn no commission on any investment, ever. Community members never pay an Anchor for anything.",
 };

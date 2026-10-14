@@ -24,6 +24,7 @@ export const BANNED = [
   { pattern: /advisory services|investment advisory|exclusive advisory|we advise|our advisers|financial advis[eo]r/i, reason: "NDIG never advises." },
   { pattern: /referral (and information|platform|code)|referral fee paid to ndig|pays ndig a referral/i, reason: "NDIG is a verification institution; the identifier is a Verification Reference." },
   { pattern: /pay(ing)? directly to (the )?(dmo,? )?(banks,? )?(or )?nipc|nipc for projects/i, reason: "NIPC is a promotion agency, not a custodian; money never passes through NIPC or NDIG." },
+  { pattern: /referral fees?|network bonus(es)?/i, reason: "Anchors receive a fixed honorarium and earn no commission (Anchor covenant)." },
   { pattern: /350,?000\+?|350k\+?/i, reason: "Unsourced count." },
   { pattern: /thousands of diaspora|millions of diaspora/i, reason: "Unsourced count." },
   { pattern: /act now|limited slots|hurry|last chance|game[\s-]*changer/i, reason: "Pressure language is not NDIG's voice." },

@@ -12,7 +12,9 @@ Every public word on ndigateway.org, in the Concierge chat, in NDIG emails and i
 6. **No named-person quotes without a primary source.** A regulator's or official's words never appear unless a primary source is linked. *Putting words in a regulator's mouth borrows authority NDIG has not earned.*
 7. **No unsourced counts.** No "thousands of users", "350,000+ diaspora" or similar unless the count has a source. *Inflated reach is marketing, not verification.*
 8. **No promised outcomes.** No guaranteed, risk-free, high-yield or projected returns. *Every investment carries risk; NDIG's job is to show it, not hide it.*
-9. **The identifier is a Verification Reference**, not a referral code. *NDIG verifies; it does not refer for a fee.*
+9. **The stamp is earned by the verdict.** "VERIFIED BY NDIG" and the seal appear only on a CONFIRMED dossier; flagged, rejected and under-review dossiers carry the neutral "NDIG VERIFICATION" header. *A stamp on a failed check would say the opposite of the verdict.*
+10. **Anchors earn no commission.** Country Anchors receive a fixed monthly honorarium for verified community engagement; no referral fees, no bonuses tied to investment. *The site says what the Anchor covenant says.*
+11. **The identifier is a Verification Reference**, not a referral code. *NDIG verifies; it does not refer for a fee.*
 
 ## Where copy lives
 

@@ -110,7 +110,8 @@
   --d-frame: #c9a227;
   --d-band: #0b6b3a;
   --d-text: #333333;
-  --d-label: #c9a227;
+  /* Labels on cream: bronze from brand gold (same hue), 4.8:1 on #F7F5EF. Borders/accents stay #C9A227. */
+  --d-label: #836919;
   --d-rule: rgb(201 162 39 / 0.7);
   --d-status: #2e7d32;
   --d-status-text: #1f5130;
@@ -131,6 +132,7 @@
   --d-text: #f7f5ef;
   --d-rule: transparent;
   --d-status-text: #f7f5ef;
+  --d-label: #c9a227;
 }
 .ndig-dossier[data-status="CONFIRMED"] { --d-status: #2e7d32; }
 .ndig-dossier[data-status="FLAGGED"]   { --d-status: #f57c00; }
@@ -211,7 +213,7 @@
   overflow-wrap: anywhere;
 }
 .ndig-dossier__cell:last-child { border-bottom: 0; }
-.ndig-dossier__cell:last-child dd { padding-right: 20cqw; }
+.ndig-dossier[data-status="CONFIRMED"] .ndig-dossier__cell:last-child dd { padding-right: 20cqw; }
 .ndig-dossier__footer { min-height: 7cqw; padding: 1cqw 4.4cqw 0; display: flex; align-items: flex-end; }
 .ndig-dossier__illustrative { margin: 0; font-size: 2.9cqw; color: #8a8a80; }
 .ndig-dossier[data-variant="dark"] .ndig-dossier__illustrative { color: rgb(247 245 239 / 0.55); }
