@@ -8,8 +8,6 @@ export default function ContactBlock({ className = "" }: { className?: string })
       <p className="mt-2">
         Email:{" "}
         <a href="mailto:info@ndigateway.org" className="underline hover:no-underline">info@ndigateway.org</a>
-        {" · "}
-        <a href="mailto:info@ndigateway.org" className="underline hover:no-underline">info@ndigateway.org</a>
       </p>
       <p>
         Phone: <a href="tel:+2349134445680" className="underline hover:no-underline">+234 913 444 5680</a>
