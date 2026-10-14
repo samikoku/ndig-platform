@@ -6,7 +6,9 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowRight, CheckCircle2, FileCheck, Lock, Upload, Search, ClipboardList } from "lucide-react";
 import ContactBlock from "@/components/ContactBlock";
 import { Link } from "wouter";
-import { useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+
+const VerificationExamples = lazy(() => import("@/components/verification/VerificationExamples"));
 
 const leadership = [
   {
@@ -44,6 +46,13 @@ export default function TrustCentre() {
   const [step, setStep] = useState(1);
   const [cacQuery, setCacQuery] = useState("");
   const [cacResult, setCacResult] = useState<"idle" | "checked">("idle");
+
+  // Deep link from the homepage "Reach out to NDIG" action.
+  useEffect(() => {
+    if (window.location.hash === "#contact") {
+      document.getElementById("contact")?.scrollIntoView();
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -157,6 +166,11 @@ export default function TrustCentre() {
             )}
           </CardContent>
         </Card>
+
+        {/* What verification looks like (loaded on demand to keep the main bundle lean) */}
+        <Suspense fallback={<div className="min-h-[900px] lg:min-h-[640px] mt-20" aria-hidden="true" />}>
+          <VerificationExamples />
+        </Suspense>
 
         {/* Security Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
@@ -536,7 +550,7 @@ export default function TrustCentre() {
               </Link>
             </CardContent>
           </Card>
-          <div className="mt-16 border-t border-border pt-8">
+          <div id="contact" className="mt-16 border-t border-border pt-8 scroll-mt-24">
             <h2 className="font-serif text-2xl font-bold mb-4">Contact</h2>
             <ContactBlock className="text-muted-foreground" />
           </div>

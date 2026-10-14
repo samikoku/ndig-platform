@@ -229,3 +229,24 @@ export const mentorshipRequests = pgTable("mentorship_requests", {
 });
 export type MentorshipRequest = typeof mentorshipRequests.$inferSelect;
 export type InsertMentorshipRequest = typeof mentorshipRequests.$inferInsert;
+/**
+ * Verify-an-Opportunity requests and the dossiers they produce.
+ * Bootstrapped at request time via raw SQL (see server/verification.ts), like join_signups.
+ */
+export const verificationStatusEnum = pgEnum("verification_status", ["pending", "confirmed", "flagged", "rejected"]);
+export const verificationRequests = pgTable("verification_requests", {
+  id: serial("id").primaryKey(),
+  reference: varchar("reference", { length: 32 }).notNull().unique(),
+  subject: varchar("subject", { length: 300 }).notNull(),
+  regulatorClaimed: varchar("regulatorClaimed", { length: 100 }),
+  sourceLink: varchar("sourceLink", { length: 500 }),
+  details: text("details"),
+  checkedAgainst: varchar("checkedAgainst", { length: 500 }).notNull(),
+  status: verificationStatusEnum("status").default("pending").notNull(),
+  requesterName: varchar("requesterName", { length: 200 }).notNull(),
+  requesterEmail: varchar("requesterEmail", { length: 320 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+});
+export type VerificationRequest = typeof verificationRequests.$inferSelect;
+export type InsertVerificationRequest = typeof verificationRequests.$inferInsert;
