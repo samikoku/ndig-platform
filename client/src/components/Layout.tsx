@@ -1,11 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, CheckCircle2 } from "lucide-react";
+import { Menu, X, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import ChatWidget from "./ChatWidget";
 import ContactBlock from "./ContactBlock";
+import { HOMEFUND } from "@/config/siteCopy";
 import { InterestRegistrationDialog } from "./InterestRegistrationDialog";
 import { trpc } from "@/lib/trpc";
 
@@ -58,9 +58,12 @@ function NewsletterSignup() {
   );
 }
 
+const MOBILE_LINKS: Array<[string, string]> = [["/trust-centre", "Trust Centre"], ["/diaspora-readiness", "Diaspora Readiness"], ["/country-anchors", "Country Anchors"], ["/about", "About"], ["/professional-network", "Professional Network"], ["/assurance", "Assurance"]];
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [registrationDialogOpen, setRegistrationDialogOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
 
   return (
@@ -90,7 +93,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden xl:flex items-center gap-6">
             <Link href="/trust-centre" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/trust-centre" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Trust Centre
             </Link>
@@ -113,7 +116,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           {/* CTA & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden xl:flex items-center gap-4">
               <Button
                 onClick={() => setRegistrationDialogOpen(true)}
                 className="bg-gold hover:bg-gold/90 text-sidebar shadow-lg shadow-black/20 rounded-full px-6"
@@ -122,45 +125,44 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Button>
             </div>
 
-            {/* Mobile Menu */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden text-sidebar-foreground hover:bg-sidebar-accent">
-                  <Menu className="w-6 h-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col gap-6 mt-10">
-                                          <Link href="/trust-centre" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/trust-centre" ? "text-primary" : "text-muted-foreground"}`}>
-                    Trust Centre
-                  </Link>
-                  <Link href="/diaspora-readiness" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/diaspora-readiness" ? "text-primary" : "text-muted-foreground"}`}>
-                    Diaspora Readiness
-                  </Link>
-                  <Link href="/country-anchors" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/country-anchors" ? "text-primary" : "text-muted-foreground"}`}>
-                    Country Anchors
-                  </Link>
-                  <Link href="/about" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/about" ? "text-primary" : "text-muted-foreground"}`}>
-                    About
-                  </Link>
-                  <Link href="/professional-network" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/professional-network" ? "text-primary" : "text-muted-foreground"}`}>
-                    Professional Network
-                  </Link>
-                  <Link href="/assurance" className={`text-lg font-medium transition-colors hover:text-primary ${location === "/assurance" ? "text-primary" : "text-muted-foreground"}`}>
-                    Assurance
-                  </Link>
-                  <div className="h-px bg-border my-2" />
-                      <Button
-                    onClick={() => setRegistrationDialogOpen(true)}
-                    className="w-full bg-primary hover:bg-primary/90 text-white"
-                  >
-                    Register Interest
-                  </Button>
-                </nav>
-              </SheetContent>
-            </Sheet>
+            {/* Mobile / tablet menu (below 1280px). Replaces a non-functional Sheet stub. */}
+            <button
+              type="button"
+              className="xl:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-sidebar-foreground hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen((o) => !o)}
+            >
+              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+        {menuOpen && (
+          <nav id="mobile-nav" className="xl:hidden border-t border-sidebar-border bg-sidebar px-4 pb-6 pt-2">
+            <ul className="container mx-auto flex flex-col">
+              {MOBILE_LINKS.map(([href, label]) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block py-3 text-base font-medium border-b border-sidebar-border/60 ${location === href ? "text-gold" : "text-sidebar-foreground/90 hover:text-gold"}`}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-4">
+                <Button
+                  onClick={() => { setMenuOpen(false); setRegistrationDialogOpen(true); }}
+                  className="w-full bg-gold hover:bg-gold/90 text-sidebar rounded-full"
+                >
+                  Register Interest
+                </Button>
+              </li>
+            </ul>
+          </nav>
+        )}
       </header>
 
       {/* Main Content */}
@@ -330,7 +332,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link href="/homefund" className="hover:underline">FMBN Diaspora Mortgage</Link>
               </h3>
               <p className="text-sm text-sidebar-foreground/80 leading-relaxed">
-                FMBN's NHF Diaspora Mortgage Loan, launched in London on 7 August 2026. NDIG links to the source.
+                {HOMEFUND.footer}
               </p>
             </div>
           </div>

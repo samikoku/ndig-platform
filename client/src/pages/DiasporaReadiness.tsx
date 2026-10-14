@@ -7,7 +7,10 @@ import {
   Globe2,
   ExternalLink,
   AlertCircle,
+  ArrowRight,
 } from "lucide-react";
+import { Link } from "wouter";
+import { DIASPORA_READINESS } from "@/config/siteCopy";
 
 type ColorKey = "chart-1" | "chart-2" | "chart-3" | "chart-4" | "primary";
 
@@ -143,6 +146,16 @@ export default function DiasporaReadiness() {
               agency pages for diaspora members preparing to invest. Use these resources to get
               your documentation and identification in order before you begin.
             </p>
+
+            <div className="pt-2">
+              <Link
+                href="/get-nrbvn"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-4 text-base md:text-lg font-semibold text-sidebar shadow-lg shadow-gold/25 transition-colors hover:bg-gold/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar"
+              >
+                {DIASPORA_READINESS.nrbvnCta}
+                <ArrowRight className="w-5 h-5" aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

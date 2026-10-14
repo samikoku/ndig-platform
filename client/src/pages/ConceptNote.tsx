@@ -1,4 +1,5 @@
 import { FileText } from "lucide-react";
+import { CONCEPT_NOTE } from "@/config/siteCopy";
 
 export default function ConceptNote() {
   return (
@@ -27,12 +28,7 @@ export default function ConceptNote() {
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">The Problem</h2>
               <p>
-                Nigeria's diaspora sends an estimated $20.9B home every year - overwhelmingly into
-                consumption rather than productive investment. The instruments to convert that flow into
-                lasting wealth already exist: diaspora bonds, NRNIA accounts, vetted development
-                projects. What has been missing is not opportunity, but a trusted, verified front door to
-                it. At least 3x of that annual inflow is channelable into productive investment once a
-                trust layer exists.
+                {CONCEPT_NOTE.problem}
               </p>
             </div>
 

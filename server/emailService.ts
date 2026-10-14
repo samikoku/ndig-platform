@@ -14,13 +14,16 @@ export type OutboundEmail = {
   subject: string;
   html: string;
   unsubscribeUrl?: string;
+  /** Overrides the default sender (used by mailbox-specific auto-replies). */
+  from?: string;
+  replyTo?: string;
 };
 
 function buildResendPayload(mail: OutboundEmail) {
   return {
-    from: process.env.JOIN_EMAIL_FROM || "NDIG Weekly <weekly@ndigateway.org>",
+    from: mail.from || process.env.JOIN_EMAIL_FROM || "NDIG Weekly <weekly@ndigateway.org>",
     to: mail.to,
-    reply_to: process.env.JOIN_EMAIL_REPLY_TO || "ndig@nakachiconsulting.com.ng",
+    reply_to: mail.replyTo || process.env.JOIN_EMAIL_REPLY_TO || "ndig@nakachiconsulting.com.ng",
     subject: mail.subject,
     html: mail.html,
     ...(mail.unsubscribeUrl
@@ -155,7 +158,7 @@ Welcome to NDIG - Nigeria Diaspora Investment Gateway
 
 Dear ${name},
 
-Thank you for registering your interest. NDIG is a private-sector, independent verification institution for the Nigerian diaspora. It is regulator-vetted, not government-backed.
+Thank you for registering your interest. NDIG is a private-sector, independent verification institution for the Nigerian diaspora. It is regulator-vetted and independent of government.
 
 YOUR REGISTRATION DETAILS:
 • Name: ${name}
@@ -165,7 +168,7 @@ YOUR REGISTRATION DETAILS:
 
 NDIG does not hold funds, sell products or give investment advice. Any opportunity is transacted directly with the licensed institution named.
 
-Contact: diaspora@ndigateway.org
+Contact: info@ndigateway.org
 More: https://www.ndigateway.org
 
 The NDIG Team

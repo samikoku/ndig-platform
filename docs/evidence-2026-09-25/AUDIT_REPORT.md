@@ -51,7 +51,7 @@ Extra changes made because the click-path audit required them: removed dead `/lo
 ## 5. Dead-end audit
 Internal links resolved with no 404 across 25 routes plus `/join`: `/`, `/investment-nexus`, `/diaspora-bonds`, `/banking-options`, `/investment-index`, `/trust-centre`, `/diaspora-readiness`, `/country-anchors`, `/about`, `/professional-network`, `/get-nrbvn`, `/policy-interface`, `/productivity-network`, `/join`, `/verification-standard`, `/vod`, `/concept-note`, `/sovereign-brief` (+3 editions), `/faqs`, `/homefund`, `/privacy-policy`, `/terms-of-service`, `/accessibility`, `/compliance-tracker`.
 External links: 200 from this machine for ekoatlantic.com, npa2025-2035.org, nipc.gov.ng, cbn.gov.ng, nibss-plc.com.ng/nrbvn. **No response (not confirmed) from this machine:** nidcom.gov.ng, sec.gov.ng, nimc.gov.ng (2 links), theiguides.org, homefund.ng. CONFIRM these in a normal browser.
-`mailto:` targets: diaspora@ndigateway.org, ndig@nakachiconsulting.com.ng.
+`mailto:` targets: info@ndigateway.org, ndig@nakachiconsulting.com.ng.
 Known non-link defects: broken images on `/` (hero-banner, investment-nexus, policy-interface, productivity-network, trust-centre .jpg) and `/trust-centre` (dr-sam-ikoku.jpg, cbn-logo.jpg). The files never existed in the repo; not fabricated here.
 `/policy-interface` is a "Coming Soon" page and is still linked from the footer. The brief forbids a button pointing at a "coming soon" page; this is a link, not a button, but it is the same breach. CONFIRM: cut or replace.
 

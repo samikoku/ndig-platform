@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
+import { COUNTRY_ANCHORS } from "@/config/siteCopy";
 import {
   Megaphone,
   Users,
@@ -155,8 +156,7 @@ export default function CountryAnchors() {
               ))}
             </div>
             <p className="text-sm text-sidebar-foreground/60 mt-8 text-center">
-              Anchors are compensated through dual earnings - referral fees and network bonuses - paid
-              directly by NDIG. Community members never pay an Anchor for anything.
+              {COUNTRY_ANCHORS.compensation}
             </p>
           </div>
         </div>

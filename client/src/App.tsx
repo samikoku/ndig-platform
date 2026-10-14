@@ -29,6 +29,17 @@ import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Accessibility from "./pages/Accessibility";
+import { lazy, Suspense } from "react";
+// Verification pages load on demand so the homepage bundle does not grow.
+const VerifyOpportunity = lazy(() => import("./pages/VerifyOpportunity"));
+const VerifyDossier = lazy(() => import("./pages/VerifyDossier"));
+const lazyPage = (Page: React.ComponentType) => () => (
+  <Suspense fallback={<div className="min-h-screen bg-background" />}>
+    <Page />
+  </Suspense>
+);
+const VerifyOpportunityPage = lazyPage(VerifyOpportunity);
+const VerifyDossierPage = lazyPage(VerifyDossier);
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -60,6 +71,8 @@ function Router() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/accessibility" component={Accessibility} />
+        <Route path="/verify-opportunity" component={VerifyOpportunityPage} />
+        <Route path="/verify" component={VerifyDossierPage} />
       <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

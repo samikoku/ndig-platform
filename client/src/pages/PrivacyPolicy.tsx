@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { PRIVACY } from "@/config/siteCopy";
 
 export default function PrivacyPolicy() {
   return (
@@ -46,22 +47,14 @@ export default function PrivacyPolicy() {
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">2. How We Use Your Information</h2>
               <p>
-                We use your information to verify your registration, generate and track your unique
-                referral code, communicate with you about opportunities and platform updates, respond
-                to enquiries and complaints raised through the Trust Centre, and improve the platform.
-                We do not use your information to make investment decisions on your behalf - NDIG does
-                not provide investment advice.
+                {PRIVACY.use}
               </p>
             </div>
 
             <div>
               <h2 className="font-serif text-2xl font-bold mb-3">3. How We Share Your Information</h2>
               <p>
-                We never sell your personal information. We share it only with the specific licensed
-                institution you choose to engage with (for example, so a bank can process your NRNIA
-                application, or DMO can confirm your bond subscription against your referral code), and
-                with service providers who help us operate the platform under confidentiality
-                obligations. We do not share your information with unrelated third parties.
+                {PRIVACY.share}
               </p>
             </div>
 

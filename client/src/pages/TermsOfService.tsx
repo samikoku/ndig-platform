@@ -1,5 +1,6 @@
 import { Scale } from "lucide-react";
 import { Link } from "wouter";
+import { TERMS } from "@/config/siteCopy";
 
 export default function TermsOfService() {
   return (
@@ -53,14 +54,8 @@ export default function TermsOfService() {
             </div>
 
             <div>
-              <h2 className="font-serif text-2xl font-bold mb-3">4. Referral Codes</h2>
-              <p>
-                When you register interest, NDIG issues you a unique referral code. The code is a
-                tracking reference only - quoting it when you pay a licensed institution allows that
-                institution to attribute your investment to your registration. Referral codes carry no
-                monetary value, cannot be transferred or sold, and do not constitute a financial
-                instrument.
-              </p>
+              <h2 className="font-serif text-2xl font-bold mb-3">{TERMS.referencesHeading}</h2>
+              <p>{TERMS.referencesBody}</p>
             </div>
 
             <div>

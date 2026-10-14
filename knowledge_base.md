@@ -8,7 +8,7 @@ The Nigerians in Diaspora Commission (NiDCOM) was enacted by the National Assemb
 ### Key Programs & Services
 
 **1. National Identity Management (NIN for Diaspora)**
-- Nigerians in diaspora can now apply for and receive their National Insurance Number (NIN) from anywhere in the world
+- Nigerians in diaspora can apply for their National Identification Number (NIN) from outside Nigeria
 - Facilitates seamless identity verification for diaspora members
 
 **2. National Housing Programme**
@@ -19,12 +19,11 @@ The Nigerians in Diaspora Commission (NiDCOM) was enacted by the National Assemb
 
 **3. Nigeria Diaspora Investment Summit (NDIS)**
 - Annual event connecting diaspora investors with entrepreneurs in Nigeria
-- Scheduled for November 11-13, 2025 in Abuja
 - Business owners showcase proposals to potential investors and government agents
 - Aims to mobilize Nigerian talents globally for national development
 
 **4. Diaspora Door of Return**
-- Annual event scheduled for October 18, 2025 in Badagry, Lagos State
+- Annual event in Badagry, Lagos State
 - Cultural and heritage engagement initiative
 
 **5. National Diaspora Day Celebrations & Merit Awards**
@@ -33,7 +32,6 @@ The Nigerians in Diaspora Commission (NiDCOM) was enacted by the National Assemb
 - Celebrates Nigerians making significant impact abroad
 
 **6. Diaspora Startup Challenge**
-- Flagship event launched in 2025
 - Supports entrepreneurship and innovation from diaspora community
 
 ### Contact Information
@@ -62,7 +60,7 @@ NIPC is the primary agency responsible for promoting and facilitating investment
 - Investment registration and certification
 - Pioneer status incentives for qualifying industries
 - Dispute resolution and investor protection
-- Investment advisory and information services
+- Investment information services
 
 ### Investment Opportunities
 - Infrastructure development
@@ -111,147 +109,64 @@ SEC is the apex regulatory institution for the Nigerian capital market, ensuring
 ## NDIG Platform Information
 
 ### What is NDIG?
-NDIG (Nigeria Diaspora Investment Gateway) is a regulator-vetted referral and information platform that connects diaspora capital to high-yield, productive investments in Nigeria. It is not a payment processor and never holds investor funds; it operates in alignment with the National Productivity Agenda (NPA) 2025-2035.
+NDIG (Nigeria Diaspora Investment Gateway) is an independent, private-sector verification institution for the Nigerian diaspora. It checks institutions and opportunities against public regulatory records. It does not hold funds, sell products or give investment advice. NDIG is regulator-vetted and independent of government: it receives no state money and carries no state endorsement.
 
-### Core Modules
+### How money moves
+Investments settle through licensed banks and custodians. NIPC and NDIG point the way; money never passes through either. NDIG takes no commission on any investment. It is funded by verification fees paid by institutions (charged whether they pass or fail) and by Assurance membership.
 
-**1. Investment Nexus**
-- Real Estate: Purpose-built estates and subdivisions
-- Stock Market: Friction-free access to Nigerian Stock Exchange
-- Collective Investment Schemes: Pooled investment opportunities
-- Risk Assets & Turnaround Opportunities: High-yield privatization deals
+### What NDIG does
+- **Verify an Opportunity (/verify-opportunity):** send NDIG an offer or institution; NDIG opens a numbered dossier and checks it against public regulatory records.
+- **Verify a Dossier (/verify):** enter a dossier reference to see the dossier exactly as NDIG issued it.
+- **Dossier verdicts:** Confirmed (matches public records on the date of the check), Flagged (something did not match or could not be confirmed; stop and ask questions), Rejected (not on the register it claims, or subject to a regulator warning; do not send money). A confirmed dossier is not investment advice and is not a recommendation.
+- **Verification Reference:** a unique identifier NDIG issues when you register interest or request a verification. It has no monetary value.
+- **Trust Centre:** identity verification, how NDIG protects you, CAC company lookup, and contact details.
+- **Sovereign Brief:** NDIG's periodic plain-language briefing on diaspora investment infrastructure.
 
-**2. Policy & Governance Interface**
-- Access to National Assembly legislative bills
-- Opportunity for diaspora to participate in policy discussions before laws are passed
-- Transparency in governance and investment regulations
+### Verified dates and figures (only these may be quoted)
+- **2024 diaspora remittances:** $20.98bn (source: CBN)
+- **Non-Resident BVN:** launched May 2025 (source: CBN / NIBSS)
+- **2017 diaspora bond:** $300M at 5.625%, redeemed in full in 2022 (source: DMO)
+- **2024 domestic dollar bond:** $2bn programme; first issuance closed above $900m (source: DMO)
+Any other figure, date, yield or return has not been verified by NDIG. Do not state one; point the user to the official source instead.
 
-**3. Productivity Network**
-- Professional networking for diaspora members
-- Marketplace for advertising goods and services
-- Recognition of outstanding diaspora entrepreneurs and professionals
-- Mentorship and knowledge-sharing platforms
-
-**4. Trust & Transparency Centre**
-- KYC (Know Your Customer) verification
-- Investment verification and due diligence
-- Legal resources and compliance information
-- Regulatory framework documentation
-
-### Key Statistics
-- **2024 Diaspora Remittances:** $20.93 billion
-- **2030 Projection:** $24 billion
-- **Investment Potential:** $73.2 billion (if remittances are channeled into productive investments)
-- **Regulatory Alignment:** Operates in alignment with NPA, NiDCOM, NIPC, CBN, and SEC frameworks
-
-### Strategic Partners
-1. **National Productivity Agenda (NPA)** - Strategic oversight and alignment with national development goals
-2. **NiDCOM** - Diaspora engagement and mobilization
-3. **NIPC** - Investment facilitation and registration
-4. **CBN** - Monetary policy and forex management
-5. **SEC** - Capital market regulation and investor protection
-
-### Investment Opportunities (Examples)
-- **Eko Atlantic Diaspora Tower:** Premium mixed-use development with 12-15% target yield, $25k minimum entry, 5-year term
-- **Lekki Free Trade Zone:** Industrial and commercial development
-- **Diaspora Bonds:** Government-guaranteed securities with attractive returns
+### Regulators and agencies NDIG checks against
+NDIG checks institutions against the public records of regulators and agencies including CBN, SEC, NAICOM, PenCom, NUPRC, NIPC and CAC. These bodies do not endorse NDIG.
 
 ### How to Get Started
-1. Register your interest on the NDIG platform
-2. Complete KYC verification through the Trust Centre
-3. Browse vetted investment opportunities in the Investment Nexus
-4. Monitor your portfolio through the My Portfolio dashboard
-5. Stay informed with real-time Nigerian business news
+1. Bring NDIG an opportunity at /verify-opportunity, or check a dossier reference at /verify
+2. Register your interest to receive NDIG updates and your Verification Reference
+3. Complete identity verification through the Trust Centre if asked
+4. Invest only through licensed banks and custodians
 
 ### Contact & Support
-- **Concierge Chat Support:** Available 24/7 via the chat widget
-- **Email Support:** Available through the Contact Support page
-- **Live Market Data:** Real-time NGX stock ticker on the platform
+- **Concierge Chat:** available via the chat widget
+- **Email:** info@ndigateway.org
+- **Trust Centre:** complaints and enquiries
 
 ---
 
 ## Frequently Asked Questions
 
-### General Questions
+**Q: Who can use NDIG?**
+A: Any Nigerian in the diaspora can ask NDIG to verify an institution or opportunity.
 
-**Q: Who can invest through NDIG?**
-A: Professional Nigerians outside Nigeria for one year or more (excluding students and dependents).
+**Q: Is NDIG a government agency?**
+A: No. NDIG is an independent, private-sector verification institution. It is regulator-vetted and independent of government, and it never holds investor funds.
 
-**Q: Is NDIG government-approved?**
-A: NDIG is an independent referral and information platform, not a government agency. It operates in alignment with the regulatory frameworks of the National Productivity Agenda (NPA), NiDCOM, NIPC, CBN, and SEC, and never holds investor funds - all investments are made directly with the licensed institutions named.
-
-**Q: What is the minimum investment amount?**
-A: Minimum investment varies by opportunity. For example, the Eko Atlantic Diaspora Tower requires a $25,000 minimum entry.
-
-### Investment Questions
-
-**Q: How do I access the Nigerian Stock Market through NDIG?**
-A: The Investment Nexus module provides friction-free access to the Nigerian Stock Exchange (NGX) with real-time market data and seamless transaction processing.
+**Q: Does NDIG recommend investments or tell me what returns to expect?**
+A: No. NDIG never gives investment advice and never states or projects returns. It tells you what public regulatory records show about an institution or offer.
 
 **Q: Are my investments protected?**
-A: Yes, all investments are subject to SEC regulations and CBN oversight. The Trust & Transparency Centre provides verification and legal resources.
+A: Protection depends on the institution and the regulator that licenses it. NDIG can tell you whether an institution appears on the register it claims. Ask the institution and its regulator about investor protection before you invest.
 
-**Q: Can I repatriate my investment returns?**
-A: Yes, CBN foreign exchange policies allow for repatriation of investment capital and returns, subject to regulatory compliance.
-
-### Housing Questions
+**Q: Can I repatriate investment returns?**
+A: Repatriation is governed by CBN foreign exchange rules and the terms of the specific account or instrument. Confirm with your licensed bank.
 
 **Q: How does the National Housing Programme work for diaspora?**
-A: Through the FMBN-sponsored mortgage program, diaspora members can register with the National Housing Fund (NHF), make monthly contributions, and access affordable housing in Nigeria.
-
-**Q: What are the benefits of investing in real estate through NDIG?**
-A: Purpose-built estates offer guaranteed rental yields, capital appreciation, and are located in prime development zones like Eko Atlantic and Lekki.
-
-### Policy & Governance Questions
-
-**Q: How can I participate in legislative discussions?**
-A: The Policy & Governance Interface provides access to National Assembly bills and a platform for diaspora members to submit feedback before laws are passed.
-
-**Q: How does NDIG align with the National Productivity Agenda?**
-A: NDIG is designed to channel diaspora capital into productive sectors identified in the NPA 2025-2035, including infrastructure, manufacturing, agriculture, and technology.
-
-### Technical Questions
+A: Through FMBN's National Housing Fund (NHF) scheme, diaspora members can register and contribute. FMBN sets the loan terms; confirm them with FMBN.
 
 **Q: How do I verify my identity (KYC)?**
-A: The Trust Centre provides a secure, multi-step KYC process including identity verification, document upload, and biometric authentication.
-
-**Q: Is my data secure?**
-A: Yes, NDIG uses bank-grade encryption and complies with all Nigerian data protection regulations.
+A: The Trust Centre provides a multi-step identity verification process.
 
 **Q: Can I access NDIG from any country?**
-A: Yes, NDIG is a global platform accessible from anywhere in the world with an internet connection.
-
----
-
-## Investment Calculator & Projections
-
-### Example Investment Scenarios
-
-**Scenario 1: Real Estate Investment**
-- Investment: $50,000
-- Target Yield: 12-15% annually
-- Term: 5 years
-- Projected Return: $80,000 - $95,000
-
-**Scenario 2: Stock Market Portfolio**
-- Investment: $25,000
-- Average NGX Return: 10-12% annually
-- Term: 3 years
-- Projected Return: $33,000 - $35,000
-
-**Scenario 3: Diaspora Bonds**
-- Investment: $100,000
-- Interest Rate: 8% annually
-- Term: 10 years
-- Projected Return: $180,000
-
-### Economic Impact Projections
-If NDIG successfully channels $10 billion of diaspora remittances into productive investments:
-- **GDP Impact:** +2.5% annual growth
-- **Job Creation:** 500,000+ direct and indirect jobs
-- **Forex Reserves:** +$5 billion stabilization
-- **Infrastructure Development:** $3 billion in new projects
-
----
-
-*This knowledge base is continuously updated with the latest information from strategic partners and government agencies.*
+A: Yes. NDIG is accessible from anywhere with an internet connection.

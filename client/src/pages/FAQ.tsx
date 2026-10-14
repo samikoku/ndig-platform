@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HelpCircle, ChevronDown } from "lucide-react";
+import { FAQ_COPY } from "@/config/siteCopy";
 
 interface FAQItem {
   question: string;
@@ -18,17 +19,17 @@ const categories: FAQCategory[] = [
       {
         question: "What is NDIG?",
         answer:
-          "NDIG (Nigeria Diaspora Investment Gateway) is a private-sector information, verification and distribution infrastructure. We connect the Nigerian diaspora to regulator-vetted investment opportunities - diaspora bonds, NRNIA accounts, and vetted projects - by informing, verifying, and directly connecting investors to licensed institutions. NDIG is founded and operated by NAKACHI Consulting.",
+          FAQ_COPY.whatIsNdig,
       },
       {
         question: "Is NDIG a government agency?",
         answer:
-          "No. NDIG is a private-sector platform, not a government agency. We are regulator-vetted, meaning every institution and product listed on NDIG has been screened against the relevant Nigerian regulator (CBN, SEC, NIPC, NiDCOM) before appearing on the platform. NDIG itself is not government-backed or government-endorsed.",
+          FAQ_COPY.isGovernmentAgency,
       },
       {
         question: "Does NDIG hold my money?",
         answer:
-          "No, never. NDIG does not provide investment advice, and does not collect or hold investor funds. NDIG is a referral and information platform - every investment is made directly between you and the licensed institution named (DMO for bonds, banks for NRNIA accounts, NIPC for projects). Your money never passes through NDIG.",
+          FAQ_COPY.holdsMoney,
       },
       {
         question: "What is the Sovereign Brief?",
@@ -43,12 +44,12 @@ const categories: FAQCategory[] = [
       {
         question: "How do I register?",
         answer:
-          "Click \"Register Interest\" anywhere on the site and complete the short form (name, email, location, and investment capacity). Registering does not commit you to anything and does not involve any payment - it simply connects you with verified opportunities and generates your unique referral code.",
+          FAQ_COPY.howToRegister,
       },
       {
-        question: "What is a referral code?",
+        question: FAQ_COPY.referenceQuestion,
         answer:
-          "When you register your interest, NDIG generates a unique referral code (in the format NDIG-XXXXXXXX) for you. You quote this code when you pay directly to a licensed institution - DMO for diaspora bonds, a bank for an NRNIA account, or NIPC for a project - so your investment is correctly tracked back to your registration. NDIG never collects payment through the referral code; it is a tracking reference only.",
+          FAQ_COPY.referenceAnswer,
       },
       {
         question: "How do I unsubscribe from emails?",

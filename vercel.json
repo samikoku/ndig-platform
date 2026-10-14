@@ -1,6 +1,6 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npx vite build && node scripts/build-api.mjs",
+  "buildCommand": "npx vite build && node scripts/doctrine-check.mjs && node scripts/build-api.mjs",
   "outputDirectory": "public",
   "env": {
     "VITE_API_BASE": "http://localhost:3000",
