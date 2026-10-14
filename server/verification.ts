@@ -46,13 +46,16 @@ async function requireDb(): Promise<Db> {
   return db;
 }
 
-/** NDIG-VD-<yy>-<8 hex>, e.g. NDIG-VD-26-4F1A09C2 */
+/**
+ * Dossier reference: NDIG-<year>-<6 hex>, e.g. NDIG-2026-948A1C.
+ * Format follows the approved card render (NDIG-2026-948A); six characters rather than
+ * four so references cannot be guessed by counting (16.7M per year vs 65k).
+ */
 export function generateDossierReference(now = new Date()): string {
-  const yy = String(now.getUTCFullYear()).slice(-2);
-  return `NDIG-VD-${yy}-${randomBytes(4).toString("hex").toUpperCase()}`;
+  return `NDIG-${now.getUTCFullYear()}-${randomBytes(3).toString("hex").toUpperCase()}`;
 }
 
-export const REFERENCE_PATTERN = /^NDIG-VD-\d{2}-[0-9A-F]{6,8}$/;
+export const REFERENCE_PATTERN = /^NDIG-\d{4}-[0-9A-F]{4,8}$/;
 
 /** Records each claimed regulator maps to; CAC is always checked. */
 const REGULATOR_RECORDS: Record<string, string> = {
@@ -127,7 +130,7 @@ export const verificationRouter = router({
     }),
 
   lookup: publicProcedure
-    .input(z.object({ reference: z.string().trim().toUpperCase().regex(REFERENCE_PATTERN, "Enter a reference like NDIG-VD-26-4F1A09C2") }))
+    .input(z.object({ reference: z.string().trim().toUpperCase().regex(REFERENCE_PATTERN, "Enter a reference like NDIG-2026-948A1C") }))
     .query(async ({ input }) => {
       const db = await requireDb();
       const [row] = await db.select(publicDossier).from(verificationRequests).where(eq(verificationRequests.reference, input.reference)).limit(1);

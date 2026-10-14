@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Home, AlertCircle } from "lucide-react";
+import { HOMEFUND } from "@/config/siteCopy";
 
 const FMBN_URL =
   "https://fmbn.gov.ng/resources/news/fmbn-opens-secure-pathway-for-nigerians-abroad-to-own-homes-in-nigeria-with-official-launch-of-diaspora-mortgage-product";
@@ -17,13 +18,10 @@ export default function HomeFund() {
               FMBN Diaspora Mortgage
             </h1>
             <p className="text-lg md:text-xl text-gray-300">
-              The Federal Mortgage Bank of Nigeria launched its NHF Diaspora Mortgage Loan in London on 7 August 2026.
-              Eligible contributors can access up to ₦100 million at 9% per annum over a maximum of 10 years, subject to
-              affordability and applicable requirements.
+              {HOMEFUND.intro}
             </p>
             <p className="text-sm text-gray-400">
-              Source: FMBN press release on the launch (fmbn.gov.ng). The FMBN release names NiDCOM and the Central Bank
-              of Nigeria among the institutions present. Terms are FMBN's; confirm them with FMBN before relying on them.
+              {HOMEFUND.sourceNote}
             </p>
             <div className="pt-4">
               <a href={FMBN_URL} target="_blank" rel="noopener noreferrer">

@@ -155,7 +155,7 @@ Welcome to NDIG - Nigeria Diaspora Investment Gateway
 
 Dear ${name},
 
-Thank you for registering your interest. NDIG is a private-sector, independent verification institution for the Nigerian diaspora. It is regulator-vetted, not government-backed.
+Thank you for registering your interest. NDIG is a private-sector, independent verification institution for the Nigerian diaspora. It is regulator-vetted and independent of government.
 
 YOUR REGISTRATION DETAILS:
 • Name: ${name}

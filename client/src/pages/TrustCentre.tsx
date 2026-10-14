@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { ArrowRight, CheckCircle2, FileCheck, Lock, Upload, Search, ClipboardList } from "lucide-react";
 import ContactBlock from "@/components/ContactBlock";
+import { TRUST_CENTRE } from "@/config/siteCopy";
 import { Link } from "wouter";
 import { lazy, Suspense, useEffect, useState } from "react";
 
@@ -203,7 +204,7 @@ export default function TrustCentre() {
           </div>
         </div>
 
-        {/* Referral Platform Model Explanation */}
+        {/* How NDIG protects you (verification model) */}
         <div className="max-w-5xl mx-auto mt-20">
           <Card className="bg-gradient-to-br from-chart-1/5 to-chart-5/5 border-2 border-chart-1/20">
             <CardContent className="p-8">
@@ -215,57 +216,28 @@ export default function TrustCentre() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-serif text-2xl font-bold mb-4">
-                    How NDIG Protects Your Investment
+                    {TRUST_CENTRE.protects.heading}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    NDIG operates as a <strong>referral and information platform</strong>, not a payment processor. This means:
+                    {TRUST_CENTRE.protects.intro}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-chart-1 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-bold text-sm mb-1">We Never Hold Your Funds</h4>
-                        <p className="text-xs text-muted-foreground">
-                          You pay directly to regulated institutions (DMO, banks, NIPC) using your unique referral code
-                        </p>
+                    {TRUST_CENTRE.protects.points.map((pt) => (
+                      <div key={pt.title} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-chart-1 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <h4 className="font-bold text-sm mb-1">{pt.title}</h4>
+                          <p className="text-xs text-muted-foreground">{pt.body}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-chart-1 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-bold text-sm mb-1">Maximum Security</h4>
-                        <p className="text-xs text-muted-foreground">
-                          Your funds go directly to CBN-regulated institutions, never through intermediaries
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-chart-1 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-bold text-sm mb-1">Full Transparency</h4>
-                        <p className="text-xs text-muted-foreground">
-                          All transactions are between you and licensed institutions, fully traceable
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-chart-1 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-bold text-sm mb-1">No Licensing Complexity</h4>
-                        <p className="text-xs text-muted-foreground">
-                          We're not a payment service provider, reducing regulatory risk and operational overhead
-                        </p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                   <div className="p-4 bg-background rounded-lg border border-chart-1/20">
-                    <p className="text-sm font-medium mb-2">How It Works:</p>
+                    <p className="text-sm font-medium mb-2">{TRUST_CENTRE.protects.stepsHeading}</p>
                     <ol className="text-sm text-muted-foreground space-y-2">
-                      <li>1. You browse investment opportunities on NDIG and register interest</li>
-                      <li>2. You receive a unique referral code (e.g., NDIG-ABC123)</li>
-                      <li>3. You pay directly to the investment vehicle (DMO for bonds, bank for NRNIA)</li>
-                      <li>4. The investment vehicle confirms your investment and pays NDIG a referral fee</li>
-                      <li>5. You track your investments and access advisory services through NDIG</li>
+                      {TRUST_CENTRE.protects.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
                     </ol>
                   </div>
                 </div>
@@ -337,9 +309,9 @@ export default function TrustCentre() {
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-bold text-sm mb-1">Independent Platform</h4>
+                        <h4 className="font-bold text-sm mb-1">{TRUST_CENTRE.independent.title}</h4>
                         <p className="text-xs text-muted-foreground">
-                          NDIG is an independent referral and information platform connecting diaspora investors to regulated institutions
+                          {TRUST_CENTRE.independent.body}
                         </p>
                       </div>
                     </div>
@@ -365,14 +337,14 @@ export default function TrustCentre() {
           </Card>
         </div>
 
-        {/* CBN Diaspora Infrastructure Section */}
+        {/* Diaspora investment infrastructure (ledger-verified dates and figures only) */}
         <div className="max-w-5xl mx-auto mt-20">
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
-              CBN's Revolutionary Diaspora Infrastructure (2024-2025)
+              {TRUST_CENTRE.infrastructure.heading}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Nigeria has built unprecedented financial infrastructure specifically for diaspora investors. Your country is ready for your capital.
+              {TRUST_CENTRE.infrastructure.intro}
             </p>
           </div>
 
@@ -381,21 +353,13 @@ export default function TrustCentre() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CheckCircle2 className="w-6 h-6 text-chart-1" />
-                  NRNIA Accounts
+                  {TRUST_CENTRE.infrastructure.nrnia.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  <span className="font-bold text-foreground">Launched: January 2025</span>
-                </p>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Non-Resident Nigerian Investment Accounts (NRNIA) allow diaspora to invest in Nigerian assets with full repatriation rights.
-                </p>
+                <p className="text-sm text-muted-foreground mb-4">{TRUST_CENTRE.infrastructure.nrnia.body}</p>
                 <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>• Participate in diaspora bonds</li>
-                  <li>• Invest in stocks, real estate, treasury bills</li>
-                  <li>• Repatriate capital and returns anytime</li>
-                  <li>• No prior approval needed</li>
+                  {TRUST_CENTRE.infrastructure.nrnia.points.map((pt) => <li key={pt}>• {pt}</li>)}
                 </ul>
               </CardContent>
             </Card>
@@ -404,21 +368,16 @@ export default function TrustCentre() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CheckCircle2 className="w-6 h-6 text-chart-2" />
-                  Non-Resident BVN
+                  {TRUST_CENTRE.infrastructure.nrbvn.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
-                  <span className="font-bold text-foreground">Launched: May 2025</span>
+                  <span className="font-bold text-foreground">{TRUST_CENTRE.infrastructure.nrbvn.launched}</span>
                 </p>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Get your Bank Verification Number (BVN) without traveling to Nigeria. Open accounts remotely from anywhere in the world.
-                </p>
+                <p className="text-sm text-muted-foreground mb-4">{TRUST_CENTRE.infrastructure.nrbvn.body}</p>
                 <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>• Fully digital enrollment</li>
-                  <li>• Biometric verification via app</li>
-                  <li>• Issued within 48 hours</li>
-                  <li>• Valid for all Nigerian banks</li>
+                  {TRUST_CENTRE.infrastructure.nrbvn.points.map((pt) => <li key={pt}>• {pt}</li>)}
                 </ul>
               </CardContent>
             </Card>
@@ -427,21 +386,12 @@ export default function TrustCentre() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CheckCircle2 className="w-6 h-6 text-chart-3" />
-                  IMTO Reforms
+                  {TRUST_CENTRE.infrastructure.bonds.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  <span className="font-bold text-foreground">Implemented: 2024</span>
-                </p>
-                <p className="text-sm text-muted-foreground mb-4">
-                  International Money Transfer Operator reforms have doubled formal remittance flows and reduced transaction costs.
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-2">
-                  <li>• $20.9B remittances in 2024</li>
-                  <li>• Formal channels: $4.73B (up from $3.3B)</li>
-                  <li>• Lower fees, faster transfers</li>
-                  <li>• More licensed operators</li>
+                <ul className="text-sm text-muted-foreground space-y-3">
+                  {TRUST_CENTRE.infrastructure.bonds.points.map((pt) => <li key={pt}>• {pt}</li>)}
                 </ul>
               </CardContent>
             </Card>
@@ -449,24 +399,8 @@ export default function TrustCentre() {
 
           <Card className="bg-gradient-to-br from-primary/5 to-chart-1/5 border-2 border-primary/20">
             <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row items-start gap-6">
-                <div className="flex-1">
-                  <h3 className="font-serif text-2xl font-bold mb-4">
-                    Official CBN Framework: Diaspora Bonds Explicitly Supported
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    The Central Bank of Nigeria's NRNIA framework (January 2025) explicitly states:
-                  </p>
-                  <div className="p-4 bg-background rounded-lg border border-primary/20 mb-4">
-                    <p className="text-sm italic">
-                      "Non-Resident Nigerians can use their NRNIA to participate in Nigeria's Diaspora Bond and other debt instruments issued by the Federal Government, State Governments, or corporate entities."
-                    </p>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    This regulatory clarity, combined with Nigeria's proven track record (2 diaspora bonds: $300M in 2017 fully redeemed, $900M in 2024 outstanding), is what NDIG helps diaspora investors navigate. Only DMO can issue sovereign diaspora bonds on behalf of FGN; NDIG is an independent referral platform, not an official DMO channel.
-                  </p>
-                </div>
-              </div>
+              <h3 className="font-serif text-2xl font-bold mb-4">{TRUST_CENTRE.infrastructure.dmoNote.heading}</h3>
+              <p className="text-sm text-muted-foreground">{TRUST_CENTRE.infrastructure.dmoNote.body}</p>
             </CardContent>
           </Card>
 

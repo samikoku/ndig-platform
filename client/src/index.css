@@ -47,11 +47,18 @@
   height: 100%;
   max-width: 100%;
   border-radius: 9999px;
-  border: 1px solid rgb(201 162 39 / 0.35);
   background: radial-gradient(circle, rgb(201 162 39 / 0.16) 0%, rgb(201 162 39 / 0.06) 45%, transparent 70%);
   pointer-events: none;
 }
-.ndig-hero-seal > svg {
+.ndig-hero-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
+}
+.ndig-hero-seal > svg:not(.ndig-hero-ring) {
   position: relative;
   width: 88%;
   height: 88%;
@@ -95,97 +102,124 @@
   }
 }
 
-/* ---------- Dossier card (spec: 420px, 4px radius, 1px gold border, 24px padding, 16px rows) ---------- */
+/* ---------- Dossier card ----------
+   Matched to the approved card renders (light + dark). Proportions scale with the
+   card's own width via container units, so it reads the same at 320px or 520px. */
 .ndig-dossier {
   --d-surface: #f7f5ef;
-  --d-band-bg: #03381d;
-  --d-band-fg: #f7f5ef;
+  --d-frame: #c9a227;
+  --d-band: #0b6b3a;
   --d-text: #333333;
   --d-label: #c9a227;
+  --d-rule: rgb(201 162 39 / 0.7);
   --d-status: #2e7d32;
+  --d-status-text: #1f5130;
+  container-type: inline-size;
   width: 100%;
-  max-width: 420px;
+  max-width: 520px;
   background: var(--d-surface);
-  color: var(--d-text);
   border: 1px solid #c9a227;
   border-radius: 4px;
   box-shadow: 0 4px 12px 0 rgb(0 0 0 / 0.1);
-  overflow: hidden;
-  font-size: 12px;
-  line-height: 1.5;
+  color: var(--d-text);
   text-align: left;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
 }
 .ndig-dossier[data-variant="dark"] {
   --d-surface: #03381d;
-  --d-band-bg: #f7f5ef;
-  --d-band-fg: #03381d;
+  --d-band: #054d28;
   --d-text: #f7f5ef;
+  --d-rule: transparent;
+  --d-status-text: #f7f5ef;
 }
 .ndig-dossier[data-status="CONFIRMED"] { --d-status: #2e7d32; }
-.ndig-dossier[data-status="FLAGGED"] { --d-status: #f57c00; }
-.ndig-dossier[data-status="REJECTED"] { --d-status: #d32f2f; }
-.ndig-dossier[data-status="PENDING"] { --d-status: #c9a227; }
+.ndig-dossier[data-status="FLAGGED"]   { --d-status: #f57c00; }
+.ndig-dossier[data-status="REJECTED"]  { --d-status: #d32f2f; }
+.ndig-dossier[data-status="PENDING"]   { --d-status: #c9a227; }
+.ndig-dossier[data-variant="light"][data-status="FLAGGED"]  { --d-status-text: #b45309; }
+.ndig-dossier[data-variant="light"][data-status="REJECTED"] { --d-status-text: #b71c1c; }
+.ndig-dossier[data-variant="light"][data-status="PENDING"]  { --d-status-text: #7a5c0e; }
+.ndig-dossier[data-variant="dark"][data-status="CONFIRMED"] { --d-status: #4caf50; }
 
+.ndig-dossier__frame {
+  position: relative;
+  margin: 1.3cqw;
+  border: 1px solid var(--d-frame);
+  border-radius: 2px;
+  padding-bottom: 3.4cqw;
+}
+.ndig-dossier[data-variant="light"] .ndig-dossier__frame { border-color: rgb(201 162 39 / 0.55); }
 .ndig-dossier__band {
-  background: var(--d-band-bg);
-  color: var(--d-band-fg);
-  padding: 16px 24px;
-  border-bottom: 1px solid #c9a227;
+  display: flex;
+  align-items: center;
+  gap: 3.4cqw;
+  background: var(--d-band);
+  color: #f7f5ef;
+  padding: 3.6cqw 4.4cqw;
 }
-.ndig-dossier__eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #c9a227;
-  margin: 0 0 4px;
-}
+.ndig-dossier__mark { width: 10.6cqw; height: auto; flex-shrink: 0; }
 .ndig-dossier__title {
-  font-family: var(--font-serif, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif);
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.2;
+  margin: 0;
+  font-size: 6.4cqw;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+.ndig-dossier__subtitle { margin: 0.6cqw 0 0; font-size: 3.4cqw; line-height: 1.25; opacity: 0.95; }
+
+.ndig-dossier__status {
+  display: flex;
+  align-items: center;
+  gap: 2.2cqw;
+  margin: 0;
+  padding: 3.4cqw 4.4cqw 3cqw;
+  font-size: 5.6cqw;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--d-status-text);
+  border-bottom: 1px solid var(--d-rule);
+}
+.ndig-dossier__status-icon { width: 7cqw; height: 7cqw; color: var(--d-status); flex-shrink: 0; }
+.ndig-dossier__status-word { color: inherit; }
+
+.ndig-dossier__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: 0;
 }
-.ndig-dossier__body { padding: 24px; }
-.ndig-dossier__rows { display: flex; flex-direction: column; gap: 16px; margin: 0; }
-.ndig-dossier__row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: baseline; }
-.ndig-dossier__label {
-  font-size: 11px;
+.ndig-dossier__cell {
+  padding: 2.6cqw 4.4cqw 2.8cqw;
+  border-bottom: 1px solid var(--d-rule);
+  min-width: 0;
+}
+.ndig-dossier__cell--date { border-left: 1px solid rgb(201 162 39 / 0.7); }
+.ndig-dossier__cell--wide { grid-column: 1 / -1; }
+.ndig-dossier[data-variant="dark"] .ndig-dossier__cell { padding-top: 1.6cqw; padding-bottom: 1.6cqw; }
+.ndig-dossier[data-variant="dark"] .ndig-dossier__cell--date { margin: 1.6cqw 0; padding-top: 0; padding-bottom: 0; }
+.ndig-dossier__cell dt {
+  font-size: 3.4cqw;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--d-label);
+  line-height: 1.3;
 }
-.ndig-dossier__value { margin: 0; font-size: 12px; overflow-wrap: anywhere; }
-.ndig-dossier__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 8px;
-  border: 1px solid var(--d-status);
-  border-radius: 2px;
-  color: var(--d-status);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+.ndig-dossier__cell dd {
+  margin: 0.2cqw 0 0;
+  font-size: 3.8cqw;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
-.ndig-dossier[data-variant="dark"] .ndig-dossier__status {
-  background: #f7f5ef;
-}
-.ndig-dossier__footer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 24px;
-}
-.ndig-dossier__illustrative {
-  margin: 0;
-  font-size: 11px;
-  font-style: italic;
-  opacity: 0.75;
-}
-.ndig-dossier__seal { width: 64px; height: 64px; flex-shrink: 0; }
-@media (max-width: 400px) {
-  .ndig-dossier__row { grid-template-columns: 1fr; gap: 2px; }
+.ndig-dossier__cell:last-child { border-bottom: 0; }
+.ndig-dossier__cell:last-child dd { padding-right: 20cqw; }
+.ndig-dossier__footer { min-height: 7cqw; padding: 1cqw 4.4cqw 0; display: flex; align-items: flex-end; }
+.ndig-dossier__illustrative { margin: 0; font-size: 2.9cqw; color: #8a8a80; }
+.ndig-dossier[data-variant="dark"] .ndig-dossier__illustrative { color: rgb(247 245 239 / 0.55); }
+.ndig-dossier__seal {
+  position: absolute;
+  right: 3cqw;
+  bottom: 2.6cqw;
+  width: 21cqw;
+  height: 21cqw;
+  filter: drop-shadow(0 1cqw 1.4cqw rgb(0 0 0 / 0.25));
 }

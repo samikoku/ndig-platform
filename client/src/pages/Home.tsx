@@ -5,7 +5,15 @@ import { ArrowRight, BarChart3, Building2, Globe2, ShieldCheck, Users, PlayCircl
 import { Link } from "wouter";
 import SuccessStories from "@/components/SuccessStories";
 import NdigSeal from "@/components/brand/NdigSeal";
-import { HERO_STATS } from "@/config/heroStats";
+import { GoldRing } from "@/components/brand/NdigWatermark";
+import { HERO_STATS, HOME } from "@/config/siteCopy";
+
+const STEP_STYLES = [
+  { bg: "bg-chart-1/20", text: "text-chart-1" },
+  { bg: "bg-chart-2/20", text: "text-chart-2" },
+  { bg: "bg-chart-3/20", text: "text-chart-3" },
+  { bg: "bg-chart-5/20", text: "text-chart-5" },
+];
 
 export default function Home() {
   // The userAuth hooks provides authentication state
@@ -22,15 +30,15 @@ export default function Home() {
             {/* Left: badge, headline, locked intro, actions */}
             <div className="max-w-2xl">
               <p className="text-xs md:text-sm font-medium text-gold tracking-[0.12em] uppercase mb-5 md:mb-6">
-                Regulator-Vetted Investment Platform
+                {HOME.hero.badge}
               </p>
 
               <h1 id="hero-heading" className="font-serif font-normal text-[2.15rem] leading-[1.12] sm:text-5xl md:text-[3.5rem] lg:text-[3.75rem] text-sidebar-foreground lg:max-w-[10em]">
-                Invest in Nigeria's Future with Regulator-Vetted Instruments
+                {HOME.hero.headline}
               </h1>
 
               <p className="text-base md:text-lg text-sidebar-foreground/85 leading-relaxed max-w-xl mt-5 md:mt-6">
-                NDIG is an independent, private-sector verification institution for the Nigerian diaspora. It checks institutions and opportunities against public regulatory records. It does not hold funds, sell products or give investment advice.
+                {HOME.hero.intro}
               </p>
 
               <div className="flex flex-row flex-wrap gap-2 sm:gap-4 mt-7 md:mt-8">
@@ -38,14 +46,14 @@ export default function Home() {
                   href="/verify-opportunity"
                   className="inline-flex items-center justify-center rounded-md bg-gold px-3 py-2.5 text-[13px] sm:px-6 sm:py-3 sm:text-base font-semibold text-sidebar transition-colors hover:bg-gold/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar"
                 >
-                  Verify an Opportunity
+                  {HOME.hero.primaryCta}
                 </Link>
                 <Link
                   href="/trust-centre#contact"
-                  aria-label="Reach out to NDIG and we will give you what you need"
+                  aria-label={HOME.hero.secondaryCtaLabel}
                   className="inline-flex items-center justify-center rounded-md border border-sidebar-foreground/70 px-3 py-2.5 text-[13px] sm:px-6 sm:py-3 sm:text-base font-medium text-sidebar-foreground transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar"
                 >
-                  Reach out to NDIG
+                  {HOME.hero.secondaryCta}
                 </Link>
               </div>
             </div>
@@ -54,6 +62,7 @@ export default function Home() {
             <div className="relative flex justify-center lg:block">
               <div className="ndig-hero-seal-slot">
                 <div className="ndig-hero-seal">
+                  <GoldRing className="ndig-hero-ring" />
                   <NdigSeal variant="master" className="block w-full h-full" />
                 </div>
               </div>
@@ -82,59 +91,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works Section - Referral Platform Model */}
+      {/* How It Works Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4">
-                How NDIG Works
+                {HOME.howItWorks.heading}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                We connect you to regulator-vetted investment opportunities. You invest directly with official partners. We never hold your funds.
+                {HOME.howItWorks.intro}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-chart-1/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-chart-1">1</span>
+              {HOME.howItWorks.steps.map((step, i) => (
+                <div key={step.title} className="text-center">
+                  <div className={`w-16 h-16 rounded-full ${STEP_STYLES[i].bg} flex items-center justify-center mx-auto mb-4`}>
+                    <span className={`text-2xl font-bold ${STEP_STYLES[i].text}`}>{i + 1}</span>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.body}</p>
                 </div>
-                <h3 className="font-bold text-lg mb-2">Browse Opportunities</h3>
-                <p className="text-sm text-muted-foreground">
-                  Explore vetted diaspora bonds, NRNIA accounts, and investment projects
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-chart-2/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-chart-2">2</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Get Your Referral Code</h3>
-                <p className="text-sm text-muted-foreground">
-                  Receive a unique tracking code when you register interest
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-chart-3/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-chart-3">3</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Invest Directly</h3>
-                <p className="text-sm text-muted-foreground">
-                  Pay directly to DMO, banks, or NIPC using your referral code
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-chart-5/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-chart-5">4</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Track & Grow</h3>
-                <p className="text-sm text-muted-foreground">
-                  Track the verification status of the institutions you deal with
-                </p>
-              </div>
+              ))}
             </div>
 
             <div className="bg-muted/50 border border-border rounded-xl p-6 md:p-8">
@@ -143,23 +122,15 @@ export default function Home() {
                   <ShieldCheck className="w-6 h-6 text-chart-1" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">Your Money, Your Control</h3>
-                  <p className="text-muted-foreground">
-                    NDIG is a <strong>referral and information platform</strong>, not a payment processor. We never collect or hold your investment funds. You pay directly to regulated institutions (DMO for bonds, banks for NRNIA accounts, NIPC for projects). This means:
-                  </p>
+                  <h3 className="font-bold text-lg mb-2">{HOME.moneyNote.heading}</h3>
+                  <p className="text-muted-foreground">{HOME.moneyNote.body}</p>
                   <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-chart-1 mt-1">✓</span>
-                      <span><strong>Maximum security:</strong> Your funds go directly to CBN-regulated institutions</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-chart-1 mt-1">✓</span>
-                      <span><strong>No licensing complexity:</strong> We're not a payment service provider</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-chart-1 mt-1">✓</span>
-                      <span><strong>Full transparency:</strong> All transactions are between you and licensed institutions</span>
-                    </li>
+                    {HOME.moneyNote.points.map((pt) => (
+                      <li key={pt.title} className="flex items-start gap-2">
+                        <span className="text-chart-1 mt-1">✓</span>
+                        <span><strong>{pt.title}:</strong> {pt.body}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -173,10 +144,10 @@ export default function Home() {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-serif text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              Our Mission
+              {HOME.mission.heading}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              NDIG connects Nigeria's diaspora to regulator-vetted investment opportunities that build the nation while securing financial futures. We educate and guide diaspora investors to official channels—diaspora bonds, NRNIA accounts, and vetted projects—ensuring transparency, security, and full repatriation rights. Every investment we facilitate strengthens Nigeria's infrastructure and brings our people closer to home.
+              {HOME.mission.body}
             </p>
           </div>
         </div>
@@ -217,9 +188,9 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-xl mb-3 text-white">Scalable Capacity</h3>
+                  <h3 className="font-bold text-xl mb-3 text-white">{HOME.scalableCapacity.title}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Government portals crash during high-traffic bond offerings. NDIG's cloud infrastructure scales instantly to serve 350,000+ diaspora simultaneously—no downtime, no missed subscriptions.
+                    {HOME.scalableCapacity.body}
                   </p>
                 </CardContent>
               </Card>

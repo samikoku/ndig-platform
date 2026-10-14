@@ -20,6 +20,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { REGISTRATION } from "@/config/siteCopy";
 
 interface InterestRegistrationDialogProps {
   open: boolean;
@@ -114,8 +115,7 @@ export function InterestRegistrationDialog({
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl">Register Your Interest</DialogTitle>
           <DialogDescription>
-            Join thousands of diaspora Nigerians building generational wealth through
-            regulator-vetted investments. We'll be in touch within 48 hours.
+            {REGISTRATION.description}
           </DialogDescription>
         </DialogHeader>
 
@@ -129,7 +129,7 @@ export function InterestRegistrationDialog({
             {submitMutation.data?.referralCode && (
               <div className="text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wide">
-                  Your Referral Code
+                  {REGISTRATION.referenceLabel}
                 </p>
                 <p className="font-mono font-semibold text-lg">
                   {submitMutation.data.referralCode}

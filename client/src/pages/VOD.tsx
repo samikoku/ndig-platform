@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { PlayCircle, Clock } from "lucide-react";
 import { useState } from "react";
+import { VOD_COPY } from "@/config/siteCopy";
 
 interface Video {
   title: string;
@@ -20,7 +21,7 @@ const categories: { name: string; videos: Video[] }[] = [
     name: "How NDIG Works",
     videos: [
       { title: "NDIG in 3 Minutes", category: "How NDIG Works" },
-      { title: "From Registration to Referral Code", category: "How NDIG Works" },
+      { title: VOD_COPY.registrationVideoTitle, category: "How NDIG Works" },
     ],
   },
   {

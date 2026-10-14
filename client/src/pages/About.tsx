@@ -1,4 +1,5 @@
 import { Calendar } from "lucide-react";
+import { ABOUT } from "@/config/siteCopy";
 
 export default function About() {
   return (
@@ -30,10 +31,7 @@ export default function About() {
               investment opportunities, without ever standing between an investor and their money.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              NDIG is a referral and information platform, not a payment processor. It never holds
-              investor funds - every transaction happens directly between a diaspora investor and a
-              licensed institution. NDIG's role is to make that path easier to find, easier to trust,
-              and easier to act on.
+              {ABOUT.role}
             </p>
             <p className="text-muted-foreground leading-relaxed">
               NDIG is founded and operated by <strong>NAKACHI Consulting</strong>, an established

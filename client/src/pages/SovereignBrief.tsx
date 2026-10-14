@@ -1,6 +1,7 @@
 import { useParams, Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, ArrowLeft, Calendar } from "lucide-react";
+import { SOVEREIGN_BRIEF } from "@/config/siteCopy";
 
 interface Edition {
   slug: string;
@@ -15,7 +16,7 @@ const editions: Edition[] = [
     slug: "2026-08-edition",
     title: "August 2026: CBN's NRNIA Framework One Year On",
     date: "August 2026",
-    summary: "A look at adoption of the Non-Resident Nigerian Investment Account since its January 2025 launch.",
+    summary: SOVEREIGN_BRIEF.nrniaSummary,
     body: [
       "Since launch, NRNIA enrolment has grown steadily as diaspora banks expand digital onboarding.",
       "This edition reviews enrolment trends, repatriation activity, and what it means for diaspora bond demand ahead of the next issuance window.",

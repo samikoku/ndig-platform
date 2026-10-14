@@ -4,7 +4,7 @@ import { REFERENCE_PATTERN, checkedAgainstFor, generateDossierReference } from "
 describe("verification dossiers", () => {
   it("generates references in the public format", () => {
     const ref = generateDossierReference(new Date("2026-10-14T12:00:00Z"));
-    expect(ref).toMatch(/^NDIG-VD-26-[0-9A-F]{8}$/);
+    expect(ref).toMatch(/^NDIG-2026-[0-9A-F]{6}$/);
     expect(REFERENCE_PATTERN.test(ref)).toBe(true);
   });
 
@@ -20,7 +20,8 @@ describe("verification dossiers", () => {
   });
 
   it("rejects malformed references", () => {
-    expect(REFERENCE_PATTERN.test("NDIG-VD-26-ZZZZ")).toBe(false);
-    expect(REFERENCE_PATTERN.test("ndig-vd-26-4f1a09c2")).toBe(false);
+    expect(REFERENCE_PATTERN.test("NDIG-2026-ZZZZ")).toBe(false);
+    expect(REFERENCE_PATTERN.test("ndig-2026-948a1c")).toBe(false);
+    expect(REFERENCE_PATTERN.test("NDIG-26-948A1C")).toBe(false);
   });
 });
