@@ -65,14 +65,36 @@ app.post("/api/webhooks/email-inbound", async (req, res) => {
         return res.status(400).json({ error: "No content in email" });
       }
 
-      // Log receipt - in production, this would parse the email and publish the article
-      console.log("[INSIGHT] Email received for article publication:", {
-        from,
-        subject,
-        contentLength: content.length,
-      });
+      // Parse tip ID from subject (format: "[ARTICLE-APPROVED] Tip #123" or similar)
+      const tipIdMatch = subject.match(/#(\d+)/);
+      const tipId = tipIdMatch ? parseInt(tipIdMatch[1], 10) : null;
 
-      return res.status(200).json({ status: "received", message: "Article email received - manual processing required" });
+      if (tipId) {
+        // Mark tip as ready for article publication (article is now published)
+        const db = await getDb();
+        if (db) {
+          const { insightTips } = await import("../drizzle/schema");
+          const { eq } = await import("drizzle-orm");
+
+          await db
+            .update(insightTips)
+            .set({
+              processedAt: new Date(),
+              summary: content.substring(0, 1000), // Store article content in summary field
+            })
+            .where(eq(insightTips.id, tipId));
+
+          console.log("[INSIGHT] Article approved and published for tip #" + tipId);
+        }
+      } else {
+        console.log("[INSIGHT] Could not extract tip ID from subject:", subject);
+      }
+
+      return res.status(200).json({
+        status: "published",
+        tipId: tipId || null,
+        message: tipId ? `Article published for tip #${tipId}` : "Article approved (tip ID not found in subject)"
+      });
     }
 
     res.status(200).json({ status: "ignored" });

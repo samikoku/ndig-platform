@@ -1,7 +1,7 @@
 import { getDb } from "./db";
 import { insightTips } from "../drizzle/schema";
 import { sql } from "drizzle-orm";
-import { routeInternal } from "./mailRouting";
+import { sendInsightDigests } from "./mailRouting";
 
 type Db = NonNullable<Awaited<ReturnType<typeof getDb>>>;
 
@@ -46,12 +46,20 @@ export async function runDailyInsightReview(): Promise<void> {
       .where(sql`${insightTips.status} = 'unprocessed'`)
       .orderBy(sql`${insightTips.createdAt}`);
 
+    // Fetch tips ready for article (for press notification)
+    const readyForArticle = await db
+      .select()
+      .from(insightTips)
+      .where(sql`${insightTips.status} = 'verified' AND ${insightTips.readyForArticle} = 1`)
+      .orderBy(sql`${insightTips.createdAt}`);
+
     if (unprocessed.length === 0) {
       console.log("No unprocessed insight tips to review");
       return;
     }
 
-    // Generate digest email
+    // Generate digest email with admin review link
+    const adminLink = `https://ndigateway.org/admin#insight-review`;
     const digestHtml = `
 <h2>NDIG Diaspora Insight Daily Review</h2>
 <p>You have <strong>${unprocessed.length}</strong> unprocessed ${unprocessed.length === 1 ? "tip" : "tips"} awaiting review.</p>
@@ -77,21 +85,27 @@ export async function runDailyInsightReview(): Promise<void> {
       .join("")}
   </tbody>
 </table>
+<p style="margin-top: 1.5em;">
+  <a href="${adminLink}" style="display: inline-block; padding: 0.75em 1.5em; background: #d4af37; color: #1a1a1a; text-decoration: none; border-radius: 4px; font-weight: bold;">
+    Review Tips in Admin Panel
+  </a>
+</p>
 <p style="margin-top: 1em; font-size: 0.9em; color: #666;">
-  Review and process these tips in the admin panel. Mark as verified, flagged, rejected, or needs_human.
+  Mark tips as verified, flagged, rejected, or needs_human. Verified tips with summary/evidence can be marked ready for article.
 </p>
     `;
 
-    // Send to smi@ and info@
-    await routeInternal(
-      "insight-review",
-      `Daily Insight Review: ${unprocessed.length} ${unprocessed.length === 1 ? "tip" : "tips"} awaiting review`,
-      digestHtml
-    ).catch((err) => {
-      console.error("Failed to send digest email:", err);
+    // Send to smi@ and optionally press@ if articles are ready
+    await sendInsightDigests(digestHtml, {
+      toSmi: true,
+      toPress: readyForArticle.length > 0,
+    }).catch((err) => {
+      console.error("Failed to send digest emails:", err);
     });
 
-    console.log(`Daily insight review completed. ${unprocessed.length} tip(s) processed.`);
+    console.log(
+      `Daily insight review completed. ${unprocessed.length} unprocessed tip(s), ${readyForArticle.length} ready for article.`
+    );
   } catch (err) {
     console.error("Error in daily insight review:", err);
     throw err;
