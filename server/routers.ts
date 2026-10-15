@@ -20,6 +20,7 @@ import { TRPCError } from "@trpc/server";
 import { eq, desc, count } from "drizzle-orm";
 import { trackingRouter } from "./tracking";
 import { verificationRouter } from "./verification";
+import { insightRouter } from "./insight";
 import { randomBytes } from "crypto";
 
 function generateReferralCode() {
@@ -30,6 +31,7 @@ export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   verification: verificationRouter,
+  insight: insightRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

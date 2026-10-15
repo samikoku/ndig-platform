@@ -29,6 +29,7 @@ import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Accessibility from "./pages/Accessibility";
+import Insight from "./pages/Insight";
 import { lazy, Suspense } from "react";
 // Verification pages load on demand so the homepage bundle does not grow.
 const VerifyOpportunity = lazy(() => import("./pages/VerifyOpportunity"));
@@ -48,6 +49,7 @@ function Router() {
         <Route path={"/"} component={Home} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/trust-centre"} component={TrustCentre} />
+      <Route path={"/insight"} component={Insight} />
       <Route path={"/business-news"} component={BusinessNews} />
       <Route path={"/project-detail"} component={ProjectDetail} />
         <Route path={"/compliance-tracker"} component={ComplianceTracker} />

@@ -250,3 +250,24 @@ export const verificationRequests = pgTable("verification_requests", {
 });
 export type VerificationRequest = typeof verificationRequests.$inferSelect;
 export type InsertVerificationRequest = typeof verificationRequests.$inferInsert;
+/**
+ * Diaspora Insight: scheme and fraud tips from diaspora investors.
+ * Bootstrapped at request time via raw SQL (see server/insight.ts).
+ */
+export const insightTipStatusEnum = pgEnum("insight_tip_status", ["unprocessed", "verified", "flagged", "rejected", "needs_human"]);
+export const insightTips = pgTable("insight_tips", {
+  id: serial("id").primaryKey(),
+  what: text("what").notNull(), // What is it (required)
+  sourceOrLink: varchar("sourceOrLink", { length: 500 }), // Source or link (optional)
+  whyItMatters: text("whyItMatters"), // Why it matters (optional)
+  howHeardAboutUs: varchar("howHeardAboutUs", { length: 255 }), // How did you hear about us (optional)
+  submitterName: varchar("submitterName", { length: 200 }), // Submitter name (optional, never displayed)
+  status: insightTipStatusEnum("status").default("unprocessed").notNull(),
+  evidence: varchar("evidence", { length: 500 }), // One line with source, set after review
+  readyForArticle: integer("readyForArticle").default(0).notNull(), // 0 = no, 1 = yes (only when verified)
+  summary: text("summary"), // Two-sentence summary (when verified)
+  processedAt: timestamp("processedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+export type InsightTip = typeof insightTips.$inferSelect;
+export type InsertInsightTip = typeof insightTips.$inferInsert;
