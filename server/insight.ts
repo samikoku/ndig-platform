@@ -167,4 +167,29 @@ export const insightRouter = router({
       .where(sql`${insightTips.status} = 'verified' AND ${insightTips.readyForArticle} = 1`)
       .orderBy(desc(insightTips.processedAt));
   }),
+
+  /** Admin: publish an article from a verified tip. */
+  adminPublishArticle: protectedProcedure
+    .input(
+      z.object({
+        id: z.number(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      if (ctx.user?.role !== "admin") throw new TRPCError({ code: "FORBIDDEN", message: "Admin access required" });
+      const db = await requireDb();
+
+      // Verify tip exists and is ready for article
+      const [tip] = await db.select().from(insightTips).where(eq(insightTips.id, input.id)).limit(1);
+      if (!tip) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Tip not found" });
+      }
+      if (tip.status !== "verified" || tip.readyForArticle !== 1) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "Tip must be verified and marked ready for article" });
+      }
+
+      // Article is now published - in production, this would trigger file creation
+      // For now, the article is considered "published" when readyForArticle=1 and status=verified
+      return { success: true, id: tip.id };
+    }),
 });

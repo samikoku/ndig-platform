@@ -34,6 +34,7 @@ import { lazy, Suspense } from "react";
 // Verification pages load on demand so the homepage bundle does not grow.
 const VerifyOpportunity = lazy(() => import("./pages/VerifyOpportunity"));
 const VerifyDossier = lazy(() => import("./pages/VerifyDossier"));
+const InsightDetail = lazy(() => import("./pages/InsightDetail"));
 const lazyPage = (Page: React.ComponentType) => () => (
   <Suspense fallback={<div className="min-h-screen bg-background" />}>
     <Page />
@@ -41,6 +42,7 @@ const lazyPage = (Page: React.ComponentType) => () => (
 );
 const VerifyOpportunityPage = lazyPage(VerifyOpportunity);
 const VerifyDossierPage = lazyPage(VerifyDossier);
+const InsightDetailPage = lazyPage(InsightDetail);
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -49,6 +51,7 @@ function Router() {
         <Route path={"/"} component={Home} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/trust-centre"} component={TrustCentre} />
+      <Route path={"/insight/:id"} component={InsightDetailPage} />
       <Route path={"/insight"} component={Insight} />
       <Route path={"/business-news"} component={BusinessNews} />
       <Route path={"/project-detail"} component={ProjectDetail} />

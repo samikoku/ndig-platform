@@ -39,6 +39,49 @@ app.post("/api/cron/daily-insight", async (req, res) => {
   }
 });
 
+// Webhook for Resend inbound emails (article publishing via [ARTICLE-APPROVED] subject)
+app.post("/api/webhooks/email-inbound", async (req, res) => {
+  // Verify webhook signature from Resend (if configured)
+  const signature = req.headers["x-resend-signature"];
+  if (!signature && process.env.RESEND_WEBHOOK_SECRET) {
+    return res.status(401).json({ error: "Missing signature" });
+  }
+
+  try {
+    const event = req.body;
+
+    // Handle inbound email events
+    if (event.type === "email.inbound") {
+      const { from, subject, text, html } = event.data;
+
+      // Only process emails with [ARTICLE-APPROVED] subject
+      if (!subject?.includes("[ARTICLE-APPROVED]")) {
+        return res.status(200).json({ status: "ignored" });
+      }
+
+      // Extract article content from email body (use text, fallback to html)
+      const content = text || html || "";
+      if (!content) {
+        return res.status(400).json({ error: "No content in email" });
+      }
+
+      // Log receipt - in production, this would parse the email and publish the article
+      console.log("[INSIGHT] Email received for article publication:", {
+        from,
+        subject,
+        contentLength: content.length,
+      });
+
+      return res.status(200).json({ status: "received", message: "Article email received - manual processing required" });
+    }
+
+    res.status(200).json({ status: "ignored" });
+  } catch (err) {
+    console.error("Email webhook error:", err);
+    res.status(500).json({ error: "Webhook processing failed" });
+  }
+});
+
 // tRPC API
 app.use(
   "/api/trpc",

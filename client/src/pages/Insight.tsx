@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
-import { Loader2, Calendar, FileText } from "lucide-react";
+import { Loader2, Calendar, FileText, ArrowRight } from "lucide-react";
 import { DIASPORA_INSIGHT } from "@/config/siteCopy";
 import { NdigWatermark } from "@/components/brand/NdigWatermark";
 import { Card, CardContent } from "@/components/ui/card";
@@ -222,38 +223,41 @@ export default function Insight() {
           ) : published.data && published.data.length > 0 ? (
             <div className="grid gap-4">
               {published.data.map((finding) => (
-                <Card key={finding.id} className="bg-card hover:border-gold/40 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="flex gap-4">
-                      <div className="flex-1">
-                        <h3 className="font-serif text-xl font-bold mb-2 text-foreground">
-                          {finding.what}
-                        </h3>
-                        {finding.summary && (
-                          <p className="text-foreground/80 mb-4">
-                            {finding.summary}
-                          </p>
-                        )}
-                        {finding.evidence && (
-                          <p className="text-sm text-muted-foreground flex items-start gap-2">
-                            <FileText className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                            <span>{finding.evidence}</span>
-                          </p>
-                        )}
-                        <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {new Date(finding.createdAt).toLocaleDateString("en-NG", {
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                            })}
-                          </span>
+                <Link key={finding.id} href={`/insight/${finding.id}`}>
+                  <Card className="bg-card hover:border-gold/40 transition-colors cursor-pointer">
+                    <CardContent className="p-6">
+                      <div className="flex gap-4 items-start">
+                        <div className="flex-1">
+                          <h3 className="font-serif text-xl font-bold mb-2 text-foreground group-hover:text-gold">
+                            {finding.what}
+                          </h3>
+                          {finding.summary && (
+                            <p className="text-foreground/80 mb-4 line-clamp-2">
+                              {finding.summary}
+                            </p>
+                          )}
+                          {finding.evidence && (
+                            <p className="text-sm text-muted-foreground flex items-start gap-2 mb-4">
+                              <FileText className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                              <span>{finding.evidence}</span>
+                            </p>
+                          )}
+                          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3 h-3" />
+                              {new Date(finding.createdAt).toLocaleDateString("en-NG", {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                              })}
+                            </span>
+                          </div>
                         </div>
+                        <ArrowRight className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           ) : (
