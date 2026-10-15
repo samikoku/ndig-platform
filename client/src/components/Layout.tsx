@@ -58,7 +58,7 @@ function NewsletterSignup() {
   );
 }
 
-const MOBILE_LINKS: Array<[string, string]> = [["/trust-centre", "Trust Centre"], ["/diaspora-readiness", "Diaspora Readiness"], ["/country-anchors", "Country Anchors"], ["/about", "About"], ["/professional-network", "Professional Network"], ["/assurance", "Assurance"]];
+const MOBILE_LINKS: Array<[string, string]> = [["/trust-centre", "Trust Centre"], ["/insight", "Diaspora Insight"], ["/diaspora-readiness", "Diaspora Readiness"], ["/country-anchors", "Country Anchors"], ["/about", "About"], ["/professional-network", "Professional Network"], ["/assurance", "Assurance"]];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -96,6 +96,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <nav className="hidden xl:flex items-center gap-6">
             <Link href="/trust-centre" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/trust-centre" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Trust Centre
+            </Link>
+            <Link href="/insight" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location.startsWith("/insight") ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
+              Diaspora Insight
             </Link>
             <Link href="/diaspora-readiness" className={`text-sm font-medium transition-colors hover:text-gold relative py-1 ${location === "/diaspora-readiness" ? "text-gold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold" : "text-sidebar-foreground/80"}`}>
               Diaspora Readiness
