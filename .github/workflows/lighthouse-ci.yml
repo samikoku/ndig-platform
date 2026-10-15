@@ -56,8 +56,9 @@ jobs:
           echo "Testing against: ${{ steps.vercel-preview.outputs.result }}"
           lhci collect --url "${{ steps.vercel-preview.outputs.result }}" \
             --url "${{ steps.vercel-preview.outputs.result }}/insight" \
-            --url "${{ steps.vercel-preview.outputs.result }}/verify"
-          lhci assert --preset lighthouse:recommended --uploadArtifacts
+            --url "${{ steps.vercel-preview.outputs.result }}/verify" \
+            --config ./lighthouserc.json
+          lhci assert
           lhci upload --temporaryPublicStorage
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}

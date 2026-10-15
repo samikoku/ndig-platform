@@ -24,6 +24,7 @@ jobs:
         run: |
           npm ci
           npm install --save-dev playwright
+          npx playwright install chromium
 
       - name: Wait for Vercel Preview
         uses: actions/github-script@v7
