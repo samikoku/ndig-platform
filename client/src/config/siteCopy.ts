@@ -343,3 +343,39 @@ export const COUNTRY_ANCHORS = {
   compensation:
     "Anchors receive a fixed monthly honorarium for verified community engagement. They earn no commission on any investment, ever. Community members never pay an Anchor for anything.",
 };
+
+/* Diaspora Insight: scheme and fraud reporting. */
+export const DIASPORA_INSIGHT = {
+  TIP_LINE: "Seen a scheme? The desk wants it.",
+  formHeading: "Report a Scheme",
+  formIntro:
+    "Have you encountered a fake allocation, phantom estate, or a cooperative that does not exist? Tell the desk. One minute. Always anonymous.",
+  disclaimer:
+    "Every submission is an allegation until the desk verifies it. No name is ever published as a scam without dossier-grade evidence.",
+  thankYou: "Your tip is logged and unnamed. The desk will verify and report findings on this page.",
+  findingsHeading: "Findings",
+  noFindings: "No verified findings yet. Check back soon.",
+  fields: {
+    what: {
+      label: "What is it?",
+      placeholder: "Describe the scheme, allocation, property, or institution you want to report.",
+      hint: "Be specific. Example: 'Email offer of 15-hectare allocation at ₦50/sqm in Abuja land scheme. Originator claims CBN approval.'",
+    },
+    sourceOrLink: {
+      label: "Source or link (optional)",
+      placeholder: "If you have a URL, email, or contact that offered this, include it.",
+    },
+    whyItMatters: {
+      label: "Why it matters (optional)",
+      placeholder: "Who is being targeted? What happens if someone falls for it?",
+    },
+    howHeardAboutUs: {
+      label: "How did you hear about us? (optional)",
+      placeholder: "LinkedIn, WhatsApp, a friend, etc.",
+    },
+    submitterName: {
+      label: "Your name (optional, never published)",
+      placeholder: "Leave blank to stay completely anonymous.",
+    },
+  },
+};

@@ -1,0 +1,184 @@
+name: Playwright Screenshot Capture
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install --save-dev playwright
+          npx playwright install chromium
+
+      - name: Wait for Vercel Preview
+        uses: actions/github-script@v7
+        id: vercel-preview
+        with:
+          script: |
+            const maxAttempts = 30;
+            const delayMs = 10000;
+
+            for (let i = 0; i < maxAttempts; i++) {
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+
+              const vercelComment = comments.data.find(c =>
+                c.user.login === 'vercel[bot]' && c.body.includes('ndig-gateway')
+              );
+
+              if (vercelComment) {
+                const match = vercelComment.body.match(/https:\/\/ndig-gateway[^\s]+?\.vercel\.app/);
+                if (match) {
+                  console.log('Found URL: ' + match[0]);
+                  return match[0];
+                }
+              }
+
+              if (i < maxAttempts - 1) {
+                await new Promise(resolve => setTimeout(resolve, delayMs));
+              }
+            }
+
+            throw new Error('Vercel preview URL not found');
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create screenshot script
+        run: |
+          cat > scripts/capture-screenshots.mjs << 'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'fs';
+          import path from 'path';
+
+          const baseUrl = process.env.PREVIEW_URL;
+          const outputDir = 'screenshots';
+
+          if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+          }
+
+          const routes = [
+            { path: '/', name: 'homepage' },
+            { path: '/insight', name: 'insight-form' },
+            { path: '/insight', name: 'insight-findings' },
+            { path: '/verify', name: 'verify' }
+          ];
+
+          const widths = [375, 768, 1440];
+
+          (async () => {
+            const browser = await chromium.launch();
+
+            try {
+              for (const route of routes) {
+                for (const width of widths) {
+                  const height = width === 375 ? 667 : width === 768 ? 1024 : 768;
+                  const context = await browser.createBrowserContext({
+                    viewport: { width, height }
+                  });
+
+                  const page = await context.newPage();
+                  const url = `${baseUrl}${route.path}`;
+
+                  try {
+                    await page.goto(url, { waitUntil: 'networkidle' });
+                    await page.waitForTimeout(1000);
+
+                    const filename = `${route.name}-${width}.png`;
+                    const filepath = path.join(outputDir, filename);
+
+                    await page.screenshot({ path: filepath, fullPage: true });
+                    console.log(`✓ ${filename}`);
+                  } catch (err) {
+                    console.error(`✗ Failed to capture ${route.name} at ${width}px: ${err.message}`);
+                    process.exit(1);
+                  } finally {
+                    await context.close();
+                  }
+                }
+              }
+            } finally {
+              await browser.close();
+            }
+
+            console.log('\n✓ All screenshots captured');
+          })();
+          EOF
+        env:
+          PREVIEW_URL: ${{ steps.vercel-preview.outputs.result }}
+
+      - name: Capture screenshots
+        run: node scripts/capture-screenshots.mjs
+        env:
+          PREVIEW_URL: ${{ steps.vercel-preview.outputs.result }}
+
+      - name: Upload screenshots as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots
+          path: screenshots/
+          retention-days: 30
+
+      - name: Comment PR with screenshots
+        if: always() && hashFiles('screenshots/*') != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const screenshotsDir = 'screenshots';
+            const files = fs.readdirSync(screenshotsDir);
+
+            if (files.length === 0) {
+              console.log('No screenshots found');
+              return;
+            }
+
+            let comment = '## 📸 Playwright Screenshots\n\n';
+            comment += 'Responsive design validation:\n\n';
+
+            const widths = [375, 768, 1440];
+            const routes = ['homepage', 'insight-form', 'insight-findings', 'verify'];
+
+            for (const route of routes) {
+              comment += `### ${route}\n`;
+              for (const width of widths) {
+                const filename = `${route}-${width}.png`;
+                if (files.includes(filename)) {
+                  const filePath = path.join(screenshotsDir, filename);
+                  const fileSize = fs.statSync(filePath).size;
+                  comment += `- ✓ ${width}px (${fileSize} bytes)\n`;
+                }
+              }
+              comment += '\n';
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

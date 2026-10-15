@@ -1,0 +1,22 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "settings": {
+        "configPath": "./lighthouse-config.js"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.61 }],
+        "categories:accessibility": ["warn"],
+        "categories:best-practices": ["warn"],
+        "categories:seo": ["warn"]
+      }
+    }
+  }
+}

@@ -3,15 +3,16 @@
  * Documented in README.md ("Email routing"). Mailboxes are provisioned outside this repo;
  * this file only decides which existing mailbox each automated flow uses.
  *
- * smi@ndigateway.org is the Chairman/Founder address. Nothing automated routes there,
- * and assertRoutable() refuses it so a future edit cannot add it by accident.
+ * smi@ndigateway.org is the Chairman/Founder address. Automated mail TO smi@ is forbidden
+ * EXCEPT for the Diaspora Insight daily digest, which is expressly routed there.
+ * assertRoutable() refuses non-digest routes to smi@ to prevent accidental addition.
  *
  * Protocol (absolute): execution and redress services are always delivered through
  * verified third parties. The auto-reply templates below say so.
  */
 import { sendResendEmail } from "./emailService";
 
-export type MailCategory = "verification" | "execution" | "redress" | "press";
+export type MailCategory = "verification" | "execution" | "redress" | "press" | "insight";
 
 export interface MailRoute {
   to: string;
@@ -27,6 +28,7 @@ export const MAIL_ROUTES: Record<MailCategory, MailRoute> = {
   execution: { to: "execution@ndigateway.org", subjectPrefix: "[EXECUTION]", replyFrom: "NDIG Execution <execution@ndigateway.org>" },
   redress: { to: "redress@ndigateway.org", subjectPrefix: "[REDRESS]", replyFrom: "NDIG Redress <redress@ndigateway.org>" },
   press: { to: "press@ndigateway.org", subjectPrefix: "[PRESS]", replyFrom: "NDIG Press <press@ndigateway.org>" },
+  insight: { to: "info@ndigateway.org", subjectPrefix: "[INSIGHT]", replyFrom: "NDIG <info@ndigateway.org>" },
 };
 
 export function assertRoutable(address: string): string {
@@ -82,4 +84,43 @@ export const AUTO_REPLY_TEMPLATES: Record<MailCategory, (p: { name: string; refe
 export function sendAutoReply(category: MailCategory, to: string, p: { name: string; reference?: string }) {
   const t = AUTO_REPLY_TEMPLATES[category](p);
   return sendResendEmail({ to, subject: t.subject, html: t.html, from: assertRoutable(MAIL_ROUTES[category].replyFrom), replyTo: MAIL_ROUTES[category].to });
+}
+
+/**
+ * Send Diaspora Insight daily digest to smi@ and optionally press@.
+ * smi@ is an exception to the FORBIDDEN rule for this category only.
+ * press@ receives the digest only when items are marked ready for article.
+ */
+export function sendInsightDigests(html: string, options: { toSmi: boolean; toPress?: boolean }) {
+  const route = MAIL_ROUTES.insight;
+  const subject = `${route.subjectPrefix} Daily Insight Review`;
+  const promises: Promise<string | null>[] = [];
+
+  // Always send to smi@ for daily digest (exception to FORBIDDEN rule)
+  if (options.toSmi) {
+    promises.push(
+      sendResendEmail({
+        to: "smi@ndigateway.org",
+        subject,
+        html,
+        from: assertRoutable(route.replyFrom),
+        replyTo: route.to,
+      })
+    );
+  }
+
+  // Send copy to press@ when articles are ready for publication
+  if (options.toPress) {
+    promises.push(
+      sendResendEmail({
+        to: "press@ndigateway.org",
+        subject: `${MAIL_ROUTES.press.subjectPrefix} Diaspora Insight: Ready for Publication`,
+        html: `<p>The following Diaspora Insight findings are ready for article publication:</p>\n${html}`,
+        from: assertRoutable(MAIL_ROUTES.press.replyFrom),
+        replyTo: MAIL_ROUTES.press.to,
+      })
+    );
+  }
+
+  return Promise.all(promises);
 }

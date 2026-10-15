@@ -1,0 +1,65 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Wait for Vercel Preview
+        uses: actions/github-script@v7
+        id: vercel-preview
+        with:
+          script: |
+            const maxAttempts = 30;
+            const delayMs = 10000;
+
+            for (let i = 0; i < maxAttempts; i++) {
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+
+              const vercelComment = comments.data.find(c =>
+                c.user.login === 'vercel[bot]' && c.body.includes('ndig-gateway')
+              );
+
+              if (vercelComment) {
+                const match = vercelComment.body.match(/https:\/\/ndig-gateway[^\s]+?\.vercel\.app/);
+                if (match) {
+                  console.log('Found URL: ' + match[0]);
+                  return match[0];
+                }
+              }
+
+              if (i < maxAttempts - 1) {
+                await new Promise(resolve => setTimeout(resolve, delayMs));
+              }
+            }
+
+            throw new Error('Vercel preview URL not found');
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@latest
+          echo "Testing against: ${{ steps.vercel-preview.outputs.result }}"
+          lhci collect --url "${{ steps.vercel-preview.outputs.result }}" \
+            --url "${{ steps.vercel-preview.outputs.result }}/insight" \
+            --url "${{ steps.vercel-preview.outputs.result }}/verify" \
+            --config ./lighthouserc.json
+          lhci assert
+          lhci upload --temporaryPublicStorage
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LHCI_GITHUB_PR: true
