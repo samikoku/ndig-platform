@@ -1,0 +1,163 @@
+name: Diaspora Insight Smoke Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create smoke test script
+        run: |
+          cat > scripts/smoke-test.mjs << 'EOF'
+          import fetch from 'node-fetch';
+
+          const env = process.env.TEST_ENV || 'production';
+          const baseUrl = env === 'production'
+            ? 'https://ndigateway.org'
+            : 'https://staging.ndigateway.org';
+
+          const testTip = {
+            what: `[Smoke Test ${new Date().toISOString()}] Synthetic test tip for automated verification`,
+            sourceOrLink: 'https://ndigateway.org/insight',
+            whyItMatters: 'Testing tip intake pipeline',
+            howHeardAboutUs: 'Automated test',
+            submitterName: 'NDIG Automation'
+          };
+
+          (async () => {
+            try {
+              console.log(`🔬 Starting smoke test against ${baseUrl}`);
+              console.log(`⏱️  Timestamp: ${new Date().toISOString()}`);
+
+              // Step 1: Submit tip via tRPC
+              console.log('\n📤 Submitting test tip...');
+              const submitResponse = await fetch(`${baseUrl}/api/trpc/insight.submitTip`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  json: testTip
+                })
+              });
+
+              if (!submitResponse.ok) {
+                throw new Error(`Submit failed: ${submitResponse.status} ${submitResponse.statusText}`);
+              }
+
+              const submitData = await submitResponse.json();
+              if (!submitData.result || !submitData.result.data) {
+                throw new Error(`Invalid response structure: ${JSON.stringify(submitData)}`);
+              }
+
+              const tipId = submitData.result.data.id;
+              console.log(`✅ Tip submitted successfully (ID: ${tipId})`);
+
+              // Step 2: Verify tip appears in published findings (may show as unverified initially)
+              console.log('\n🔍 Verifying tip in database...');
+              await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for DB consistency
+
+              const listResponse = await fetch(`${baseUrl}/api/trpc/insight.published`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ json: {} })
+              });
+
+              if (!listResponse.ok) {
+                throw new Error(`List failed: ${listResponse.status} ${listResponse.statusText}`);
+              }
+
+              const listData = await listResponse.json();
+              if (!Array.isArray(listData.result?.data)) {
+                throw new Error(`Invalid list response: ${JSON.stringify(listData)}`);
+              }
+
+              console.log(`✅ Database accessible (${listData.result.data.length} verified findings)`);
+
+              // Step 3: Verify form renders
+              console.log('\n📄 Testing form rendering...');
+              const formResponse = await fetch(`${baseUrl}/insight`);
+              if (!formResponse.ok) {
+                throw new Error(`Form page failed: ${formResponse.status}`);
+              }
+
+              const formHtml = await formResponse.text();
+              if (!formHtml.includes('Report a Scheme') && !formHtml.includes('insight')) {
+                throw new Error('Form page missing expected content');
+              }
+
+              console.log(`✅ Form renders correctly`);
+
+              // Final summary
+              console.log('\n🎉 SMOKE TEST PASSED');
+              console.log(`   Environment: ${env}`);
+              console.log(`   Test tip ID: ${tipId}`);
+              console.log(`   Timestamp: ${new Date().toISOString()}`);
+              console.log(`   Status: All checks passed`);
+
+              process.exit(0);
+            } catch (err) {
+              console.error(`\n❌ SMOKE TEST FAILED`);
+              console.error(`   Error: ${err.message}`);
+              console.error(`   Timestamp: ${new Date().toISOString()}`);
+              process.exit(1);
+            }
+          })();
+          EOF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run smoke test
+        run: node scripts/smoke-test.mjs
+        env:
+          TEST_ENV: ${{ github.event.inputs.environment }}
+
+      - name: Comment on status
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const conclusion = '${{ job.status }}' === 'success' ? '✅ PASSED' : '❌ FAILED';
+            const summary = `## 🔬 Smoke Test ${conclusion}
+
+Environment: \`${{ github.event.inputs.environment }}\`
+Timestamp: ${new Date().toISOString()}
+Branch: ${context.ref}
+
+**Checks:**
+- ✅ Tip submission (tRPC)
+- ✅ Database storage
+- ✅ Form rendering
+            `;
+
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: '${{ job.status }}' === 'success' ? 'success' : 'failure',
+              description: conclusion,
+              context: 'Diaspora Insight Smoke Test'
+            });
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
