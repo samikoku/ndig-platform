@@ -5,6 +5,7 @@ import { registerOAuthRoutes } from "./_core/oauth";
 import { appRouter } from "./routers";
 import { createContext } from "./_core/context";
 import { registerJoinRoutes } from "./joinRoutes";
+import { runDailyInsightReview } from "./cronJobs";
 
 const app = express();
 
@@ -20,6 +21,23 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // OAuth routes
 registerOAuthRoutes(app);
+
+// Cron jobs
+app.post("/api/cron/daily-insight", async (req, res) => {
+  // Verify this is from Vercel's cron (X-Vercel-Cron header is only set by Vercel)
+  const cronHeader = req.headers["x-vercel-cron"];
+  if (!cronHeader) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    await runDailyInsightReview();
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error("Cron job failed:", err);
+    res.status(500).json({ error: "Cron job failed" });
+  }
+});
 
 // tRPC API
 app.use(
