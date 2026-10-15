@@ -19,9 +19,8 @@ jobs:
         id: vercel-preview
         with:
           script: |
-            const fs = require('fs');
             const maxAttempts = 30;
-            const delayMs = 10000; // 10 seconds
+            const delayMs = 10000;
 
             for (let i = 0; i < maxAttempts; i++) {
               const comments = await github.rest.issues.listComments({
@@ -31,13 +30,13 @@ jobs:
               });
 
               const vercelComment = comments.data.find(c =>
-                c.user.login === 'vercel[bot]' && c.body.includes('https://')
+                c.user.login === 'vercel[bot]' && c.body.includes('ndig-gateway')
               );
 
               if (vercelComment) {
-                const match = vercelComment.body.match(/https:\/\/[^\s]+/);
+                const match = vercelComment.body.match(/https:\/\/ndig-gateway[^\s]+?\.vercel\.app/);
                 if (match) {
-                  console.log('Preview URL: ' + match[0]);
+                  console.log('Found URL: ' + match[0]);
                   return match[0];
                 }
               }
@@ -52,12 +51,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v11
-        with:
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          configPath: './lighthouserc.json'
+        run: |
+          npm install -g @lhci/cli@latest
+          echo "Testing against: ${{ steps.vercel-preview.outputs.result }}"
+          lhci collect --url "${{ steps.vercel-preview.outputs.result }}" \
+            --url "${{ steps.vercel-preview.outputs.result }}/insight" \
+            --url "${{ steps.vercel-preview.outputs.result }}/verify"
+          lhci assert --preset lighthouse:recommended --uploadArtifacts
+          lhci upload --temporaryPublicStorage
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LHCI_GITHUB_PR: true
-          VERCEL_PREVIEW_URL: ${{ steps.vercel-preview.outputs.result }}
