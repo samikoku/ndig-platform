@@ -353,7 +353,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto border-2 border-primary/20 rounded-2xl p-8 md:p-10">
             <h2 className="font-serif text-2xl md:text-4xl font-bold mb-4">The Diaspora Assurance Report</h2>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              From day one, NDIG accumulates aggregate, anonymised corridor intelligence: where claims stall, which institutions perform, sector flows, service-level breach patterns. At the end of the first full reporting year — 30 September 2027 — that record becomes the NDIG Diaspora Assurance Report. Published for members; available to institutions by subscription. Insight, never personal data.
+              From day one, NDIG accumulates aggregate, anonymised corridor intelligence: where claims stall, which institutions perform, sector flows, service-level breach patterns. At the end of the first full reporting year — 30 September 2026 — that record becomes the NDIG Diaspora Assurance Report. Published for members; available to institutions by subscription. Insight, never personal data.
             </p>
             <p className="text-sm text-muted-foreground">
               NDIG does not guarantee the products or performance of any partner institution.
