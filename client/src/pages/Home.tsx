@@ -311,33 +311,57 @@ export default function Home() {
                 <CardContent className="p-6 md:p-8">
                   <div className="space-y-6">
                     <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                      <h3 className="font-serif text-lg md:text-xl font-bold">Listing Under Review</h3>
-                      <span className="px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase">Not yet verified</span>
+                      <h3 className="font-serif text-lg md:text-xl font-bold">Upstream Oil &amp; Gas</h3>
+                      <span className="px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold uppercase">Verified</span>
                     </div>
+                    <p className="text-xs uppercase tracking-widest text-sidebar-foreground/60 -mt-4">
+                      40 Blocks — Onshore · Shallow Water · Deepwater
+                    </p>
 
                     <div className="aspect-video rounded-lg bg-black/20 overflow-hidden relative">
-                      {/* CONFIRM: image rights pending. No third-party image is published until reproduction rights are in evidence. */}
-                      <div className="absolute inset-0 flex items-center justify-center text-white/40 text-xs md:text-sm text-center px-4">
-                        CONFIRM: image rights pending
-                      </div>
+                      <img
+                        src="/images/ndig-2026-oil-gas-licensing-round.png"
+                        alt="Nigeria 2026 Oil &amp; Gas Licensing Round — 40 Blocks, verified by NDIG"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
 
                     <div>
-                      <h4 className="text-xl md:text-2xl font-bold mb-2">Eko Atlantic, Phase 4</h4>
+                      <h4 className="text-xl md:text-2xl font-bold mb-2">Nigeria 2026 Oil &amp; Gas Licensing Round</h4>
                       <p className="text-sm md:text-base text-sidebar-foreground/70 mb-3">
-                        Eko Atlantic is a new coastal city on land reclaimed from the Atlantic at Victoria Island, Lagos (source: Eko Atlantic official site, ekoatlantic.com, checked 25 September 2026).
+                        On 6 October 2026, the Nigerian Upstream Petroleum Regulatory Commission formally launched the Nigeria 2026 Licensing Round — 40 blocks across onshore, shallow-water and deepwater terrains. The Commission states the round is open to investors with the technical competence, financial capacity and commitment to develop the assets, and has committed to a published evaluation methodology, fuller publication of results, and disclosure of the beneficial owners of every bidder. Block details, qualification requirements and the event timetable are to be published by the Commission on its website and licensing portal — pending as at 17 October 2026.
+                      </p>
+                      <p className="text-xs md:text-sm text-gold font-medium mb-1">
+                        VERIFIED — 17 October 2026 · Re-check due 24 October 2026
+                      </p>
+                      <p className="text-xs md:text-sm text-sidebar-foreground/60 mb-3">
+                        Source: NUPRC, Abuja — nuprc.gov.ng (official announcement, 6 October 2026)
                       </p>
                       <p className="text-sm md:text-base text-sidebar-foreground/70 mb-4">
-                        NDIG has not published a verification verdict on this listing. The scope of Phase 4, unit availability and any return figures are [UNVERIFIED] and are not shown. NDIG does not sell, market or guarantee this development, and does not guarantee the products or performance of any partner institution.
+                        How to bid: steps are set out in the Commission's published Licensing Round Guidelines (2025 Round) at{" "}
+                        <a
+                          href="https://br2025.nuprc.gov.ng"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:text-gold"
+                        >
+                          br2025.nuprc.gov.ng
+                        </a>
+                        . NDIG's Intelligence Brief, "Steps to Bidding in the 2026 Round," draws on that public guide; where the Commission's 2026 guide differs when published, the changes will be communicated. Sign in to access the Brief.
                       </p>
-                      <a
-                        href="https://www.ekoatlantic.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <p className="text-xs text-sidebar-foreground/60 mb-4">
+                        NDIG does not sell, market or guarantee participation in this round and is not affiliated with the Commission. This card reports a public record; it is not an offer.
+                      </p>
+                      {/* CONFIRM: no functional login flow exists in this codebase — useAuth() is a stub
+                          (isAuthenticated: false, login: () => {}) and no client-side getLoginUrl()/authorize
+                          redirect is wired to the existing server OAuth callback. Routing to the closest
+                          sensible member-content target (/sovereign-brief) per instruction not to invent a page. */}
+                      <Link
+                        href="/sovereign-brief"
                         className="block w-full text-center rounded-md bg-primary hover:bg-primary/90 text-white py-2 text-sm font-medium"
                       >
-                        Official project site
-                      </a>
+                        Read the Intelligence Brief
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
